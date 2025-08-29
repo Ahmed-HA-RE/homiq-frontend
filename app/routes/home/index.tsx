@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'RealEstate' },
+    { title: 'Estate' },
     {
       name: 'description',
       content:

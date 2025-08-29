@@ -11,3 +11,13 @@ html,
 body {
   @apply scroll-smooth;
 }
+
+@layer components {
+  .mobile-slider-nav {
+    @apply inline-block text-sm font-medium cursor-pointer rounded-full  hover:bg-blue-200/40 w-full p-4;
+  }
+
+  .desktop-nav-items {
+    @apply text-white font-outfit hover:text-gray-400 transition-colors duration-200;
+  }
+}

@@ -4,7 +4,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { IoHome } from 'react-icons/io5';
 import { MdOutlineRoundaboutRight } from 'react-icons/md';
 import { GoProjectSymlink, GoCodeReview } from 'react-icons/go';
-import { NavHashLink } from 'react-router-hash-link';
+import { HashLink } from 'react-router-hash-link';
 
 type NavbarMenuSliderProps = {
   isOpen: boolean;
@@ -47,41 +47,45 @@ export default function NavbarMenuSlider({
         <Drawer.Content className='left-0 top-0 bottom-0 fixed z-10 outline-none w-[300px]'>
           <div className='bg-zinc-50 h-full w-full grow px-2 py-16 rounded'>
             <ul className='flex flex-col space-y-3'>
-              <li
-                onClick={() => setIsOpen(false)}
-                className='font-medium cursor-pointer rounded-full p-4 hover:bg-blue-200/40'
-              >
-                <NavHashLink className='text-sm' to='/'>
-                  <IoHome className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
+              <li>
+                <HashLink
+                  className='mobile-slider-nav'
+                  to='/'
+                  onClick={() => setIsOpen(false)}
+                >
+                  <IoHome className='inline-block -translate-y-0.5 text-2xl mr-3 ' />{' '}
                   Home
-                </NavHashLink>
+                </HashLink>
               </li>
-              <li
-                onClick={() => setIsOpen(false)}
-                className='font-medium cursor-pointer p-4 rounded-full hover:bg-blue-200/40 '
-              >
-                <NavHashLink className='text-sm' to='#about'>
+              <li>
+                <HashLink
+                  className='mobile-slider-nav'
+                  to='#about'
+                  onClick={() => setIsOpen(false)}
+                >
                   <MdOutlineRoundaboutRight className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
                   About
-                </NavHashLink>
+                </HashLink>
               </li>
-              <li
-                onClick={() => setIsOpen(false)}
-                className='font-medium cursor-pointer p-4 rounded-full hover:bg-blue-200/40'
-              >
-                <NavHashLink className='text-sm' to='#projects'>
+              <li>
+                <HashLink
+                  className='mobile-slider-nav'
+                  to='#projects'
+                  onClick={() => setIsOpen(false)}
+                >
                   <GoProjectSymlink className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
                   Projects
-                </NavHashLink>
+                </HashLink>
               </li>
-              <li
-                onClick={() => setIsOpen(false)}
-                className='font-medium cursor-pointer p-4 rounded-full hover:bg-blue-200/40'
-              >
-                <NavHashLink className='text-sm' to='#testimonials'>
+              <li>
+                <HashLink
+                  className='mobile-slider-nav'
+                  to='#testimonials'
+                  onClick={() => setIsOpen(false)}
+                >
                   <GoCodeReview className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
                   Testimonials
-                </NavHashLink>
+                </HashLink>
               </li>
             </ul>
           </div>
