@@ -20,4 +20,15 @@ body {
   .desktop-nav-items {
     @apply text-white font-outfit hover:text-gray-400 transition-colors duration-200;
   }
+
+  .about-stats-numbers {
+    @apply font-medium text-4xl;
+  }
+  .about-stats {
+    @apply text-gray-600 text-base tracking-wide;
+  }
+
+  .secondary-btn {
+    @apply text-white bg-blue-500 flex-1/12 py-3 inline-block rounded hover:bg-blue-700 transition-colors duration-200 md:text-lg;
+  }
 }

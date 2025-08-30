@@ -1,7 +1,7 @@
 import Header from '~/components/Header';
 import type { Route } from '../../+types/root';
-import Navbar from '../../components/Navbar';
 import { useState } from 'react';
+import About from '~/components/About';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,14 +14,17 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-const HomePage = () => {
+const App = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+      <main>
+        <About />
+      </main>
     </>
   );
 };
 
-export default HomePage;
+export default App;
