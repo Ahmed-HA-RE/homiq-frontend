@@ -1,3 +1,4 @@
+import Header from '~/components/Header';
 import type { Route } from '../../+types/root';
 import Navbar from '../../components/Navbar';
 import { useState } from 'react';
@@ -18,7 +19,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Header isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   );
 };

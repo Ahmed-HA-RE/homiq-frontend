@@ -9,37 +9,37 @@ type NavbarProps = {
 
 const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
   return (
-    <header>
-      <nav className='w-full p-6'>
+    <>
+      <nav className='w-full p-6 absolute top-0 left-0'>
         <div className='max-w-5xl mx-auto flex flex-row items-center justify-between md:px-5'>
           <img src='/svgs/logo.svg' alt='logo' />
           <div />
+
           {/* Desktop nav */}
-          <div>
-            <ul className='hidden md:flex flex-row space-x-6 items-center'>
-              <li>
-                <HashLink className='desktop-nav-items' to={'/'}>
-                  Home
-                </HashLink>
-              </li>
-              <li>
-                <HashLink className='desktop-nav-items' to={'#about'}>
-                  About
-                </HashLink>
-              </li>
-              <li>
-                <HashLink className='desktop-nav-items' to={'#projects'}>
-                  Projects
-                </HashLink>
-              </li>
-              <li>
-                <HashLink className='desktop-nav-items' to={'#testimonails'}>
-                  Testimonails
-                </HashLink>
-              </li>
-            </ul>
-          </div>
-          {/* Mobile nav */}
+          <ul className='hidden md:flex flex-row space-x-6 items-center'>
+            <li>
+              <HashLink className='desktop-nav-items' to={'/'}>
+                Home
+              </HashLink>
+            </li>
+            <li>
+              <HashLink className='desktop-nav-items' to={'#about'}>
+                About
+              </HashLink>
+            </li>
+            <li>
+              <HashLink className='desktop-nav-items' to={'#projects'}>
+                Projects
+              </HashLink>
+            </li>
+            <li>
+              <HashLink className='desktop-nav-items' to={'#testimonails'}>
+                Testimonails
+              </HashLink>
+            </li>
+          </ul>
+
+          {/* Mobile nav hamburger */}
           <button
             className='block md:hidden'
             onClick={() => setIsOpen(!isOpen)}
@@ -56,9 +56,10 @@ const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
           </button>
         </div>
       </nav>
+
       {/* Mobile nav drawer */}
       {isOpen && <NavbarMenuSlider isOpen={isOpen} setIsOpen={setIsOpen} />}
-    </header>
+    </>
   );
 };
 

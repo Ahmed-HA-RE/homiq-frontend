@@ -37,16 +37,25 @@ export default function NavbarMenuSlider({
 
   return (
     <Drawer.Root
-      direction='left'
+      direction='right'
       open={isOpen}
       onOpenChange={setIsOpen}
       modal={true}
     >
       <Drawer.Portal>
-        <Drawer.Overlay className='fixed inset-0 bg-black/40' />
-        <Drawer.Content className='left-0 top-0 bottom-0 fixed z-10 outline-none w-[300px]'>
-          <div className='bg-zinc-50 h-full w-full grow px-2 py-16 rounded'>
-            <ul className='flex flex-col space-y-3'>
+        <Drawer.Overlay className='fixed inset-0 bg-black/40 ' />
+        <Drawer.Content className='right-0 top-0 bottom-0 fixed z-10 outline-none w-[300px]'>
+          <div className='bg-zinc-50 h-full w-full grow py-16'>
+            <div className='mb-10'>
+              <img
+                className='w-6 h-6 absolute right-4 top-8 cursor-pointer'
+                src='/svgs/cross_icon.svg'
+                alt='close-btn'
+                onClick={() => setIsOpen(false)}
+              />
+            </div>
+
+            <ul className='flex flex-col text-center  divide-y-2'>
               <li>
                 <HashLink
                   className='mobile-slider-nav'
