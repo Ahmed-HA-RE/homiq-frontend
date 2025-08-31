@@ -1,6 +1,7 @@
 export enum ImagePath {
   BRAND = 'brand_img.png',
   HEADER = 'header_img.png',
+  HEADER_projects = 'header_projects_img.png',
   PROFILE_1 = 'profile_img_1',
   PROFILE_2 = 'profile_img_2',
   PROFILE_3 = 'profile_img_3',
