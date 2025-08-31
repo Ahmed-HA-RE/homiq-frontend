@@ -1,10 +1,9 @@
-import { ImagePath } from '~/enums';
 import { Link } from 'react-router';
 
 type HeroProps = {
   image: string;
   heading: string;
-  ctaProjects?: string;
+  ctaProjects?: { label: string; route: string };
   description?: string;
 };
 
@@ -28,9 +27,9 @@ const Hero = ({ image, ctaProjects, description, heading }: HeroProps) => {
           <div className='flex flex-row max-w-sm items-center justify-center mx-auto text-center mt-12'>
             <Link
               className='text-white border border-white w-1/2 py-3 inline-block mr-4 rounded hover:bg-gray-700 hover:border-gray-700 transition-colors duration-200 md:text-lg'
-              to={'/projects'}
+              to={ctaProjects?.route as string}
             >
-              {ctaProjects}
+              {ctaProjects?.label}
             </Link>
             <Link
               className='text-white bg-blue-500 w-1/2 py-3 inline-block rounded hover:bg-blue-700 transition-colors duration-200 md:text-lg'
