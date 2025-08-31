@@ -2,17 +2,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import '../carousel-swiper.css';
+import '../carousel.css';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import type { Project } from '~/types';
+import type { Projects } from '~/types';
 import { Link } from 'react-router';
 const Images_Backend_URL = import.meta.env.VITE_BACKEND_URL_STATIC;
 
 type CourseSwiperProps = {
-  projects: Project[];
+  projects: Projects[];
 };
 
 export default function CourseSwiper({ projects }: CourseSwiperProps) {
@@ -46,7 +46,7 @@ export default function CourseSwiper({ projects }: CourseSwiperProps) {
               </p>
               <Link
                 className='text-sm bg-blue-500 hover:bg-blue-700 transition duration-200 text-white rounded px-4 py-2 mt-2 inline-block'
-                to={`/project/${project.id}`}
+                to={`/project/${project._id}`}
               >
                 Learn More{' '}
                 <FaArrowRightLong className='inline-block text-xs ml-1' />
