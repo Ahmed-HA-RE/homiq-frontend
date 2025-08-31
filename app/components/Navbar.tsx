@@ -1,41 +1,60 @@
 import { Twirl as Hamburger } from 'hamburger-react';
 import NavbarMenuSlider from './NavbarSlider';
-import { HashLink } from 'react-router-hash-link';
+import { Link, NavLink } from 'react-router';
+import { useState } from 'react';
 
-type NavbarProps = {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <nav className='w-full p-6 absolute top-0 left-0'>
+      <nav className='w-full p-6 absolute top-0 left-0 z-40'>
         <div className='max-w-5xl mx-auto flex flex-row items-center justify-between md:px-5'>
-          <img src='/svgs/logo.svg' alt='logo' />
+          <Link to={'/'}>
+            <img src='/svgs/logo.svg' alt='logo' />
+          </Link>
           <div />
 
           {/* Desktop nav */}
           <ul className='hidden md:flex flex-row space-x-6 items-center'>
             <li>
-              <HashLink className='desktop-nav-items' to={'/'}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'text-gray-400' : 'desktop-nav-items'
+                }
+                to={'/'}
+              >
                 Home
-              </HashLink>
+              </NavLink>
             </li>
             <li>
-              <HashLink className='desktop-nav-items' to={'#about'}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'text-gray-400' : 'desktop-nav-items'
+                }
+                to={'/about'}
+              >
                 About
-              </HashLink>
+              </NavLink>
             </li>
             <li>
-              <HashLink className='desktop-nav-items' to={'#projects'}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'text-gray-400' : 'desktop-nav-items'
+                }
+                to={'/projects'}
+              >
                 Projects
-              </HashLink>
+              </NavLink>
             </li>
             <li>
-              <HashLink className='desktop-nav-items' to={'#testimonails'}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? 'text-gray-400' : 'desktop-nav-items'
+                }
+                to={'/testimonails'}
+              >
                 Testimonails
-              </HashLink>
+              </NavLink>
             </li>
           </ul>
 

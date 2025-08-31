@@ -4,7 +4,7 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { IoHome } from 'react-icons/io5';
 import { MdOutlineRoundaboutRight } from 'react-icons/md';
 import { GoProjectSymlink, GoCodeReview } from 'react-icons/go';
-import { HashLink } from 'react-router-hash-link';
+import { NavLink } from 'react-router';
 
 type NavbarMenuSliderProps = {
   isOpen: boolean;
@@ -44,7 +44,7 @@ export default function NavbarMenuSlider({
     >
       <Drawer.Portal>
         <Drawer.Overlay className='fixed inset-0 bg-black/40 ' />
-        <Drawer.Content className='right-0 top-0 bottom-0 fixed z-10 outline-none w-[300px]'>
+        <Drawer.Content className='right-0 top-0 bottom-0 fixed z-50 outline-none w-[300px]'>
           <div className='bg-zinc-50 h-full w-full grow py-16'>
             <div className='mb-10'>
               <img
@@ -57,44 +57,60 @@ export default function NavbarMenuSlider({
 
             <ul className='flex flex-col text-center  divide-y-2'>
               <li>
-                <HashLink
-                  className='mobile-slider-nav'
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'mobile-slider-nav bg-blue-200/40'
+                      : 'mobile-slider-nav'
+                  }
                   to='/'
                   onClick={() => setIsOpen(false)}
                 >
                   <IoHome className='inline-block -translate-y-0.5 text-2xl mr-3 ' />{' '}
                   Home
-                </HashLink>
+                </NavLink>
               </li>
               <li>
-                <HashLink
-                  className='mobile-slider-nav'
-                  to='#about'
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'mobile-slider-nav bg-blue-200/40'
+                      : 'mobile-slider-nav'
+                  }
+                  to='/about'
                   onClick={() => setIsOpen(false)}
                 >
                   <MdOutlineRoundaboutRight className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
                   About
-                </HashLink>
+                </NavLink>
               </li>
               <li>
-                <HashLink
-                  className='mobile-slider-nav'
-                  to='#projects'
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'mobile-slider-nav bg-blue-200/40'
+                      : 'mobile-slider-nav'
+                  }
+                  to='/projects'
                   onClick={() => setIsOpen(false)}
                 >
                   <GoProjectSymlink className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
                   Projects
-                </HashLink>
+                </NavLink>
               </li>
               <li>
-                <HashLink
-                  className='mobile-slider-nav'
-                  to='#testimonials'
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'mobile-slider-nav bg-blue-200/40'
+                      : 'mobile-slider-nav'
+                  }
+                  to='/testimonials'
                   onClick={() => setIsOpen(false)}
                 >
                   <GoCodeReview className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
                   Testimonials
-                </HashLink>
+                </NavLink>
               </li>
             </ul>
           </div>
