@@ -27,7 +27,7 @@ const About = () => {
           {/* About Image */}
           <div className=''>
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL}/images/${ImagePath.BRAND}`}
+              src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/${ImagePath.BRAND}`}
               alt='about our brand'
               className='w-full max-w-sm md:max-w-[600px] object-cover'
             />

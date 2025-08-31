@@ -2,6 +2,7 @@ import Header from '~/components/Header';
 import type { Route } from '../../+types/root';
 import { useState } from 'react';
 import About from '~/components/About';
+import Projects from '~/components/Projects';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,7 +15,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-const App = () => {
+const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -22,9 +23,10 @@ const App = () => {
       <Header isOpen={isOpen} setIsOpen={setIsOpen} />
       <main>
         <About />
+        <Projects />
       </main>
     </>
   );
 };
 
-export default App;
+export default HomePage;

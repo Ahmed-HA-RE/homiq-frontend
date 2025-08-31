@@ -1,6 +1,6 @@
 import { ImagePath } from './enums';
 
-export type Projects = {
+export type Project = {
   id: string;
   title: string;
   price: string;

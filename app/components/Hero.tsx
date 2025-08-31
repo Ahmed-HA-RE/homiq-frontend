@@ -9,7 +9,7 @@ const Hero = () => {
         id='header'
         className={`min-h-screen min-w-screen flex items-center justify-center p-4 bg-cover bg-no-repeat bg-center`}
         style={{
-          backgroundImage: `url(${import.meta.env.VITE_BACKEND_URL}/images/${ImagePath.HEADER})`,
+          backgroundImage: `url(${import.meta.env.VITE_BACKEND_URL_STATIC}/images/${ImagePath.HEADER})`,
         }}
       >
         {/* Hero info */}
