@@ -1,4 +1,4 @@
-import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router';
 import { ImagePath } from '~/enums';
 
 const About = () => {
@@ -66,9 +66,12 @@ const About = () => {
               investments that match your vision while maintaining the highest
               standards of service and trust.
             </p>
-            <HashLink to={'/'} className='secondary-btn text-center px-3 !py-2'>
+            <Link
+              to={'/about'}
+              className='secondary-btn text-center px-3 !py-2'
+            >
               Learn More
-            </HashLink>
+            </Link>
           </div>
         </div>
       </div>

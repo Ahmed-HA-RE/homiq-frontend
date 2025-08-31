@@ -1,8 +1,9 @@
-import Header from '~/components/Header';
 import type { Route } from '../../+types/root';
-import { useState } from 'react';
 import About from '~/components/About';
-import Projects from '~/components/Projects';
+import CarouselProjects from '~/components/CarouselProjects';
+import Navbar from '~/components/Navbar';
+import Hero from '~/components/Hero';
+import { ImagePath } from '~/enums';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -16,14 +17,19 @@ export function meta({}: Route.MetaArgs) {
 }
 
 const HomePage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
-      <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+      <header>
+        <Navbar />
+        <Hero
+          image={ImagePath.HEADER}
+          ctaProjects={{ label: 'Projects', route: '/projects' }}
+          heading='Explore homes that fit your dreams'
+        />
+      </header>
       <main>
         <About />
-        <Projects />
+        <CarouselProjects />
       </main>
     </>
   );

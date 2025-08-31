@@ -7,11 +7,6 @@
   --font-outfit: 'Outfit', sans-serif;
 }
 
-html,
-body {
-  @apply scroll-smooth;
-}
-
 @layer components {
   .mobile-slider-nav {
     @apply inline-block text-sm font-medium cursor-pointer rounded  hover:bg-blue-200/40 w-full py-4;
