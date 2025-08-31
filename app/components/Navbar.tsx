@@ -9,8 +9,11 @@ const Navbar = () => {
     <>
       <nav className='w-full p-6 absolute top-0 left-0 z-40'>
         <div className='max-w-5xl mx-auto flex flex-row items-center justify-between md:px-5'>
-          <Link to={'/'}>
-            <img src='/svgs/logo.svg' alt='logo' />
+          <Link
+            className='font-outfit text-3xl text-white font-semibold'
+            to={'/'}
+          >
+            Homiq
           </Link>
           <div />
 
