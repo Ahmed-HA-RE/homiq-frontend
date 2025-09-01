@@ -55,7 +55,7 @@ export default function NavbarMenuSlider({
               />
             </div>
 
-            <ul className='flex flex-col text-center  divide-y-2'>
+            <ul className='flex flex-col text-center  divide-y-2 divide-black'>
               <li>
                 <NavLink
                   className={({ isActive }) =>

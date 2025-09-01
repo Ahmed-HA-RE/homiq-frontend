@@ -12,12 +12,25 @@ import * as motion from 'motion/react-client';
 
 const ProjectsPage = () => {
   const [page, setPage] = useState(1);
-  const limit = 2;
+  const [filterProjects, setFilterProjects] = useState('');
+  const [limit, setLimit] = useState(3);
+
   // query to fetch limit projects
   const { data, isLoading, isError } = useQuery({
     queryKey: ['projects', page],
     queryFn: () => getPaginatedProjects(limit, page),
   });
+
+  const filteredProjects = [
+    ...(data?.projects ?? []).filter((project) => {
+      const title = project.title.toLowerCase();
+      const city = project.location.toLowerCase();
+
+      if (!title || !city) return;
+
+      return title.includes(filterProjects) || city.includes(filterProjects);
+    }),
+  ];
 
   return (
     <>
@@ -26,7 +39,7 @@ const ProjectsPage = () => {
         <Hero
           image={ImagePath.HEADER_projects}
           ctaProjects={{ label: 'About Us', route: '/about' }}
-          heading='Browse homes that fulfill your vision'
+          heading='Browse properties that fulfill your vision'
         />
       </header>
 
@@ -44,6 +57,20 @@ const ProjectsPage = () => {
               </p>
             </div>
 
+            {/* Search Field */}
+            <div className='w-full max-w-2xl mb-10 mx-auto'>
+              <input
+                type='text'
+                placeholder='Search properties or filter by city'
+                className='w-full rounded-full p-4 bg-white border border-black outline-0 font-outfit'
+                value={filterProjects}
+                onChange={(e) => {
+                  const input = e.target;
+                  setFilterProjects(input.value.toLowerCase());
+                }}
+              />
+            </div>
+
             <AnimatePresence mode='wait'>
               <motion.div
                 key={page}
@@ -53,7 +80,7 @@ const ProjectsPage = () => {
                 exit={{ y: -10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {data?.projects.map((project) => (
+                {filteredProjects.map((project) => (
                   <ProjectCard key={project._id} project={project} />
                 ))}
               </motion.div>
@@ -69,7 +96,7 @@ const ProjectsPage = () => {
           )}
 
           {/* Pagination */}
-          {(data?.projects ?? []).length > 1 && (
+          {data?.page && data?.pages > 0 && (
             <BasicPagination
               page={page}
               setPage={setPage}

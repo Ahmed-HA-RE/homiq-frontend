@@ -1,12 +1,12 @@
 import CourseSwiper from './Carousel';
 import { useQuery } from '@tanstack/react-query';
-import { getProjects } from '~/api/getProjects';
+import { getLatestProjects } from '~/api/getProjects';
 import Spinner from './Spinner';
 
 const CarouselProjects = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['projects'],
-    queryFn: getProjects,
+    queryFn: getLatestProjects,
   });
 
   return (
@@ -17,7 +17,7 @@ const CarouselProjects = () => {
       {/*project section - project completed */}
       <div className='text-center mb-8'>
         <h3 className='font-bold inline-block text-2xl md:text-4xl'>
-          Projects
+          Latest Projects
         </h3>
         <span className='inline-block underline-offset-4 decoration-1 underline ml-1.5 text-2xl  md:text-4xl font-light'>
           Completed
