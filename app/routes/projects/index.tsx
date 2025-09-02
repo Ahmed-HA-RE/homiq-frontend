@@ -19,17 +19,6 @@ const ProjectsPage = () => {
     queryFn: () => getPaginatedProjects(limit, page),
   });
 
-  const filteredProjects = [
-    ...(data?.projects ?? []).filter((project) => {
-      const title = project.title.toLowerCase();
-      const city = project.location.toLowerCase();
-
-      if (!title || !city) return;
-
-      return title.includes(filterProjects) || city.includes(filterProjects);
-    }),
-  ];
-
   return (
     <>
       <header>
@@ -50,20 +39,6 @@ const ProjectsPage = () => {
               </p>
             </div>
 
-            {/* Search Field */}
-            <div className='w-full max-w-2xl mb-10 mx-auto'>
-              <input
-                type='text'
-                placeholder='Search properties or filter by city'
-                className='w-full rounded-full p-4 bg-white border border-black outline-0 font-outfit'
-                value={filterProjects}
-                onChange={(e) => {
-                  const input = e.target;
-                  setFilterProjects(input.value.toLowerCase());
-                }}
-              />
-            </div>
-
             <AnimatePresence mode='wait'>
               <motion.div
                 key={page}
@@ -73,7 +48,7 @@ const ProjectsPage = () => {
                 exit={{ y: -10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {filteredProjects.map((project) => (
+                {data?.projects?.map((project) => (
                   <ProjectCard key={project._id} project={project} />
                 ))}
               </motion.div>
