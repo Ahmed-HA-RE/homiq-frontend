@@ -1,12 +1,17 @@
-import { ImagePath } from './enums';
-
+import { PropertiesExteriorImages, PropertiesInteriorImages } from './enums';
 export type Projects = {
   _id: string;
   title: string;
-  price: string;
+  price: number;
   location: string;
   type: string;
   description: string;
   area: string;
-  image: ImagePath;
+  beds: number;
+  floors: number;
+  parking: number;
+  images: {
+    interior: PropertiesInteriorImages[];
+    exterior: PropertiesExteriorImages[];
+  };
 };

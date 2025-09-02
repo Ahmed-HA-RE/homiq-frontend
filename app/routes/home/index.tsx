@@ -3,7 +3,6 @@ import About from '~/components/About';
 import CarouselProjects from '~/components/CarouselProjects';
 import Navbar from '~/components/Navbar';
 import Hero from '~/components/Hero';
-import { ImagePath } from '~/enums';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -21,11 +20,7 @@ const HomePage = () => {
     <>
       <header>
         <Navbar />
-        <Hero
-          image={ImagePath.HEADER}
-          ctaProjects={{ label: 'Projects', route: '/projects' }}
-          heading='Explore homes that fit your dreams'
-        />
+        <Hero />
       </header>
       <main>
         <About />

@@ -2,10 +2,11 @@ import api from '~/lib/axios';
 import type { Projects } from '~/types';
 
 // fetch all projects
-export async function getProjects(date?: string): Promise<Projects[]> {
-  const endpoint = date ? `/projects/${date}` : '/projects';
+export async function getProjects(): Promise<Projects[]> {
   try {
-    const { data } = await api.get(endpoint);
+    const { data } = await api.get(
+      `${import.meta.env.VITE_BACKEND_URL}/projects`
+    );
     return data;
   } catch (error: any) {
     throw new Error(error.message);
@@ -39,7 +40,6 @@ export async function getPaginatedProjects(
 export async function getLatestProjects(): Promise<Projects[]> {
   try {
     const { data } = await api.get('/projects/latest');
-    console.log(data);
     return data;
   } catch (error: any) {
     throw new Error(error.message);
