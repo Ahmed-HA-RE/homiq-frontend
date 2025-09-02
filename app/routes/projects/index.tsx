@@ -1,12 +1,10 @@
-import Hero from '~/components/Hero';
 import Navbar from '~/components/Navbar';
-import { ImagePath } from '~/enums';
 import { useQuery } from '@tanstack/react-query';
 import ProjectCard from '~/components/ProjectsCard';
 import Spinner from '~/components/Spinner';
 import { useState } from 'react';
 import { getPaginatedProjects } from '~/api/getProjects';
-import BasicPagination from '~/components/Pagination';
+import PaginationComponent from '~/components/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
 
@@ -36,14 +34,9 @@ const ProjectsPage = () => {
     <>
       <header>
         <Navbar />
-        <Hero
-          image={ImagePath.HEADER_projects}
-          ctaProjects={{ label: 'About Us', route: '/about' }}
-          heading='Browse properties that fulfill your vision'
-        />
       </header>
 
-      <main className='p-6 bg-gray-200'>
+      <main className='p-6 pt-40 bg-gray-200'>
         <section className='mt-20'>
           <div className='max-w-7xl mx-auto'>
             {/* Intro */}
@@ -74,7 +67,7 @@ const ProjectsPage = () => {
             <AnimatePresence mode='wait'>
               <motion.div
                 key={page}
-                className='grid grid-cols-1 md:grid-cols-2 gap-6 px-6 items-center justify-center'
+                className='grid grid-cols-1 md:grid-cols-2 gap-6  items-center justify-center'
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}
@@ -97,7 +90,7 @@ const ProjectsPage = () => {
 
           {/* Pagination */}
           {data?.page && data?.pages > 0 && (
-            <BasicPagination
+            <PaginationComponent
               page={page}
               setPage={setPage}
               total={data?.pages as number}

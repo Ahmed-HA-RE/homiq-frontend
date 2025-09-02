@@ -35,7 +35,7 @@ export default function CourseSwiper({ projects }: CourseSwiperProps) {
         {projects.map((project, index) => (
           <SwiperSlide className='relative'>
             <img
-              src={`${Images_Backend_URL}/images/${project.image}.jpg`}
+              src={`${Images_Backend_URL}/images/exterior/${project.images.exterior}.jpg`}
               alt={project.title}
               className={index === 5 ? 'object-center ' : 'object-cover'}
             />

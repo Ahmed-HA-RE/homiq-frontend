@@ -1,6 +1,4 @@
 import { Link } from 'react-router';
-import { ImagePath } from '~/enums';
-
 const About = () => {
   return (
     <section>
@@ -27,7 +25,7 @@ const About = () => {
           {/* About Image */}
           <div className=''>
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/${ImagePath.BRAND}`}
+              src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/brand_img.png`}
               alt='about our brand'
               className='w-full max-w-sm md:max-w-[600px] object-cover'
             />

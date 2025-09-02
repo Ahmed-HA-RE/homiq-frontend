@@ -16,7 +16,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         {/* Image */}
         <div>
           <img
-            src={`${BACKEND_URL_ASSESTS}/images/${project.image}.jpg`}
+            src={`${BACKEND_URL_ASSESTS}/images/exterior/${project.images.exterior}.jpg`}
             alt={project.title}
             className='h-64 w-full object-cover rounded-t-2xl '
           />
@@ -30,7 +30,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           <p className='text-lg font-light text-gray-500 mb-3'>
             {project.location}
           </p>
-          <h2 className='text-2xl font-medium mb-1'>{project.price}</h2>
+          <h2 className='text-2xl font-medium mb-1'>
+            AED {project.price.toLocaleString()}
+          </h2>
           <p className='text-gray-500 font-light mb-2'>
             {project.type} | {project.area}
           </p>

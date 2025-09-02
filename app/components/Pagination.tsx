@@ -7,7 +7,7 @@ type PaginationProps = {
   setPage: (page: number) => void;
 };
 
-const BasicPagination = ({ page, total, setPage }: PaginationProps) => {
+const PaginationComponent = ({ page, total, setPage }: PaginationProps) => {
   return (
     <Stack spacing={4} className='py-14 flex justify-center items-center'>
       <Pagination
@@ -22,4 +22,4 @@ const BasicPagination = ({ page, total, setPage }: PaginationProps) => {
   );
 };
 
-export default BasicPagination;
+export default PaginationComponent;
