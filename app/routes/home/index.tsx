@@ -1,12 +1,12 @@
 import type { Route } from '../../+types/root';
-import About from '~/components/About';
+import Glimpse from '~/components/Glimpse';
 import CarouselProjects from '~/components/CarouselProjects';
 import Navbar from '~/components/Navbar';
 import Hero from '~/components/Hero';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Estate' },
+    { title: 'Homiq | Welcome' },
     {
       name: 'description',
       content:
@@ -18,12 +18,12 @@ export function meta({}: Route.MetaArgs) {
 const HomePage = () => {
   return (
     <>
+      <Navbar bgColor='bg-transparent' />
       <header>
-        <Navbar />
         <Hero />
       </header>
       <main>
-        <About />
+        <Glimpse />
         <CarouselProjects />
       </main>
     </>

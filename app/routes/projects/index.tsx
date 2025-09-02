@@ -1,3 +1,4 @@
+import type { Route } from './+types';
 import Navbar from '~/components/Navbar';
 import { useQuery } from '@tanstack/react-query';
 import ProjectCard from '~/components/ProjectsCard';
@@ -8,9 +9,19 @@ import PaginationComponent from '~/components/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Homiq | Projects' },
+    {
+      name: 'description',
+      content:
+        'Discover your dream home with Dream Homes Real Estate. Browse listings, explore properties, and find your perfect home today.',
+    },
+  ];
+}
+
 const ProjectsPage = () => {
   const [page, setPage] = useState(1);
-  const [filterProjects, setFilterProjects] = useState('');
   const [limit, setLimit] = useState(3);
 
   // query to fetch limit projects
@@ -21,9 +32,7 @@ const ProjectsPage = () => {
 
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
+      <Navbar bgColor='bg-navbar' />
 
       <main className='p-6 pt-40 bg-gray-200'>
         <section className='mt-20'>

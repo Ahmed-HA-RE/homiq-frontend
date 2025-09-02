@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-const About = () => {
+const Glimpse = () => {
   return (
     <section>
       <div
@@ -8,9 +8,11 @@ const About = () => {
       >
         {/*About section - shows brand intro and vision statement */}
         <div className='text-center mb-10'>
-          <h3 className='font-bold inline-block text-2xl md:text-4xl'>About</h3>
+          <h3 className='font-bold inline-block text-2xl md:text-4xl'>
+            Glimpse{' '}
+          </h3>
           <span className='inline-block underline-offset-4 decoration-1 underline ml-1.5 text-2xl  md:text-4xl font-light'>
-            Our Brand
+            of Us
           </span>
           <p className='mt-3 text-gray-600 md:max-w-lg mx-auto'>
             We combine expertise in real estate with a commitment to
@@ -77,4 +79,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Glimpse;

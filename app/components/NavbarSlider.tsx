@@ -3,7 +3,8 @@ import { Drawer } from 'vaul';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { IoHome } from 'react-icons/io5';
 import { MdOutlineRoundaboutRight } from 'react-icons/md';
-import { GoProjectSymlink, GoCodeReview } from 'react-icons/go';
+import { GoProjectSymlink } from 'react-icons/go';
+import { GrContact } from 'react-icons/gr';
 import { NavLink } from 'react-router';
 
 type NavbarMenuSliderProps = {
@@ -77,20 +78,6 @@ export default function NavbarMenuSlider({
                       ? 'mobile-slider-nav bg-blue-200/40'
                       : 'mobile-slider-nav'
                   }
-                  to='/about'
-                  onClick={() => setIsOpen(false)}
-                >
-                  <MdOutlineRoundaboutRight className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
-                  About
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'mobile-slider-nav bg-blue-200/40'
-                      : 'mobile-slider-nav'
-                  }
                   to='/projects'
                   onClick={() => setIsOpen(false)}
                 >
@@ -105,11 +92,25 @@ export default function NavbarMenuSlider({
                       ? 'mobile-slider-nav bg-blue-200/40'
                       : 'mobile-slider-nav'
                   }
-                  to='/testimonials'
+                  to='/about'
                   onClick={() => setIsOpen(false)}
                 >
-                  <GoCodeReview className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
-                  Testimonials
+                  <MdOutlineRoundaboutRight className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'mobile-slider-nav bg-blue-200/40'
+                      : 'mobile-slider-nav'
+                  }
+                  to='/contact'
+                  onClick={() => setIsOpen(false)}
+                >
+                  <GrContact className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}
+                  Contact Us
                 </NavLink>
               </li>
             </ul>

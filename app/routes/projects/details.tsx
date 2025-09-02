@@ -20,14 +20,23 @@ export async function loader({
   }
 }
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Homiq | Project Details ' },
+    {
+      name: 'description',
+      content:
+        'Discover your dream home with Dream Homes Real Estate. Browse listings, explore properties, and find your perfect home today.',
+    },
+  ];
+}
+
 const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
   const { project } = loaderData;
 
   return (
     <>
-      <header>
-        <Navbar />
-      </header>
+      <Navbar bgColor='bg-navbar' />
 
       <main className='p-4 pt-30 bg-gray-200 min-h-screen'>
         <section className='mt-10 max-w-7xl mx-auto'>
