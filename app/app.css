@@ -13,13 +13,17 @@
   --color-secondary-link: #818bb8;
 }
 
+body {
+  @apply bg-gray-200 h-[5000px];
+}
+
 @layer components {
   .mobile-slider-nav {
     @apply inline-block text-sm font-medium cursor-pointer rounded  hover:bg-blue-200/40 w-full py-4;
   }
 
   .desktop-nav-items {
-    @apply text-white font-outfit hover:text-gray-400 transition-colors duration-200;
+    @apply text-white font-outfit hover:text-gray-400 transition-colors duration-200 font-semibold;
   }
 
   .about-stats-numbers {

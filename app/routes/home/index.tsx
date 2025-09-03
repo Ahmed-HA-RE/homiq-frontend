@@ -18,7 +18,6 @@ export function meta({}: Route.MetaArgs) {
 const HomePage = () => {
   return (
     <>
-      <Navbar bgColor='bg-transparent' />
       <header>
         <Hero />
       </header>

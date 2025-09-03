@@ -32,8 +32,6 @@ const ProjectsPage = () => {
 
   return (
     <>
-      <Navbar bgColor='bg-navbar' />
-
       <main className='p-6 pt-40 bg-gray-200'>
         <section className='mt-20'>
           <div className='max-w-7xl mx-auto'>

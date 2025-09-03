@@ -2,13 +2,19 @@ import { Twirl as Hamburger } from 'hamburger-react';
 import NavbarMenuSlider from './NavbarSlider';
 import { Link, NavLink } from 'react-router';
 import { useState } from 'react';
+import { useLocation } from 'react-router';
 
-const Navbar = ({ bgColor }: { bgColor: string }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const isHome = useLocation();
+
   return (
     <>
-      <nav className={`w-full p-6 absolute top-0 left-0 z-40 ${bgColor}`}>
-        <div className='max-w-6xl mx-auto flex flex-row items-center justify-between md:px-5'>
+      <nav
+        className={`w-full p-6 absolute top-0 left-0 z-40 ${isHome.pathname === '/' ? 'bg-transparent' : 'bg-gray-200'}`}
+      >
+        <div className='max-w-7xl mx-auto flex flex-row items-center justify-between'>
           <Link
             className='font-outfit text-3xl text-white font-semibold'
             to={'/'}

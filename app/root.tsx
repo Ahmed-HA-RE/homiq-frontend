@@ -12,6 +12,7 @@ import './app.css';
 import { Toaster } from 'sonner';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import Navbar from './components/Navbar';
 
 // new instance for query hooks
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <Navbar />
         {children}
         <ScrollRestoration />
         <Scripts />
