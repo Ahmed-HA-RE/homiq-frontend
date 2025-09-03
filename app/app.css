@@ -8,9 +8,7 @@
     'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-outfit: 'Outfit', sans-serif;
-  --color-navbar: #0a1f44;
-  --color-link: rgb(166, 177, 225);
-  --color-secondary-link: #818bb8;
+  --color-user-experience: #0e2148;
 }
 
 body {

@@ -46,7 +46,7 @@ export default function NavbarMenuSlider({
       <Drawer.Portal>
         <Drawer.Overlay className='fixed inset-0 bg-black/40 ' />
         <Drawer.Content className='right-0 top-0 bottom-0 fixed z-50 outline-none w-[300px]'>
-          <div className='bg-zinc-50 h-full w-full grow py-16'>
+          <div className='bg-gray-200 h-full w-full grow py-16'>
             <div className='mb-10'>
               <img
                 className='w-6 h-6 absolute right-4 top-8 cursor-pointer'

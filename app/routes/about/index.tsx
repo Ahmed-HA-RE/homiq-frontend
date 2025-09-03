@@ -3,6 +3,7 @@ import AboutHeader from '~/components/AboutHeader';
 import Navbar from '~/components/Navbar';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 import WhyWeAreDifferent from '~/components/WhyWeAreDifferent';
+import UserExperience from '~/components/UserExperience';
 
 const AboutPage = () => {
   const starOffsets = [-634.728, -447.914, -261.961, -76.024, 109.853];
@@ -66,6 +67,7 @@ const AboutPage = () => {
           </div>
         </section>
         <WhyWeAreDifferent />
+        <UserExperience />
       </main>
     </>
   );
