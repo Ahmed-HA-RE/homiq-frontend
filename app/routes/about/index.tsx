@@ -4,6 +4,8 @@ import Navbar from '~/components/Navbar';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 import WhyWeAreDifferent from '~/components/WhyWeAreDifferent';
 import UserExperience from '~/components/UserExperience';
+import Principles from '~/components/Principles';
+import AboutUsTabs from '~/components/Tabs';
 
 const AboutPage = () => {
   const starOffsets = [-634.728, -447.914, -261.961, -76.024, 109.853];
@@ -26,7 +28,7 @@ const AboutPage = () => {
             </h4>
 
             {/* User Experience */}
-            <div className='hidden md:flex flex-col items-start space-y-4 bg-white rounded-2xl shadow p-4 px-6 absolute -bottom-8 right-4 z-20 w-58'>
+            <div className='hidden md:flex flex-col items-start space-y-4 bg-white rounded-2xl shadow p-4 px-6 absolute -bottom-2 right-4 z-20 w-58'>
               <h3 className='font-outfit font-medium text-xl'>
                 96% of users rate <br /> their experience
               </h3>
@@ -50,7 +52,7 @@ const AboutPage = () => {
               </p>
             </div>
           </div>
-          <div className='p-4 px-6 md:px-6  mt-4 md:mt-10 max-w-7xl mx-auto'>
+          <div className='p-4 px-6  max-w-9xl  mt-4 md:mt-10'>
             <p className='font-semibold w-full max-w-2xl mb-5 font-outfit'>
               Homiq is a leading real estate company in the UAE, dedicated to
               delivering premium residential and commercial properties. Our team
@@ -67,7 +69,7 @@ const AboutPage = () => {
           </div>
         </section>
         <WhyWeAreDifferent />
-        <UserExperience />
+        <Principles />
       </main>
     </>
   );

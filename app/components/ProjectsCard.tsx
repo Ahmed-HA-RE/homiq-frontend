@@ -30,8 +30,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           <p className='text-lg font-light text-gray-500 mb-3'>
             {project.location}
           </p>
-          <h2 className='text-2xl font-medium mb-1'>
-            AED {project.price.toLocaleString()}
+          <h2 className='text-2xl font-medium mb-1 dirham-symbol'>
+            &#xea; {project.price.toLocaleString()}
           </h2>
           <p className='text-gray-500 font-light mb-2'>
             {project.type} | {project.area}

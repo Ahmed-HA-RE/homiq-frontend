@@ -3,7 +3,7 @@ import { IoIosCheckmarkCircle } from 'react-icons/io';
 const AboutHeader = () => {
   return (
     <header className='pt-35 md:pt-40 p-6 bg-gray-200'>
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-8xl mx-auto'>
         <div className='flex flex-col md:flex-row items-start justify-between space-y-2 md:space-y-0 md:border-b md:border-b-gray-300 pb-4'>
           <div className='flex-1'>
             <h1 className='font-medium text-4xl md:text-5xl font-outfit'>
