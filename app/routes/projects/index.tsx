@@ -5,7 +5,7 @@ import ProjectCard from '~/components/ProjectsCard';
 import Spinner from '~/components/Spinner';
 import { useState } from 'react';
 import { getPaginatedProjects } from '~/api/getProjects';
-import PaginationComponent from '~/components/Pagination';
+import PaginationComponent from '~/components/ui/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
 

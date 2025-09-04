@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import '../carousel.css';
+import '../../carousel.css';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 // import required modules
@@ -15,7 +15,7 @@ type CourseSwiperProps = {
   projects: Projects[];
 };
 
-export default function CourseSwiper({ projects }: CourseSwiperProps) {
+const CarouselSwiper = ({ projects }: CourseSwiperProps) => {
   return (
     <>
       <Swiper
@@ -57,4 +57,6 @@ export default function CourseSwiper({ projects }: CourseSwiperProps) {
       </Swiper>
     </>
   );
-}
+};
+
+export default CarouselSwiper;

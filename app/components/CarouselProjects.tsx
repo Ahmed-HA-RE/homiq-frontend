@@ -1,4 +1,4 @@
-import CourseSwiper from './Carousel';
+import CarouselSwiper from './ui/Carousel';
 import { useQuery } from '@tanstack/react-query';
 import { getLatestProjects } from '~/api/getProjects';
 import Spinner from './Spinner';
@@ -35,7 +35,7 @@ const CarouselProjects = () => {
           </p>
         </div>
       )}
-      {data && <CourseSwiper projects={data} />}
+      {data && <CarouselSwiper projects={data} />}
     </section>
   );
 };

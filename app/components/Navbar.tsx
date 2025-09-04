@@ -1,5 +1,5 @@
 import { Twirl as Hamburger } from 'hamburger-react';
-import NavbarMenuSlider from './NavbarSlider';
+import NavbarMenuSlider from './ui/NavbarSlider';
 import { Link, NavLink } from 'react-router';
 import { useState } from 'react';
 import { useLocation } from 'react-router';
