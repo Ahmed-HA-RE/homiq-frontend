@@ -36,7 +36,7 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
 
   return (
     <>
-      <main className='p-4 pt-30 bg-gray-200 min-h-screen'>
+      <main className='p-4 pt-30 min-h-screen'>
         <section className='mt-10 max-w-7xl mx-auto'>
           <h1 className='mb-10 text-center text-4xl md:text-5xl font-medium'>
             Project{' '}

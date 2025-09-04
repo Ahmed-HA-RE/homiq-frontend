@@ -7,7 +7,7 @@ type ProjectDetailsProps = {
 
 const ProjectDetails = ({ project }: ProjectDetailsProps) => {
   return (
-    <div className='rounded-md w-full overflow-hidden bg-white shadow-md p-6'>
+    <div className='rounded-md w-full overflow-hidden   p-6'>
       <div className='flex flex-col-reverse md:flex-col items-center md:items-start space-y-8'>
         {/* Image Gallery */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>

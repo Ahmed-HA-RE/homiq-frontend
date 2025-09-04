@@ -9,6 +9,8 @@
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-outfit: 'Outfit', sans-serif;
   --color-user-experience: #0e2148;
+  --color-link: #30e3ca;
+  --color-secondary-link: #1eae9b;
 }
 
 @font-face {
