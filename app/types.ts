@@ -17,3 +17,20 @@ export type Projects = {
     exterior: PropertiesExteriorImages[];
   };
 };
+
+export type Agents = {
+  _id: string;
+  name: string;
+  email: string;
+  description: string;
+  role:
+    | 'CEO'
+    | 'Selling Agent'
+    | 'Selling Assistant'
+    | 'Broker'
+    | 'CEO Assistant'
+    | 'Broker Assistant';
+  image: string;
+  links: { platform: string; url: string }[];
+  location: string;
+};

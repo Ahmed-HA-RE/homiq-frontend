@@ -35,3 +35,12 @@ export enum PropertiesInteriorImages {
   PROJECT_9_INTERIOR_1 = 'project_9_interior_1',
   PROJECT_9_INTERIOR_2 = 'project_9_interior_2',
 }
+
+export enum AgentsImages {
+  'CEO' = 'about_us_CEO',
+  'CEO_ASSISTANT' = 'about_us_CEO_assistant',
+  'BROKER' = 'about_us_broker',
+  'BROKER_ASSISTANT' = 'about_us_broker_assistant',
+  'SELLING_AGENT' = 'about_us_selling_agent',
+  'SALES_ASSISTANT' = 'about_us_sales_assistant',
+}
