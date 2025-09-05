@@ -9,7 +9,7 @@ const Principles = () => {
           <h2 className='capitalize font-outfit font-medium text-2xl md:text-3xl '>
             our operating principles{' '}
           </h2>
-          <p className='max-w-sm  text-sm text-center md:text-left text-gray-500 pt-1'>
+          <p className='max-w-md   text-center md:text-left text-gray-500 pt-1'>
             We adopt modern tools and technologies to make property search and
             transactions faster, smarter, and stress-free
           </p>

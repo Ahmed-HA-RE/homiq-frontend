@@ -16,7 +16,7 @@ type HeroProps = {
 
 const Hero = ({ title, subtitle, bgImage, cta }: HeroProps) => {
   return (
-    <div className='relative'>
+    <div className='relative z-0'>
       {/* Hero section */}
       <div
         className={`min-h-screen min-w-screen flex items-center justify-center p-4 bg-cover bg-no-repeat bg-center z-40 `}
@@ -25,7 +25,7 @@ const Hero = ({ title, subtitle, bgImage, cta }: HeroProps) => {
         }}
       >
         {/* Hero info */}
-        <div className='z-20 pt-6'>
+        <div className='z-10 pt-6'>
           <h1 className='text-5xl md:text-7xl max-w-3xl font-outfit font-semibold text-gray-100 text-center leading-14 md:leading-18 pt-20'>
             {title}
           </h1>

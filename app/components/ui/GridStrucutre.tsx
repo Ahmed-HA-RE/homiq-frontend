@@ -4,7 +4,7 @@ import { principlesData } from '~/data/principles';
 
 const GridPrinciplesStructure = () => {
   return (
-    <Box sx={{ paddingRight: '10px' }}>
+    <Box sx={{ paddingRight: '0px' }}>
       <Grid
         container
         sx={{

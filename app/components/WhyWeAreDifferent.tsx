@@ -8,9 +8,9 @@ const WhyWeAreDifferent = () => {
     <section className='p-6 my-20'>
       <div className='max-w-7xl mx-auto'>
         {/* title */}
-        <div className='text-center font-outfit capitalize mb-8 md:mb-14'>
-          <h3 className='font-bold inline-block text-2xl md:text-4xl'>Why</h3>
-          <span className='inline-block underline-offset-4 decoration-1 underline ml-1.5 text-2xl  md:text-4xl font-light'>
+        <div className='text-center font-outfit capitalize mb-8'>
+          <h3 className='font-bold inline-block text-2xl md:text-3xl'>Why</h3>
+          <span className='inline-block underline-offset-4 decoration-1 underline ml-1.5 text-2xl  md:text-3xl font-light'>
             we're different
           </span>
         </div>

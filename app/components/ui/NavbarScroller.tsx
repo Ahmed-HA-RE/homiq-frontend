@@ -15,7 +15,6 @@ const Navbar = () => {
   });
   return (
     <>
-      <CssBaseline />
       <AppBar
         component={'nav'}
         position='fixed'
@@ -45,7 +44,9 @@ const Navbar = () => {
           <li>
             <NavLink
               className={({ isActive }) =>
-                isActive ? 'text-gray-400' : 'desktop-nav-items'
+                isActive
+                  ? 'text-cyan-500 font-outfit font-bold'
+                  : 'desktop-nav-items'
               }
               to={'/'}
             >
@@ -55,7 +56,9 @@ const Navbar = () => {
           <li>
             <NavLink
               className={({ isActive }) =>
-                isActive ? 'text-gray-400' : 'desktop-nav-items'
+                isActive
+                  ? 'text-cyan-500 font-outfit font-bold'
+                  : 'desktop-nav-items'
               }
               to={'/projects'}
             >
@@ -65,7 +68,9 @@ const Navbar = () => {
           <li>
             <NavLink
               className={({ isActive }) =>
-                isActive ? 'text-gray-400' : 'desktop-nav-items'
+                isActive
+                  ? 'text-cyan-500 font-outfit font-bold'
+                  : 'desktop-nav-items'
               }
               to={'/about'}
             >
@@ -75,7 +80,9 @@ const Navbar = () => {
           <li>
             <NavLink
               className={({ isActive }) =>
-                isActive ? 'text-gray-400' : 'desktop-nav-items'
+                isActive
+                  ? 'text-cyan-500 font-outfit font-bold'
+                  : 'desktop-nav-items'
               }
               to={'/contact'}
             >
