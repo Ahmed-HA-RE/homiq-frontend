@@ -11,9 +11,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav
-        className={`w-full p-6 absolute top-0 left-0 z-40 ${isHome.pathname === '/' ? 'bg-transparent' : 'bg-gray-200'}`}
-      >
+      <nav className={`w-full p-6 absolute top-0 left-0 z-4`}>
         <div className='max-w-7xl mx-auto flex flex-row items-center justify-between'>
           <Link
             className='font-outfit text-3xl text-white font-semibold'

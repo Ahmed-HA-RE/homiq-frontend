@@ -1,6 +1,5 @@
 import type { Projects } from '~/types';
 import AboutUsTabs from './ui/Tabs';
-import DescriptionIcon from '@mui/icons-material/Description';
 
 type ProjectDetailsProps = {
   project: Projects;
