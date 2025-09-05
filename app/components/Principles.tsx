@@ -2,7 +2,7 @@ import GridPrinciplesStructure from './ui/GridStrucutre';
 
 const Principles = () => {
   return (
-    <section className='p-4 md:p-6 py-20 mt-10'>
+    <section className='p-4 md:p-6 mt-5 sm:mt-25'>
       <div className='max-w-8xl mx-auto '>
         {/* Top Content */}
         <div className='flex flex-col md:flex-row items-center justify-between gap-x-6 mb-4 sm:mb-8 '>

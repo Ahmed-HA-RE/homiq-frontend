@@ -54,7 +54,7 @@ export default function ProjectDetailsTabs({
     <Box
       sx={{
         width: '100%',
-        padding: '30px 0',
+        padding: '50px 0',
       }}
     >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -81,7 +81,7 @@ export default function ProjectDetailsTabs({
             iconPosition='start'
             icon={<ListAltIcon fontSize='small' />}
             label='Property Features'
-            className='!capitalize !text-base sm:!text-xl'
+            className='!capitalize !text-sm sm:!text-xl'
             sx={{
               color: '#374151',
               '&.Mui-selected': {
@@ -95,7 +95,7 @@ export default function ProjectDetailsTabs({
             iconPosition='start'
             icon={<DescriptionIcon fontSize='small' />}
             label='Property Description'
-            className='!capitalize !text-base sm:!text-xl'
+            className='!capitalize !text-sm sm:!text-xl'
             sx={{
               color: '#374151',
               '&.Mui-selected': {

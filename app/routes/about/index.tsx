@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import AboutHeader from '~/components/AboutHeader';
-import Navbar from '~/components/Navbar';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 import WhyWeAreDifferent from '~/components/WhyWeAreDifferent';
 import Principles from '~/components/Principles';
@@ -10,7 +9,6 @@ const AboutPage = () => {
 
   return (
     <>
-      <Navbar />
       <AboutHeader />
       <main className='bg-gray-200 mt-10'>
         <section>

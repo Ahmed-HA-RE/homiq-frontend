@@ -30,13 +30,22 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
           </div>
         </div>
         {/* Content */}
-        <div className='font-outfit space-y-1 text-center md:text-start'>
-          <h2 className='text-2xl md:text-3xl font-semibold text-gray-800'>
-            {project.title}
-          </h2>
-          <small className='text-gray-500 md:text-base'>
-            {project.location}
-          </small>
+        <div className='font-outfit text-center md:text-start flex flex-col md:flex-row justify-between items-start space-y-6 border-b border-gray-300 pb-4'>
+          <div className='text-left'>
+            <h2 className='text-2xl md:text-3xl font-semibold text-gray-800 '>
+              {project.title}
+            </h2>
+            <small className='text-gray-500 md:text-base text-left'>
+              {project.location}
+            </small>
+          </div>
+          <span className='dirham-symbol !text-2xl md:!text-4xl'>
+            {' '}
+            &#xea;
+            <h4 className='font-medium inline-block ml-2'>
+              {project.price.toLocaleString()}
+            </h4>
+          </span>
         </div>
       </div>
       {/* Property Info */}

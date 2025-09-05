@@ -12,7 +12,8 @@ import './app.css';
 import { Toaster } from 'sonner';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import Navbar from './components/Navbar';
+import HideAppBar from './components/ui/NavbarScroller';
+import Navbar from './components/ui/NavbarScroller';
 
 // new instance for query hooks
 const queryClient = new QueryClient();

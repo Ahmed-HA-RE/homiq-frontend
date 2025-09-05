@@ -29,10 +29,10 @@ const WhyWeAreDifferent = () => {
             </p>
           </div>
           {/* Right Side */}
-          <ul className='grid grid-cols-1 sm:grid-cols-2 items-center justify-center gap-x-10 gap-y-8'>
+          <ul className='grid grid-cols-1 sm:grid-cols-2 items-center justify-items-start  gap-x-10 gap-y-8'>
             {/* Transparent Pricing */}
             <li>
-              <div className='flex flex-row items-center space-x-4'>
+              <div className='flex flex-row items-center justify-center space-x-3'>
                 {/* Icon */}
                 <span className='bg-green-100 rounded-full p-2 text-xl text-green-600'>
                   <BiSolidCoinStack />

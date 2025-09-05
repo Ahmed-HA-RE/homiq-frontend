@@ -1,5 +1,4 @@
 import type { Route } from './+types';
-import Navbar from '~/components/Navbar';
 import { useQuery } from '@tanstack/react-query';
 import ProjectCard from '~/components/ProjectsCard';
 import Spinner from '~/components/Spinner';

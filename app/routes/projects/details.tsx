@@ -1,9 +1,7 @@
 import ProjectDetails from '~/components/ProjectDetails';
 import type { Projects } from '../../types';
 import type { Route } from './+types/details';
-import Navbar from '~/components/Navbar';
 import api from '~/lib/axios';
-import { Link } from 'react-router';
 
 type LoaderReturn = {
   project: Projects;
@@ -39,20 +37,12 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
     <>
       <main className='p-4 pt-30 min-h-screen'>
         <section className='mt-10 max-w-7xl mx-auto'>
-          <div className='flex flex-row justify-between items-center px-4'>
-            <h1 className='text-center text-4xl md:text-5xl font-medium'>
-              Project{' '}
-              <span className='underline-offset-4 underline decoration-1 font-extralight'>
-                Details
-              </span>
-            </h1>
-            <Link
-              className='flex justify-self-end bg-link text-white py-3 px-6 rounded hover:bg-secondary-link transition duration-200'
-              to={'/projects'}
-            >
-              Back To Projects
-            </Link>
-          </div>
+          <h1 className='text-center text-4xl md:text-5xl font-medium'>
+            Project{' '}
+            <span className='underline-offset-4 underline decoration-1 font-extralight'>
+              Details
+            </span>
+          </h1>
           <ProjectDetails project={project} />
         </section>
       </main>
