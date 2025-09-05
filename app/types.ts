@@ -9,6 +9,8 @@ export type Projects = {
   area: string;
   beds: number;
   floors: number;
+  Bathrooms: number;
+  amenities: string[];
   parking: number;
   images: {
     interior: PropertiesInteriorImages[];

@@ -9,7 +9,7 @@ export async function getProjects(): Promise<Projects[]> {
     );
     return data;
   } catch (error: any) {
-    throw new Error(error.message);
+    throw new Error('Something went Wrong');
   }
 }
 
@@ -32,7 +32,7 @@ export async function getPaginatedProjects(
     );
     return data;
   } catch (error: any) {
-    throw new Error(error.message);
+    throw new Error('Something went Wrong');
   }
 }
 
@@ -42,6 +42,6 @@ export async function getLatestProjects(): Promise<Projects[]> {
     const { data } = await api.get('/projects/latest');
     return data;
   } catch (error: any) {
-    throw new Error(error.message);
+    throw new Error('Something went Wrong');
   }
 }
