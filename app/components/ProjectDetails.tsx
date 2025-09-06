@@ -1,5 +1,5 @@
 import type { Projects } from '~/types';
-import AboutUsTabs from './ui/Tabs';
+import ProjectDetailsTabs from './ui/Tabs';
 
 type ProjectDetailsProps = {
   project: Projects;
@@ -49,7 +49,7 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
         </div>
       </div>
       {/* Property Info */}
-      <AboutUsTabs project={project} />
+      <ProjectDetailsTabs project={project} />
     </div>
   );
 };

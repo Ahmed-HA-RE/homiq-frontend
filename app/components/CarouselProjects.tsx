@@ -1,14 +1,7 @@
 import CarouselSwiper from './ui/Carousel';
-import { useQuery } from '@tanstack/react-query';
-import { getLatestProjects } from '~/api/getProjects';
 import type { Projects } from '~/types';
 
 const CarouselProjects = ({ projects }: { projects: Projects[] }) => {
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ['projects'],
-    queryFn: getLatestProjects,
-  });
-
   return (
     <section
       id='projects'

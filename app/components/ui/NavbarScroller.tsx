@@ -1,5 +1,4 @@
 import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router';

@@ -34,3 +34,11 @@ export type Agents = {
   links: { platform: string; url: string }[];
   location: string;
 };
+
+export type Testimonials = {
+  _id: string;
+  name: string;
+  alt: string;
+  text: string;
+  job: string;
+};

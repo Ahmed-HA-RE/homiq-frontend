@@ -2,9 +2,11 @@ import type { Route } from './+types';
 import Glimpse from '~/components/Glimpse';
 import CarouselProjects from '~/components/CarouselProjects';
 import Hero from '~/components/Hero';
-import type { Projects } from '~/types';
+import type { Projects, Testimonials } from '~/types';
 import { getLatestProjects } from '~/api/getProjects';
+import { getTestimonials } from '~/api/getTestimonials';
 import Footer from '~/components/ui/Footer';
+import TestimonialsCarousel from '~/components/ui/Testimonials';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,21 +21,25 @@ export function meta({}: Route.MetaArgs) {
 
 type LoaderReturn = {
   projects: Projects[];
+  testimonials: Testimonials[];
 };
 
 export async function loader({
   request,
 }: Route.LoaderArgs): Promise<LoaderReturn> {
   try {
-    const projects = await getLatestProjects();
-    return { projects };
+    const [projects, testimonials] = await Promise.all([
+      getLatestProjects(),
+      getTestimonials(),
+    ]);
+    return { projects, testimonials };
   } catch (error: any) {
     throw new Error('Something went Wrong');
   }
 }
 
 const HomePage = ({ loaderData }: Route.ComponentProps) => {
-  const { projects } = loaderData;
+  const { projects, testimonials } = loaderData;
 
   return (
     <>
@@ -52,6 +58,7 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
       <main>
         <Glimpse />
         <CarouselProjects projects={projects} />
+        <TestimonialsCarousel testimonials={testimonials} />
       </main>
       <Footer />
     </>

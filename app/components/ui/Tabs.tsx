@@ -41,9 +41,7 @@ type ProjectDetailsTabsProps = {
   project: Projects;
 };
 
-export default function ProjectDetailsTabs({
-  project,
-}: ProjectDetailsTabsProps) {
+const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -259,4 +257,6 @@ export default function ProjectDetailsTabs({
       </CustomTabPanel>
     </Box>
   );
-}
+};
+
+export default ProjectDetailsTabs;

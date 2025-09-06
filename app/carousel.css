@@ -32,7 +32,7 @@
 .swiper-pagination {
   position: absolute;
   transform: translateX(14px);
-  display: none;
+  display: block;
 }
 .swiper-pagination-bullet {
   background-color: white;
