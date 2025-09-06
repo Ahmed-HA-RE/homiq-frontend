@@ -5,7 +5,7 @@ const CarouselProjects = ({ projects }: { projects: Projects[] }) => {
   return (
     <section
       id='projects'
-      className='h-screen p-4 py-40 mb-4 max-w-5xl mx-auto relative z-0'
+      className='p-4 mt-20 my-4 max-w-4xl mx-auto relative z-0'
     >
       {/*project section - project completed */}
       <div className='text-center mb-8'>
