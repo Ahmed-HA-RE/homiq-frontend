@@ -7,6 +7,7 @@ import Principles from '~/components/Principles';
 import { getAgents } from '~/api/getAgents';
 import type { Agents } from '~/types';
 import AgentsSection from '~/components/ui/AgentsCard';
+import Footer from '~/components/ui/Footer';
 
 type LoaderReturn = {
   agents: Agents[];
@@ -91,6 +92,7 @@ const AboutPage = ({ loaderData }: Route.ComponentProps) => {
         {/* Our Agnets */}
         <AgentsSection agents={agents} />
       </main>
+      <Footer />
     </>
   );
 };

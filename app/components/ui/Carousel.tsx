@@ -39,7 +39,7 @@ const CarouselSwiper = ({ projects }: CourseSwiperProps) => {
               alt={project.title}
               className={index === 5 ? 'object-center ' : 'object-cover'}
             />
-            <div className='absolute ml-2 left-0 bottom-4 z-20 bg-white/80 backdrop-blur-sm shadow-xl font-outfit rounded-lg max-w-xs py-2 px-4 flex flex-col items-start justify-center'>
+            <div className='absolute ml-2 left-0 bottom-4 z-20 bg-white/80 backdrop-blur-sm shadow-xl font-outfit rounded-lg max-w-xs py-2 px-4 flex flex-col items-start justify-center '>
               <p className='font-bold text-gray-800 text-left'>
                 {project.title} |{' '}
                 <span className='text-gray-600'>{project.location}</span>

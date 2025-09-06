@@ -7,6 +7,7 @@ import { getPaginatedProjects } from '~/api/getProjects';
 import PaginationComponent from '~/components/ui/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
+import Footer from '~/components/ui/Footer';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -79,6 +80,7 @@ const ProjectsPage = () => {
           )}
         </section>
       </main>
+      <Footer />
     </>
   );
 };

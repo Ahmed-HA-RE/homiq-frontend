@@ -2,6 +2,7 @@ import ProjectDetails from '~/components/ProjectDetails';
 import type { Projects } from '../../types';
 import type { Route } from './+types/details';
 import api from '~/lib/axios';
+import Footer from '~/components/ui/Footer';
 
 type LoaderReturn = {
   project: Projects;
@@ -46,6 +47,7 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
           <ProjectDetails project={project} />
         </section>
       </main>
+      <Footer />
     </>
   );
 };

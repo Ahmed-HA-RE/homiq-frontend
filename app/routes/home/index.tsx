@@ -4,6 +4,7 @@ import CarouselProjects from '~/components/CarouselProjects';
 import Hero from '~/components/Hero';
 import type { Projects } from '~/types';
 import { getLatestProjects } from '~/api/getProjects';
+import Footer from '~/components/ui/Footer';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -52,6 +53,7 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
         <Glimpse />
         <CarouselProjects projects={projects} />
       </main>
+      <Footer />
     </>
   );
 };
