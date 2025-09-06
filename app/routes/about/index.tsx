@@ -1,10 +1,31 @@
+import type { Route } from './+types';
 import { Link } from 'react-router';
 import AboutHeader from '~/components/AboutHeader';
 import { FaArrowAltCircleRight } from 'react-icons/fa';
 import WhyWeAreDifferent from '~/components/WhyWeAreDifferent';
 import Principles from '~/components/Principles';
+import { getAgents } from '~/api/getAgents';
+import type { Agents } from '~/types';
+import AgentsSection from '~/components/ui/AgentsCard';
 
-const AboutPage = () => {
+type LoaderReturn = {
+  agents: Agents[];
+};
+
+export async function loader({
+  request,
+}: Route.LoaderArgs): Promise<LoaderReturn> {
+  try {
+    const { agents } = await getAgents();
+    return { agents };
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+}
+
+const AboutPage = ({ loaderData }: Route.ComponentProps) => {
+  const { agents } = loaderData;
+
   const starOffsets = [-634.728, -447.914, -261.961, -76.024, 109.853];
 
   return (
@@ -13,7 +34,7 @@ const AboutPage = () => {
       <main className='bg-gray-200 mt-10'>
         <section>
           {/* Hero Image */}
-          <div className='relative z-10'>
+          <div className='relative z-0'>
             <img
               src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/about_us/About_hero.jpg`}
               alt='Hero-image'
@@ -66,6 +87,9 @@ const AboutPage = () => {
         </section>
         <WhyWeAreDifferent />
         <Principles />
+
+        {/* Our Agnets */}
+        <AgentsSection agents={agents} />
       </main>
     </>
   );

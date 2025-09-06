@@ -1,10 +1,10 @@
 import CarouselSwiper from './ui/Carousel';
 import { useQuery } from '@tanstack/react-query';
 import { getLatestProjects } from '~/api/getProjects';
-import Spinner from './Spinner';
+import type { Projects } from '~/types';
 
-const CarouselProjects = () => {
-  const { data, isLoading, isError } = useQuery({
+const CarouselProjects = ({ projects }: { projects: Projects[] }) => {
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['projects'],
     queryFn: getLatestProjects,
   });
@@ -27,15 +27,7 @@ const CarouselProjects = () => {
           showcases our dedication to design, quality, and client satisfaction.
         </p>
       </div>
-      {isLoading && <Spinner />}
-      {isError && (
-        <div className='min-h-screen -mt-44 flex items-center justify-center'>
-          <p className='text-2xl md:text-4xl text-white bg-red-300 py-3 px-4 rounded-lg'>
-            No Projects Found Try Again Later 🙂
-          </p>
-        </div>
-      )}
-      {data && <CarouselSwiper projects={data} />}
+      <CarouselSwiper projects={projects} />
     </section>
   );
 };

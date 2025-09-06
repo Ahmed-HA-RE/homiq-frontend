@@ -30,7 +30,6 @@ const GridPrinciplesStructure = () => {
               lg: 3,
             }}
           >
-            {/* 1st principle */}
             <div className='p-6 font-outfit h-full border-b md:border-r border-gray-400'>
               <small className='text-blue-400 capitalize'>
                 {principle.label}
