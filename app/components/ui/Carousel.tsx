@@ -59,6 +59,7 @@ const CarouselSwiper = ({ projects }: CourseSwiperProps) => {
           <SwiperSlide>
             <HtmlTooltip
               title='Learn More'
+              placement='bottom'
               slots={{
                 transition: Fade,
               }}

@@ -106,7 +106,7 @@ export default function NavbarMenuSlider({
                       ? 'mobile-slider-nav bg-blue-200/40'
                       : 'mobile-slider-nav'
                   }
-                  to='/contact'
+                  to='/contact-us'
                   onClick={() => setIsOpen(false)}
                 >
                   <GrContact className='inline-block -translate-y-0.5 text-2xl mr-3' />{' '}

@@ -83,7 +83,7 @@ const Navbar = () => {
                   ? 'text-cyan-500 font-outfit font-bold'
                   : 'desktop-nav-items'
               }
-              to={'/contact'}
+              to={'/contact-us'}
             >
               Contact Us
             </NavLink>

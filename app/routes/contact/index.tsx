@@ -1,0 +1,66 @@
+import {
+  FaFacebookSquare,
+  FaMeetup,
+  FaInstagram,
+  FaLinkedin,
+} from 'react-icons/fa';
+import ContactForm from '~/components/ContactUsForm';
+
+const ContactPage = () => {
+  return (
+    <section className='min-h-screen bg-contact-primary w-full grid grid-cols-1 lg:grid-cols-2 items-center justify-center pt-20 lg:pt-0 '>
+      {/* left side */}
+      <div className='lg:bg-gray-800 h-full p-8 md:p-10 lg:px-6 font-outfit space-y-5  lg:flex lg:flex-col justify-center'>
+        <h1 className='text-3xl md:text-4xl text-white font-medium'>
+          Get in Touch with Homiq
+        </h1>
+        <p className='text-gray-400 max-w-md tracking-wide mb-6'>
+          Have questions or need assistance finding your dream home? Our team is
+          here to help. Reach out today and let us guide you every step of the
+          way.
+        </p>
+        <span className='text-gray-300'>
+          Follow us on social media for the latest property updates
+        </span>
+        {/* social links */}
+        <div className='flex flex-row items-center justify-start space-x-5 mt-6'>
+          <a
+            className='text-gray-400 text-3xl hover:text-cyan-500 transition duration-300'
+            href='http://www.instgram.com'
+            target='_blank'
+          >
+            <FaInstagram />
+          </a>
+          <a
+            className='text-gray-400 text-3xl hover:text-cyan-500 transition duration-300'
+            href='http://www.facebook.com'
+            target='_blank'
+          >
+            <FaFacebookSquare />
+          </a>
+          <a
+            className='text-gray-400 text-3xl hover:text-cyan-500 transition duration-300'
+            href='http://www.linkedin.com'
+            target='_blank'
+          >
+            <FaLinkedin />
+          </a>
+          <a
+            className='text-gray-400 text-3xl hover:text-cyan-500 transition duration-300'
+            href='https://www.meetup.com'
+            target='_blank'
+          >
+            <FaMeetup />
+          </a>
+        </div>
+      </div>
+
+      {/* right side */}
+      <div className='p-8 flex flex-col justify-center lg:h-full lg:bg-gray-900'>
+        <ContactForm />
+      </div>
+    </section>
+  );
+};
+
+export default ContactPage;

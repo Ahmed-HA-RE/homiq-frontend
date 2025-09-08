@@ -5,14 +5,22 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from 'react-router';
+
+import '@mantine/core/styles.css';
+import {
+  ColorSchemeScript,
+  MantineProvider,
+  mantineHtmlProps,
+} from '@mantine/core';
 
 import type { Route } from './+types/root';
 import './app.css';
 import { Toaster } from 'sonner';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import Navbar from './components/ui/NavbarScroller';
+import Navbar from './components/ui/Navbar';
 
 // new instance for query hooks
 const queryClient = new QueryClient();
@@ -33,16 +41,17 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en'>
+    <html lang='en' {...mantineHtmlProps}>
       <head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <ColorSchemeScript />
         <Meta />
         <Links />
       </head>
       <body>
         <Navbar />
-        {children}
+        <MantineProvider>{children}</MantineProvider>
         <ScrollRestoration />
         <Scripts />
         <Toaster />

@@ -11,6 +11,7 @@
   --color-user-experience: #0e2148;
   --color-link: #30e3ca;
   --color-secondary-link: #1eae9b;
+  --color-contact-primary: #131f36;
 }
 
 @font-face {
@@ -45,6 +46,7 @@
   .secondary-btn {
     @apply text-white bg-blue-500 flex-1/12 py-3 inline-block rounded hover:bg-blue-700 transition-colors duration-200 md:text-lg;
   }
+
   body {
     @apply bg-gray-200;
   }
