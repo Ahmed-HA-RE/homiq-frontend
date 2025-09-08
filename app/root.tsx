@@ -17,7 +17,7 @@ import {
 
 import type { Route } from './+types/root';
 import './app.css';
-import { Toaster } from 'sonner';
+import { Toaster } from './components/ui/sonner';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Navbar from './components/ui/Navbar';
@@ -54,7 +54,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <MantineProvider>{children}</MantineProvider>
         <ScrollRestoration />
         <Scripts />
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+            },
+          }}
+        />
       </body>
     </html>
   );

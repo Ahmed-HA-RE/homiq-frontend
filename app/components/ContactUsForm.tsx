@@ -1,6 +1,11 @@
 import { TextInput, Textarea } from '@mantine/core';
 import { FaEnvelope, FaUser } from 'react-icons/fa';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import { sendContactForm } from '~/api/contactUs';
+import { toast } from 'sonner';
+import { BiSolidErrorAlt } from 'react-icons/bi';
+import { IoShieldCheckmarkSharp } from 'react-icons/io5';
 
 type FormInputs = {
   email: string;
@@ -13,11 +18,42 @@ const ContactForm = () => {
     register,
     setError,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormInputs>();
 
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: (data: FormInputs) => sendContactForm(data),
+    onSuccess: (data) => {
+      reset();
+      toast.success(data.message, {
+        icon: <IoShieldCheckmarkSharp size={20} />,
+        style: {
+          fontSize: '16px',
+          fontWeight: 'bold',
+          backgroundColor: '#06923E',
+          borderColor: '#06923E',
+          color: '#fff',
+        },
+      });
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error(error.message, {
+        icon: <BiSolidErrorAlt size={20} />,
+        style: {
+          fontSize: '16px',
+          fontWeight: 'bold',
+          backgroundColor: '#E62727',
+          borderColor: '#E62727',
+          color: '#fff',
+        },
+      });
+    },
+  });
+
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    console.log(data);
+    await mutateAsync(data);
   };
 
   return (
@@ -117,10 +153,11 @@ const ContactForm = () => {
         />
       </div>
       <button
-        className='w-full bg-blue-500 text-white font-outfit py-3 rounded-md cursor-pointer hover:bg-blue-700 transition duration-200'
+        className='w-full bg-blue-500 text-white font-outfit py-3 rounded-md cursor-pointer hover:bg-blue-700 !font-bold transition duration-200'
         type='submit'
+        disabled={isPending}
       >
-        Get In Touch
+        {isPending ? 'Submiting....' : 'Get In Touch'}
       </button>
     </form>
   );
