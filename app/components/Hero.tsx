@@ -1,5 +1,7 @@
 import { Link } from 'react-router';
 import clsx from 'clsx';
+import { ShimmeringText } from './ui/shimmering';
+import { motion } from 'framer-motion';
 
 type Cta = {
   label: string;
@@ -25,10 +27,20 @@ const Hero = ({ title, subtitle, bgImage, cta }: HeroProps) => {
         }}
       >
         {/* Hero info */}
-        <div className='z-10 pt-6'>
-          <h1 className='text-5xl md:text-7xl max-w-3xl font-outfit font-semibold text-gray-100 text-center leading-14 md:leading-18 pt-20'>
-            {title}
-          </h1>
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{
+            duration: 0.5,
+          }}
+          className='z-10 pt-6 font-outfit'
+        >
+          <ShimmeringText
+            text={title}
+            className='text-4xl md:text-7xl max-w-3xl font-outfit font-semibold  text-center leading-14 md:leading-18 pt-20 w-full'
+            color='#fff'
+            shimmeringColor='#11111'
+          />
           <p className='my-6 mb-8 text-gray-200 text-lg md:text-2xl text-center md:max-w-xl mx-auto'>
             {subtitle}
           </p>
@@ -49,7 +61,7 @@ const Hero = ({ title, subtitle, bgImage, cta }: HeroProps) => {
               </Link>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Overlay */}

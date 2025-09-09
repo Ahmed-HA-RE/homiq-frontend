@@ -1,6 +1,5 @@
 import type { Route } from './+types';
 import { useQuery } from '@tanstack/react-query';
-import ProjectCard from '~/components/ProjectsCard';
 import Spinner from '~/components/Spinner';
 import { useState } from 'react';
 import { getPaginatedProjects } from '~/api/getProjects';
@@ -8,6 +7,7 @@ import PaginationComponent from '~/components/ui/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
 import Footer from '~/components/ui/Footer';
+import ProjectCard from '~/components/ui/ProjectCard';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -49,7 +49,7 @@ const ProjectsPage = () => {
             <AnimatePresence mode='wait'>
               <motion.div
                 key={page}
-                className='grid grid-cols-1 md:grid-cols-2 gap-6  items-center justify-center'
+                className='grid grid-cols-1 md:grid-cols-2 gap-6 items-center justify-items-center'
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}

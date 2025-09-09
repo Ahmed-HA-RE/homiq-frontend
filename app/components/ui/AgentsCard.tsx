@@ -10,8 +10,6 @@ type AgentsProps = {
 export default function AgentsSection({ agents }: AgentsProps) {
   return (
     <section className='mx-auto max-w-7xl py-16 md:py-24'>
-      <div className='bg-primary/15 absolute top-0 left-0 h-96 w-96 rounded-full blur-3xl' />
-      <div className='bg-primary/15 absolute top-0 right-0 h-96 w-96 rounded-full blur-3xl' />
       <div className='container mx-auto px-4 md:px-6'>
         <div className='mx-auto mb-8 max-w-3xl text-center font-outfit'>
           <h2 className='mb-4 text-2xl font-bold tracking-tight sm:text-3xl'>

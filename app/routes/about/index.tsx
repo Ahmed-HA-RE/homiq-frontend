@@ -32,7 +32,7 @@ const AboutPage = ({ loaderData }: Route.ComponentProps) => {
   return (
     <>
       <AboutHeader />
-      <main className='bg-gray-200 mt-10'>
+      <main className='bg-gray-200 '>
         <section>
           {/* Hero Image */}
           <div className='relative z-0'>
