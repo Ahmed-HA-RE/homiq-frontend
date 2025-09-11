@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 100,
+    threshold: 50,
   });
   return (
     <>

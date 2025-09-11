@@ -13,9 +13,9 @@ type ShimmeringTextProps = Omit<HTMLMotionProps<'span'>, 'children'> & {
 
 function ShimmeringText({
   text,
-  duration = 1.2,
+  duration = 1,
   transition,
-  wave = true,
+  wave = false,
   color = 'var(--color-secondary-link)',
   shimmeringColor = 'var(--color-mint-700)',
   ...props

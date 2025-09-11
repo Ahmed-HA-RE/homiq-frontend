@@ -38,7 +38,6 @@ export type Agents = {
 export type Testimonials = {
   _id: string;
   name: string;
-  alt: string;
-  text: string;
-  job: string;
+  feedback: string;
+  role: string;
 };

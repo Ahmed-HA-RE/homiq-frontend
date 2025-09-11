@@ -33,15 +33,15 @@ const Hero = ({ title, subtitle, bgImage, cta }: HeroProps) => {
           transition={{
             duration: 0.5,
           }}
-          className='z-10 pt-6 font-outfit'
+          className='z-10 pt-6  font-outfit'
         >
           <ShimmeringText
             text={title}
-            className='text-4xl md:text-7xl max-w-3xl font-outfit font-semibold  text-center leading-14 md:leading-18 pt-20 w-full'
+            className='text-3xl md:text-6xl lg:text-7xl max-w-3xl md:max-w-5xl font-outfit font-semibold  md:leading-18 pt-20 w-full text-center capitalize'
             color='#fff'
             shimmeringColor='#11111'
           />
-          <p className='my-6 mb-8 text-gray-200 text-lg md:text-2xl text-center md:max-w-xl mx-auto'>
+          <p className='my-2 md:my-6 mb-8 text-gray-200 text-lg md:text-2xl text-center md:max-w-xl mx-auto'>
             {subtitle}
           </p>
           {/* Hero Buttons */}

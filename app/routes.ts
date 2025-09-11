@@ -6,5 +6,6 @@ export default [
   route('/project/:id', './routes/projects/details.tsx'),
   route('/about', './routes/about/index.tsx'),
   route('/contact-us', './routes/contact/index.tsx'),
+  route('/reviews/add', './routes/reviews/index.tsx'),
   route('*', './routes/error/index.tsx'),
 ] satisfies RouteConfig;

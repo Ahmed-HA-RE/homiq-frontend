@@ -37,19 +37,6 @@ const ContactForm = () => {
         },
       });
     },
-    onError: (error) => {
-      console.log(error);
-      toast.error(error.message, {
-        icon: <BiSolidErrorAlt size={20} />,
-        style: {
-          fontSize: '16px',
-          fontWeight: 'bold',
-          backgroundColor: '#E62727',
-          borderColor: '#E62727',
-          color: '#fff',
-        },
-      });
-    },
   });
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
@@ -69,8 +56,9 @@ const ContactForm = () => {
               label: { color: '#fff', margin: '0 0 4px', fontSize: '15px' },
               input: {
                 backgroundColor: 'transparent',
+                borderColor: '#fff',
                 fontFamily: 'inherit',
-                color: '#ccc',
+                color: '#fff',
               },
               error: { marginLeft: '5px' },
             }}
@@ -78,7 +66,7 @@ const ContactForm = () => {
             radius={'md'}
             withAsterisk
             rightSectionPointerEvents='none'
-            rightSection={<FaEnvelope size={20} />}
+            rightSection={<FaEnvelope color='#fff' size={20} />}
             {...register('email', {
               required: 'Email is Required',
               pattern: {
@@ -98,8 +86,9 @@ const ContactForm = () => {
               label: { color: '#fff', margin: '0 0 4px', fontSize: '15px' },
               input: {
                 backgroundColor: 'transparent',
+                borderColor: '#fff',
                 fontFamily: 'inherit',
-                color: '#ccc',
+                color: '#fff',
               },
               error: { marginLeft: '5px' },
             }}
@@ -107,7 +96,7 @@ const ContactForm = () => {
             radius='md'
             withAsterisk
             rightSectionPointerEvents='none'
-            rightSection={<FaUser size={20} />}
+            rightSection={<FaUser color='#fff' size={20} />}
             {...register('fullName', {
               required: 'Full Name is Required',
               maxLength: {
@@ -136,7 +125,8 @@ const ContactForm = () => {
             input: {
               backgroundColor: 'transparent',
               fontFamily: 'inherit',
-              color: '#ccc',
+              color: '#fff',
+              borderColor: '#fff',
               height: '200px',
             },
             error: { marginLeft: '5px' },
@@ -153,7 +143,7 @@ const ContactForm = () => {
         />
       </div>
       <button
-        className='w-full bg-blue-500 text-white font-outfit py-3 rounded-md cursor-pointer hover:bg-blue-700 !font-bold transition duration-200'
+        className='w-full bg-blue-600 text-white font-outfit py-3 rounded-md cursor-pointer hover:bg-blue-700 !font-bold transition duration-200'
         type='submit'
         disabled={isPending}
       >

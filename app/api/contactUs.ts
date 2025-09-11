@@ -13,7 +13,7 @@ export async function sendContactForm({
 }: ContactUsData) {
   try {
     const { data } = await api.post(
-      `${import.meta.env.VITE_BACKEND_URL}/contact-us`,
+      `${import.meta.env.VITE_BACKEND_URL_STATIC}/contact`,
       {
         email,
         fullName,
@@ -22,6 +22,7 @@ export async function sendContactForm({
     );
     return data;
   } catch (error: any) {
-    throw new Error(error.message);
+    console.log(error);
+    throw new Error(error.response.data.message);
   }
 }

@@ -105,7 +105,7 @@ const TestimonialsCarousel = ({
                     viewport={{ once: true }}
                     className='text-foreground/90 relative mb-6 text-base leading-relaxed'
                   >
-                    <span className='relative'>{testimonial.text}</span>
+                    <span className='relative'>{testimonial.feedback}</span>
                   </motion.p>
 
                   {/* Enhanced user info with animation */}
@@ -129,13 +129,13 @@ const TestimonialsCarousel = ({
                         <p className='text-primary/80 text-sm whitespace-nowrap'>
                           {testimonial.name}
                         </p>
-                        {testimonial.job && (
+                        {testimonial.role && (
                           <>
                             <span className='text-muted-foreground flex-shrink-0'>
                               •
                             </span>
                             <p className='text-muted-foreground text-sm whitespace-nowrap'>
-                              {testimonial.job}
+                              {testimonial.role}
                             </p>
                           </>
                         )}
@@ -149,7 +149,7 @@ const TestimonialsCarousel = ({
         </div>
       </div>
       <Link
-        to={'/add-review'}
+        to={'/reviews/add'}
         className='p-4 mt-8 w-full text-center bg-cyan-500 font-outfit rounded text-white flex justify-center text-lg max-w-md mx-auto hover:bg-cyan-600 hover:scale-90 transition duration-200 '
       >
         Add Your Review

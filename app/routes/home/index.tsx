@@ -46,12 +46,12 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
       <header>
         <Hero
           bgImage='/images/header_img.png'
-          title='Explore homes that fit your dreams'
+          title='your perfect home awaits'
           subtitle='Discover our curated selection of villas and apartments, hear from
             happy residents, and explore what makes our homes truly special.'
           cta={[
             { label: 'Projects', href: '/projects', variant: 'primary' },
-            { label: 'Contact Us', href: '/contact', variant: 'secondary' },
+            { label: 'Contact Us', href: '/contact-us', variant: 'secondary' },
           ]}
         />
       </header>
