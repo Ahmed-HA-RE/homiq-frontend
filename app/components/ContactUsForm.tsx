@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { sendContactForm } from '~/api/contactUs';
 import { toast } from 'sonner';
 import { BiSolidErrorAlt } from 'react-icons/bi';
-import { IoShieldCheckmarkSharp } from 'react-icons/io5';
+import { IoShieldCheckmarkSharp, IoWarningOutline } from 'react-icons/io5';
 
 type FormInputs = {
   email: string;
@@ -33,6 +33,18 @@ const ContactForm = () => {
           fontWeight: 'bold',
           backgroundColor: '#06923E',
           borderColor: '#06923E',
+          color: '#fff',
+        },
+      });
+    },
+    onError: (err) => {
+      toast.error(err.message, {
+        icon: <IoWarningOutline size={20} />,
+        style: {
+          fontSize: '16px',
+          fontWeight: 'bold',
+          backgroundColor: 'red',
+          borderColor: 'red',
           color: '#fff',
         },
       });
