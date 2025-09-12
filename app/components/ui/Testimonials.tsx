@@ -134,8 +134,8 @@ const TestimonialsCarousel = ({
                             <span className='text-muted-foreground flex-shrink-0'>
                               •
                             </span>
-                            <p className='text-muted-foreground text-sm whitespace-nowrap'>
-                              {testimonial.role}
+                            <p className='text-muted-foreground text-sm whitespace-nowrap capitalize'>
+                              {testimonial.role.replace('_', '  ')}
                             </p>
                           </>
                         )}

@@ -40,4 +40,5 @@ export type Testimonials = {
   name: string;
   feedback: string;
   role: string;
+  status: string;
 };
