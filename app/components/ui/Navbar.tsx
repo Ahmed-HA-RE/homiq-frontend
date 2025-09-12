@@ -2,12 +2,13 @@ import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router';
-import { Twirl as Hamburger } from 'hamburger-react';
-
-import NavbarMenuSlider from './NavbarSlider';
+import { Button, Group } from '@mantine/core';
+import { CiLogin } from 'react-icons/ci';
+import NavbarDrawer from './NavbarSlider';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { SiSimplelogin } from 'react-icons/si';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 50,
@@ -18,7 +19,7 @@ const Navbar = () => {
         component={'nav'}
         position='fixed'
         sx={{
-          p: '20px',
+          p: '20px 20px',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -39,7 +40,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop nav */}
-        <ul className='hidden md:flex flex-row space-x-6 items-center'>
+        <ul className='hidden md:flex flex-row space-x-6 justify-center items-center '>
           <li>
             <NavLink
               className={({ isActive }) =>
@@ -90,20 +91,31 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Mobile nav hamburger */}
-        <button className='block md:hidden' onClick={() => setIsOpen(!isOpen)}>
-          <Hamburger
-            duration={0.35}
-            color='#fff'
-            easing='ease-in-out'
-            rounded
-            toggled={isOpen}
-            toggle={setIsOpen}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-          />
-        </button>
-        {/* Mobile nav drawer */}
-        {isOpen && <NavbarMenuSlider isOpen={isOpen} setIsOpen={setIsOpen} />}
+        {/* Login && Sign up */}
+        <Group pb={4}>
+          <Button
+            component={Link}
+            to={'/register'}
+            size='sm'
+            classNames={{
+              root: '!hidden md:!block !bg-black/50',
+            }}
+          >
+            Sign Up
+          </Button>
+          <Button
+            component={Link}
+            to={'/login'}
+            size='sm'
+            classNames={{
+              root: '!hidden md:!block !bg-black/50',
+            }}
+          >
+            Log In
+          </Button>
+        </Group>
+
+        <NavbarDrawer />
       </AppBar>
     </>
   );
