@@ -1,0 +1,87 @@
+.input {
+  &:focus-within {
+    outline: 1px solid #ffd166;
+    border: none;
+  }
+
+  &::placeholder {
+    color: #fff;
+  }
+
+  background-color: transparent;
+  color: #fff;
+  border-color: white;
+  border-radius: 8px;
+}
+
+.errorInput {
+  &:focus {
+    outline: 1px solid #fa5252;
+    border: none;
+  }
+  &::placeholder {
+    color: #fa5252;
+  }
+  color: #fff;
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.visibilityToggle {
+  color: #fff;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+  }
+  transition: all 0.2s ease-in;
+}
+
+.visibilityToggleError {
+  color: #fa5252;
+}
+
+.labelInput {
+  color: #e0e0e0;
+  margin: 0 0 5px;
+}
+
+.errorMessage {
+  font-family: Roboto;
+}
+
+.closeModal {
+  color: white;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  transition: all 0.2s ease-in-out;
+}
+
+.contentModal {
+  background: linear-gradient(
+    180deg,
+    rgba(145, 140, 127, 1) 0%,
+    rgba(103, 109, 146, 1) 50%,
+    rgba(6, 62, 128, 1) 100%
+  );
+}
+
+.headerModal {
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.modalTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.modalBtnCta {
+  color: #fff;
+  &:hover {
+    background-color: #068fff;
+    transform: scale(0.95);
+  }
+  transition: all 0.15s ease-in;
+}

@@ -5,7 +5,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
 } from 'react-router';
 
 import '@mantine/core/styles.css';
@@ -21,6 +20,7 @@ import { Toaster } from './components/ui/sonner';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Navbar from './components/ui/Navbar';
+import AuthModal from './components/ui/AuthModal';
 
 // new instance for query hooks
 const queryClient = new QueryClient();
@@ -51,6 +51,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <MantineProvider>
+          <AuthModal />
           <Navbar />
           {children}
         </MantineProvider>

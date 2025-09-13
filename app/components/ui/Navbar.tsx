@@ -1,14 +1,13 @@
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import { useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { Button, Group } from '@mantine/core';
-import { CiLogin } from 'react-icons/ci';
 import NavbarDrawer from './NavbarSlider';
-import { FaSignOutAlt } from 'react-icons/fa';
-import { SiSimplelogin } from 'react-icons/si';
+import { useModalStore } from '~/store/modalStore';
 
 const Navbar = () => {
+  const openModal = useModalStore((state) => state.openModal);
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 50,
@@ -40,7 +39,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop nav */}
-        <ul className='hidden md:flex flex-row space-x-6 justify-center items-center '>
+        <ul className='hidden md:flex flex-row space-x-6 justify-center items-center pt-1 '>
           <li>
             <NavLink
               className={({ isActive }) =>
@@ -92,28 +91,18 @@ const Navbar = () => {
         </ul>
 
         {/* Login && Sign up */}
-        <Group pb={4}>
-          <Button
-            component={Link}
-            to={'/register'}
-            size='sm'
-            classNames={{
-              root: '!hidden md:!block !bg-black/50',
-            }}
-          >
-            Sign Up
-          </Button>
-          <Button
-            component={Link}
-            to={'/login'}
-            size='sm'
-            classNames={{
-              root: '!hidden md:!block !bg-black/50',
-            }}
-          >
-            Log In
-          </Button>
-        </Group>
+        <Button
+          onClick={openModal}
+          size='sm'
+          classNames={{
+            root: '!hidden md:!block',
+          }}
+          styles={{
+            root: { backgroundColor: '#20B2AA' },
+          }}
+        >
+          Get Started
+        </Button>
 
         <NavbarDrawer />
       </AppBar>

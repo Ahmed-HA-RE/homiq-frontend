@@ -2,10 +2,15 @@ import { Button, Divider, Drawer, Flex, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoCloseCircle } from 'react-icons/io5';
-import { Link, NavLink } from 'react-router';
+
+import { NavLink } from 'react-router';
+import { useModalStore } from '~/store/modalStore';
 
 const NavbarDrawer = () => {
   const [opened, { open, close }] = useDisclosure(false);
+
+  const openModal = useModalStore((state) => state.openModal);
+
   return (
     <>
       <Button
@@ -25,22 +30,22 @@ const NavbarDrawer = () => {
       <Drawer
         opened={opened}
         onClose={close}
-        size='lg'
+        size='xs'
         padding='md'
-        position='left'
+        position='right'
         hiddenFrom='xs'
         zIndex={1000000}
         overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
-        transitionProps={{ transition: 'slide-right', duration: 300 }}
+        transitionProps={{ transition: 'slide-left', duration: 300 }}
         closeButtonProps={{
-          icon: <IoCloseCircle size={30} color='#fff' />,
+          icon: <IoCloseCircle size={30} color='' />,
         }}
         styles={{
           content: {
-            backgroundColor: '#2E2C2A',
+            backgroundColor: '#fff',
           },
           header: {
-            backgroundColor: '#2E2C2A',
+            backgroundColor: '#fff',
           },
           body: {
             display: 'flex',
@@ -48,14 +53,12 @@ const NavbarDrawer = () => {
             padding: 0,
           },
         }}
-        classNames={{ close: 'hover:!bg-black/30 ' }}
+        classNames={{ close: 'hover:!bg-black/10 ' }}
       >
-        <Divider mt='' p={12} />
-
         <Flex direction={'column'} justify={'start'} align={'start'}>
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'mobile-slider-nav' : 'text-gray-400 mobile-slider-nav'
+              isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
             }
             onClick={close}
             to='/'
@@ -64,7 +67,7 @@ const NavbarDrawer = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'mobile-slider-nav' : 'text-gray-400 mobile-slider-nav'
+              isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
             }
             onClick={close}
             to='/about'
@@ -73,7 +76,7 @@ const NavbarDrawer = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'mobile-slider-nav' : 'text-gray-400 mobile-slider-nav'
+              isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
             }
             onClick={close}
             to='/projects'
@@ -82,7 +85,7 @@ const NavbarDrawer = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'mobile-slider-nav' : 'text-gray-400 mobile-slider-nav'
+              isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
             }
             onClick={close}
             to='/contact-us'
@@ -91,25 +94,20 @@ const NavbarDrawer = () => {
           </NavLink>
         </Flex>
 
-        <Divider my='sm' />
-
-        <Group grow px='md'>
+        <Divider mb='md' />
+        <Group justify='center' grow px={10}>
           <Button
-            onClick={close}
-            component={Link}
-            to={'/login'}
-            variant='transparent'
             styles={{
               root: {
-                border: '1px solid white',
-                color: '#fff',
+                fontSize: '15px',
               },
             }}
+            onClick={() => {
+              close();
+              openModal();
+            }}
           >
-            Log in
-          </Button>
-          <Button onClick={close} component={Link} to={'/register'}>
-            Sign up
+            Get Started
           </Button>
         </Group>
       </Drawer>

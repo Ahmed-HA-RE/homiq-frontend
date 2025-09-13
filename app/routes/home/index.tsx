@@ -40,7 +40,6 @@ export async function loader({
 
 const HomePage = ({ loaderData }: Route.ComponentProps) => {
   const { projects, testimonials } = loaderData;
-
   return (
     <>
       <header>
