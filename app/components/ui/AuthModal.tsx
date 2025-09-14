@@ -1,4 +1,4 @@
-import { Button, Group, Modal } from '@mantine/core';
+import { Modal } from '@mantine/core';
 import { useModalStore } from '~/store/modalStore';
 import { useToggle } from '@mantine/hooks';
 import SignUpForm from '../SignUp';

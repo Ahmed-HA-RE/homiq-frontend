@@ -1,8 +1,8 @@
-import type { Projects } from '~/types';
 import ProjectDetailsTabs from './ui/Tabs';
+import type { Project } from '~/schema/projectsSchema';
 
 type ProjectDetailsProps = {
-  project: Projects;
+  project: Project;
 };
 
 const ProjectDetails = ({ project }: ProjectDetailsProps) => {

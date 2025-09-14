@@ -1,11 +1,11 @@
 import ProjectDetails from '~/components/ProjectDetails';
-import type { Projects } from '../../types';
+import { projectSchema, type Project } from '~/schema/projectsSchema';
 import type { Route } from './+types/details';
 import api from '~/lib/axios';
 import Footer from '~/components/ui/Footer';
 
 type LoaderReturn = {
-  project: Projects;
+  project: Project;
 };
 
 export async function loader({
@@ -14,7 +14,8 @@ export async function loader({
   try {
     const { id } = params;
     const { data } = await api.get(`projects/${id}`);
-    return { project: data };
+    const parsed = projectSchema.parse(data);
+    return { project: parsed };
   } catch (error) {
     throw new Error('Failed to fetch project');
   }

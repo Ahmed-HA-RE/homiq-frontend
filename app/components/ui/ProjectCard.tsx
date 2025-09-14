@@ -1,10 +1,10 @@
 import { Card, Image, Text, Button, Group } from '@mantine/core';
 import { Link } from 'react-router';
 import '../../app.css';
-import type { Projects } from '~/types';
+import type { Project } from '~/schema/projectsSchema';
 
 type ProjectCardProps = {
-  project: Projects;
+  project: Project;
 };
 
 const ProjectCard = ({ project }: ProjectCardProps) => {

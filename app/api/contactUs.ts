@@ -6,11 +6,15 @@ type ContactUsData = {
   message: string;
 };
 
+type ContactUsResponse = {
+  message: string;
+};
+
 export async function sendContactForm({
   email,
   fullName,
   message,
-}: ContactUsData) {
+}: ContactUsData): Promise<ContactUsResponse> {
   try {
     const { data } = await api.post(
       `${import.meta.env.VITE_BACKEND_URL_STATIC}/emails/contact`,

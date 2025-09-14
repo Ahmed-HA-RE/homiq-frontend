@@ -1,43 +1,46 @@
 import api from '~/lib/axios';
-import type { Projects } from '~/types';
+import {
+  projectSchema,
+  type Project,
+  pagenatedProjects,
+  type PaginatedProjects,
+} from '~/schema/projectsSchema';
+import z from 'zod';
+
+const projectsSchema = z.array(projectSchema);
 
 // fetch all projects
-export async function getProjects(): Promise<Projects[]> {
+export async function getProjects(): Promise<Project[]> {
   try {
     const { data } = await api.get(
       `${import.meta.env.VITE_BACKEND_URL}/projects`
     );
-    return data;
+
+    const parsed = projectsSchema.parse(data);
+    console.log(parsed);
+    return parsed;
   } catch (error: any) {
     throw new Error('Something went Wrong');
   }
 }
 
-// fetch limit projects
-type getPaginatedProjectsReturn = {
-  limit: number;
-  page: number;
-  pages: number;
-  total: 6;
-  projects: Projects[];
-};
-
 export async function getPaginatedProjects(
   limit: number,
   page: number
-): Promise<getPaginatedProjectsReturn> {
+): Promise<PaginatedProjects> {
   try {
     const { data } = await api.get(
       `/projects/paginate?limit=${limit.toString()}&page=${page.toString()}`
     );
-    return data;
+    const parsed = pagenatedProjects.parse(data);
+    return parsed;
   } catch (error: any) {
     throw new Error('Something went Wrong');
   }
 }
 
 // fetch latest projects
-export async function getLatestProjects(): Promise<Projects[]> {
+export async function getLatestProjects(): Promise<Project[]> {
   try {
     const { data } = await api.get('/projects/latest');
     return data;

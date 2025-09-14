@@ -1,8 +1,13 @@
 import type { Route } from './+types';
+import z from 'zod';
 import Glimpse from '~/components/Glimpse';
 import CarouselProjects from '~/components/CarouselProjects';
 import Hero from '~/components/Hero';
-import type { Projects, Testimonials } from '~/types';
+import { type Project, projectSchema } from '~/schema/projectsSchema';
+import {
+  type Testimonial,
+  testimonialSchema,
+} from '~/schema/testimonialsSchema';
 import { getLatestProjects } from '~/api/getProjects';
 import { getTestimonials } from '~/api/getTestimonials';
 import Footer from '~/components/ui/Footer';
@@ -19,9 +24,13 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+// Validate project and testimonial objects from backend and ensure correct array structure
+const projectsSchema = z.array(projectSchema);
+const testimonialsSchema = z.array(testimonialSchema);
+
 type LoaderReturn = {
-  projects: Projects[];
-  testimonials: Testimonials[];
+  projects: Project[];
+  testimonials: Testimonial[];
 };
 
 export async function loader({
@@ -32,7 +41,11 @@ export async function loader({
       getLatestProjects(),
       getTestimonials(),
     ]);
-    return { projects, testimonials };
+
+    const parsedProjects = projectsSchema.parse(projects);
+    const parsedtestimonials = testimonialsSchema.parse(testimonials);
+
+    return { projects: parsedProjects, testimonials: parsedtestimonials };
   } catch (error: any) {
     throw new Error('Something went Wrong');
   }

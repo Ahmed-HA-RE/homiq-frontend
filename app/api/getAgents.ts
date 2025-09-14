@@ -1,11 +1,15 @@
 import api from '~/lib/axios';
-import type { Agents } from '~/types';
+import z from 'zod';
+import { agentSchema, type AgentData } from '~/schema/agentsSchema';
+
+const agentsSchema = z.array(agentSchema);
 
 // fetch all the agents
-export async function getAgents() {
+export async function getAgents(): Promise<AgentData[]> {
   try {
     const { data } = await api.get('/agents');
-    return data;
+    const parsed = agentsSchema.parse(data);
+    return parsed;
   } catch (error: any) {
     throw Error(error.message);
   }

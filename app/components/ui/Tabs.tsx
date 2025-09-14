@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 
 import { useState } from 'react';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import type { Projects } from '~/types';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IoIosCheckmark } from 'react-icons/io';
+import type { Project } from '~/schema/projectsSchema';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -38,7 +38,7 @@ function a11yProps(index: number) {
 }
 
 type ProjectDetailsTabsProps = {
-  project: Projects;
+  project: Project;
 };
 
 const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {

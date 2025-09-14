@@ -90,7 +90,7 @@ const NavbarDrawer = () => {
             onClick={close}
             to='/contact-us'
           >
-            Contact
+            Contact Us
           </NavLink>
         </Flex>
 

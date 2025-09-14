@@ -5,19 +5,19 @@ import { FaArrowAltCircleRight } from 'react-icons/fa';
 import WhyWeAreDifferent from '~/components/WhyWeAreDifferent';
 import Principles from '~/components/Principles';
 import { getAgents } from '~/api/getAgents';
-import type { Agents } from '~/types';
+import type { AgentData } from '~/schema/agentsSchema';
 import AgentsSection from '~/components/ui/AgentsCard';
 import Footer from '~/components/ui/Footer';
 
 type LoaderReturn = {
-  agents: Agents[];
+  agents: AgentData[];
 };
 
 export async function loader({
   request,
 }: Route.LoaderArgs): Promise<LoaderReturn> {
   try {
-    const { agents } = await getAgents();
+    const agents = await getAgents();
     return { agents };
   } catch (error: any) {
     throw new Error(error.message);

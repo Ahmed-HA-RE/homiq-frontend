@@ -1,10 +1,9 @@
-import { cn } from '~/lib/utils';
 import { FaInstagram } from 'react-icons/fa6';
 import { FaFacebookSquare } from 'react-icons/fa';
-import type { Agents } from '~/types';
+import type { AgentData } from '~/schema/agentsSchema';
 
 type AgentsProps = {
-  agents: Agents[];
+  agents: AgentData[];
 };
 
 export default function AgentsSection({ agents }: AgentsProps) {
@@ -31,7 +30,7 @@ export default function AgentsSection({ agents }: AgentsProps) {
 }
 
 // Team member card component
-export function AgentsMemberCard({ agent }: { agent: Agents }) {
+export function AgentsMemberCard({ agent }: { agent: AgentData }) {
   return (
     <div className='group bg-card w-96 overflow-hidden rounded-xl opacity-100 shadow-sm transition-opacity hover:opacity-75'>
       <div className='relative h-64 w-full overflow-hidden pt-2'>
