@@ -3,20 +3,20 @@ import { TextInput, PasswordInput, Group, Button } from '@mantine/core';
 import classes from '../mantine-themes/mantine.module.css';
 import { MdAlternateEmail } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
-import { signUpSchema, type SignUp } from '~/schema/authFormSchema';
+import { logInSchema, type LogIn } from '~/schema/authFormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-const SignUpForm = () => {
+const LogInForm = () => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<SignUp>({
-    resolver: zodResolver(signUpSchema),
+  } = useForm<LogIn>({
+    resolver: zodResolver(logInSchema),
   });
 
-  const onSubmit: SubmitHandler<SignUp> = (data) => {};
+  const onSubmit: SubmitHandler<LogIn> = (data) => {};
 
   return (
     <div className='mt-10 space-y-5'>
@@ -26,32 +26,6 @@ const SignUpForm = () => {
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
         {/* Full Name */}
-        <Group justify='center' grow gap={'sm'}>
-          <TextInput
-            label='First name'
-            withAsterisk
-            placeholder='Your first name'
-            classNames={{
-              input: errors.firstName ? classes.errorInput : classes.input,
-              label: classes.labelInput,
-              error: classes.errorMessage,
-            }}
-            {...register('firstName')}
-            error={errors.firstName?.message}
-          />
-          <TextInput
-            label='Last name'
-            withAsterisk
-            placeholder='Your last name'
-            classNames={{
-              input: errors.lastName ? classes.errorInput : classes.input,
-              label: classes.labelInput,
-              error: classes.errorMessage,
-            }}
-            error={errors.lastName?.message}
-            {...register('lastName')}
-          />
-        </Group>
         {/* Email */}
         <TextInput
           label='Email'
@@ -91,17 +65,18 @@ const SignUpForm = () => {
           error={errors.password?.message}
           {...register('password')}
         />
+
         <Button
           type='submit'
           size='md'
           fullWidth
           classNames={{ root: classes.modalBtnCta }}
         >
-          SignUp
+          LogIn
         </Button>
       </form>
     </div>
   );
 };
 
-export default SignUpForm;
+export default LogInForm;

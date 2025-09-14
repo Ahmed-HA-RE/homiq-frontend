@@ -84,4 +84,5 @@
     transform: scale(0.95);
   }
   transition: all 0.15s ease-in;
+  font-size: 18px;
 }

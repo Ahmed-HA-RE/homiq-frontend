@@ -1,14 +1,15 @@
-import { Modal } from '@mantine/core';
+import { Button, Group, Modal } from '@mantine/core';
 import { useModalStore } from '~/store/modalStore';
 import { useToggle } from '@mantine/hooks';
-import SignUp from '../SignUp';
+import SignUpForm from '../SignUp';
+import LogInForm from '../LogIn';
 import classes from '../../mantine-themes/mantine.module.css';
 
 const AuthModal = () => {
   const openedModal = useModalStore((state) => state.openedModal);
   const closeModal = useModalStore((state) => state.closeModal);
 
-  const [type, toggle] = useToggle(['register', 'login']);
+  const [type, toggle] = useToggle(['signup', 'login']);
 
   return (
     <>
@@ -23,9 +24,21 @@ const AuthModal = () => {
           header: classes.headerModal,
           title: classes.modalTitle,
         }}
-        title={type === 'register' ? 'Sign Up' : 'Sign In'}
+        title={type === 'signup' ? 'Sign Up' : 'Log In'}
       >
-        {type === 'register' ? <SignUp /> : <SignIn />}
+        {type === 'signup' ? <SignUpForm /> : <LogInForm />}
+        <h3 className='font-outfit text-white transition duration-300 text-base text-center mt-6'>
+          {type === 'signup'
+            ? 'Already have an account?'
+            : "Don't have an account"}{' '}
+          {}
+          <span
+            className='text-cyan-500 hover:underline underline-offset-4 decoration-1 cursor-pointer'
+            onClick={() => toggle()}
+          >
+            {type === 'signup' ? 'Log In' : 'Sign Up'}
+          </span>
+        </h3>
       </Modal>
     </>
   );
