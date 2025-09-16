@@ -2,9 +2,9 @@ import { Button, Divider, Drawer, Flex, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoCloseCircle } from 'react-icons/io5';
-
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { useModalStore } from '~/store/modalStore';
+import classes from '../../mantine-themes/mantine.module.css';
 
 const NavbarDrawer = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -79,9 +79,9 @@ const NavbarDrawer = () => {
               isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
             }
             onClick={close}
-            to='/projects'
+            to='/properties'
           >
-            Projects
+            Properties
           </NavLink>
           <NavLink
             className={({ isActive }) =>
@@ -95,21 +95,29 @@ const NavbarDrawer = () => {
         </Flex>
 
         <Divider mb='md' />
-        <Group justify='center' grow px={10}>
+        {/* auth && add property */}
+        <Flex justify='center' px={5} direction='column' gap={14}>
           <Button
-            styles={{
-              root: {
-                fontSize: '15px',
-              },
-            }}
             onClick={() => {
-              close();
               openModal();
+              close();
+            }}
+            size='sm'
+            styles={{
+              root: { backgroundColor: '#20B2AA' },
             }}
           >
             Get Started
           </Button>
-        </Group>
+          <Button
+            onClick={close}
+            component={Link}
+            to={'/property/new'}
+            classNames={{ root: classes.add_propertyBtn }}
+          >
+            Add Property
+          </Button>
+        </Flex>
       </Drawer>
     </>
   );

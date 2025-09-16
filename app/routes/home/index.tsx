@@ -1,14 +1,14 @@
 import type { Route } from './+types';
 import z from 'zod';
 import Glimpse from '~/components/Glimpse';
-import CarouselProjects from '~/components/CarouselProjects';
+import CarouselProperties from '~/components/CarouselProperties';
 import Hero from '~/components/Hero';
-import { type Project, projectSchema } from '~/schema/projectsSchema';
+import { type Property, propertySchema } from '~/schema/propertiesSchema';
 import {
   type Testimonial,
   testimonialSchema,
 } from '~/schema/testimonialsSchema';
-import { getLatestProjects } from '~/api/getProjects';
+import { getLatestProperties } from '~/api/getProperties';
 import { getTestimonials } from '~/api/getTestimonials';
 import Footer from '~/components/ui/Footer';
 import TestimonialsCarousel from '~/components/ui/Testimonials';
@@ -25,11 +25,11 @@ export function meta({}: Route.MetaArgs) {
 }
 
 // Validate project and testimonial objects from backend and ensure correct array structure
-const projectsSchema = z.array(projectSchema);
+const propertiesSchema = z.array(propertySchema);
 const testimonialsSchema = z.array(testimonialSchema);
 
 type LoaderReturn = {
-  projects: Project[];
+  properties: Property[];
   testimonials: Testimonial[];
 };
 
@@ -37,39 +37,39 @@ export async function loader({
   request,
 }: Route.LoaderArgs): Promise<LoaderReturn> {
   try {
-    const [projects, testimonials] = await Promise.all([
-      getLatestProjects(),
+    const [properties, testimonials] = await Promise.all([
+      getLatestProperties(),
       getTestimonials(),
     ]);
 
-    const parsedProjects = projectsSchema.parse(projects);
+    const parsedProperties = propertiesSchema.parse(properties);
     const parsedtestimonials = testimonialsSchema.parse(testimonials);
 
-    return { projects: parsedProjects, testimonials: parsedtestimonials };
+    return { properties: parsedProperties, testimonials: parsedtestimonials };
   } catch (error: any) {
-    throw new Error('Something went Wrong');
+    console.log(error);
+    throw new Error(error.message);
   }
 }
 
 const HomePage = ({ loaderData }: Route.ComponentProps) => {
-  const { projects, testimonials } = loaderData;
+  const { properties, testimonials } = loaderData;
   return (
     <>
       <header>
         <Hero
           bgImage='/images/header_img.png'
           title='your perfect home awaits'
-          subtitle='Discover our curated selection of villas and apartments, hear from
-            happy residents, and explore what makes our homes truly special.'
+          subtitle='Explore our handpicked villas and apartments across the UAE, see what satisfied residents have to say, and discover why our properties and services stand out—whether you’re buying or selling your home.'
           cta={[
-            { label: 'Projects', href: '/projects', variant: 'primary' },
+            { label: 'Projects', href: '/properties', variant: 'primary' },
             { label: 'Contact Us', href: '/contact-us', variant: 'secondary' },
           ]}
         />
       </header>
       <main>
         <Glimpse />
-        <CarouselProjects projects={projects} />
+        <CarouselProperties properties={properties} />
         <TestimonialsCarousel testimonials={testimonials} />
       </main>
       <Footer />

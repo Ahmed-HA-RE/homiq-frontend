@@ -1,7 +1,6 @@
 .input {
   &:focus-within {
-    outline: 1px solid #ffd166;
-    border: none;
+    border-color: #ffd166;
   }
 
   &::placeholder {
@@ -16,8 +15,7 @@
 
 .errorInput {
   &:focus {
-    outline: 1px solid #fa5252;
-    border: none;
+    border-color: #fa5252;
   }
   &::placeholder {
     color: #fa5252;
@@ -85,4 +83,72 @@
   }
   transition: all 0.15s ease-in;
   font-size: 18px;
+}
+
+.add_propertyBtn {
+  background-color: #fff;
+  border: 1px solid #068fff;
+  color: #068fff;
+
+  &:hover {
+    background-color: #068fff;
+    color: #fff;
+    border-color: #fff;
+  }
+  transition: all 0.2s;
+}
+
+.project_edit_Btn {
+  background-color: #fcb53b;
+  color: #fff;
+
+  &:hover {
+    background-color: #fba50f;
+  }
+  transition: all 0.15s ease-in;
+}
+
+.project_dlt_Btn {
+  background-color: #c80000;
+  color: #fff;
+
+  &:hover {
+    background-color: #a40000;
+  }
+  transition: all 0.15s ease-in;
+}
+
+/* project details form */
+.labelInput_projects {
+  margin-bottom: 5px;
+  color: #413f3f;
+}
+
+.input_AddProject {
+  &:focus-within {
+    border-color: #38bdf8;
+  }
+  background-color: #f9fafb;
+  border-color: black;
+  color: black;
+  &::placeholder {
+    color: #a6aebf;
+  }
+}
+
+.errorInput_AddProject {
+  &:focus-within {
+    border-color: #fa5252;
+  }
+  background-color: #f9fafb;
+  border-color: #fa5252;
+  color: black;
+  &::placeholder {
+    color: #a6aebf;
+  }
+}
+
+.inputSection {
+  background-color: #ccc;
+  border-radius: 2px;
 }

@@ -1,17 +1,17 @@
-import type { Route } from './+types';
+import type { Route } from '../../+types/root';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '~/components/Spinner';
 import { useState } from 'react';
-import { getPaginatedProjects } from '~/api/getProjects';
+import { getPaginatedProperties } from '~/api/getProperties';
 import PaginationComponent from '~/components/ui/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
 import Footer from '~/components/ui/Footer';
-import ProjectCard from '~/components/ui/ProjectCard';
+import PropertyCard from '~/components/ui/PropertyCard';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Projects' },
+    { title: 'Homiq | Properties' },
     {
       name: 'description',
       content:
@@ -20,14 +20,14 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-const ProjectsPage = () => {
+const PropertiesPage = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(3);
 
   // query to fetch limit projects
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['projects', page],
-    queryFn: () => getPaginatedProjects(limit, page),
+    queryKey: ['properties', page],
+    queryFn: () => getPaginatedProperties(limit, page),
   });
 
   return (
@@ -40,11 +40,22 @@ const ProjectsPage = () => {
               <h2 className='text-gray-900 font-bold text-2xl md:text-4xl'>
                 Explore Our Properties
               </h2>
-              <p className='text-gray-600 w-full max-w-sm md:max-w-md text-center mx-auto md:text-lg'>
-                Browse our collection of premium apartments and villas across
-                Dubai, Abu Dhabi, and Sharjah. Find your dream home today.
+              <p className='text-gray-600 w-full max-w-lg md:max-w-2xl text-center mx-auto md:text-lg'>
+                Browse our exclusive collection of premium apartments and villas
+                across Dubai, Abu Dhabi, and Sharjah. Whether you’re searching
+                for your dream home or looking to sell, we’re here to make it
+                seamless.
               </p>
             </div>
+
+            {isLoading && <Spinner />}
+            {isError && (
+              <div className='min-h-screen flex items-start justify-center mt-10'>
+                <p className='text-2xl md:text-4xl text-white bg-red-300 py-3 px-4 rounded-lg'>
+                  No Properties Found Try Again Later 🙂
+                </p>
+              </div>
+            )}
 
             <AnimatePresence mode='wait'>
               <motion.div
@@ -55,20 +66,12 @@ const ProjectsPage = () => {
                 exit={{ y: -10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {data?.projects?.map((project) => (
-                  <ProjectCard key={project._id} project={project} />
+                {data?.properties?.map((property) => (
+                  <PropertyCard key={property._id} property={property} />
                 ))}
               </motion.div>
             </AnimatePresence>
           </div>
-          {isLoading && <Spinner />}
-          {isError && (
-            <div className='min-h-screen -mt-44 flex items-center justify-center'>
-              <p className='text-2xl md:text-4xl text-white bg-red-300 py-3 px-4 rounded-lg'>
-                No Projects Found Try Again Later 🙂
-              </p>
-            </div>
-          )}
 
           {/* Pagination */}
           {data?.page && data?.pages > 0 && (
@@ -85,4 +88,4 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage;
+export default PropertiesPage;

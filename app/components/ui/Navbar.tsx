@@ -2,8 +2,9 @@ import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { Link, NavLink } from 'react-router';
 import { Button, Group } from '@mantine/core';
-import NavbarDrawer from './NavbarSlider';
+import NavbarDrawer from './NavbarDrawer';
 import { useModalStore } from '~/store/modalStore';
+import classes from '../../mantine-themes/mantine.module.css';
 
 const Navbar = () => {
   const openModal = useModalStore((state) => state.openModal);
@@ -15,10 +16,10 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        component={'nav'}
+        component={'div'}
         position='fixed'
         sx={{
-          p: '20px 20px',
+          p: '20px 25px',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -59,9 +60,9 @@ const Navbar = () => {
                   ? 'text-cyan-500 font-outfit font-bold'
                   : 'desktop-nav-items'
               }
-              to={'/projects'}
+              to={'/properties'}
             >
-              Projects
+              Properties
             </NavLink>
           </li>
           <li>
@@ -90,19 +91,29 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Login && Sign up */}
-        <Button
-          onClick={openModal}
-          size='sm'
-          classNames={{
-            root: '!hidden md:!block',
-          }}
-          styles={{
-            root: { backgroundColor: '#20B2AA' },
-          }}
-        >
-          Get Started
-        </Button>
+        {/* auth && add property */}
+        <Group justify='center'>
+          <Button
+            component={Link}
+            to={'/property/new'}
+            visibleFrom='sm'
+            classNames={{ root: classes.add_propertyBtn }}
+          >
+            Add Property
+          </Button>
+          <Button
+            onClick={openModal}
+            size='sm'
+            classNames={{
+              root: '!hidden md:!block',
+            }}
+            styles={{
+              root: { backgroundColor: '#20B2AA' },
+            }}
+          >
+            Get Started
+          </Button>
+        </Group>
 
         <NavbarDrawer />
       </AppBar>

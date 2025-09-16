@@ -5,11 +5,11 @@ import { cn } from '~/lib/utils';
 import { Avatar, AvatarFallback } from './Avatar';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
-import type { Testimonials } from '~/types';
+import { type Testimonial } from '~/schema/testimonialsSchema';
 import { Link } from 'react-router';
 
 type TestimonialsCarouselProps = {
-  testimonials: Testimonials[];
+  testimonials: Testimonial[];
   autoplaySpeed?: number;
 };
 

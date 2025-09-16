@@ -1,8 +1,8 @@
 import z from 'zod';
 
-export const projectSchema = z.object({
+export const propertySchema = z.object({
   _id: z.string(),
-  title: z.string().trim().min(1).max(50),
+  name: z.string().trim().min(1).max(50),
   price: z.number().positive(),
   location: z.string().trim(),
   type: z.string().trim(),
@@ -19,14 +19,14 @@ export const projectSchema = z.object({
   }),
 });
 
-export type Project = z.infer<typeof projectSchema>;
+export type Property = z.infer<typeof propertySchema>;
 
-export const pagenatedProjects = z.object({
+export const pagenatedProperties = z.object({
   page: z.number(),
   limit: z.number(),
   total: z.number(),
   pages: z.number(),
-  projects: z.array(projectSchema),
+  properties: z.array(propertySchema),
 });
 
-export type PaginatedProjects = z.infer<typeof pagenatedProjects>;
+export type PaginatedProperties = z.infer<typeof pagenatedProperties>;

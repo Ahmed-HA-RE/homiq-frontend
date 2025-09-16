@@ -23,6 +23,11 @@
     #00c6ff,
     #0072ff
   );
+  --background-image-gradient-create-project: linear-gradient(
+    to bottom,
+    #8e9eab,
+    #eef2f3
+  );
 }
 
 @font-face {
@@ -56,7 +61,12 @@
     @apply text-white bg-blue-500 flex-1/12 py-3 inline-block rounded hover:bg-blue-700 transition-colors duration-200 md:text-lg;
   }
 
-  body {
+  .add-property-heading {
+    @apply text-2xl md:text-3xl font-outfit font-bold;
+  }
+
+  body,
+  html {
     @apply bg-gray-200;
   }
 }

@@ -73,15 +73,16 @@ const AboutPage = ({ loaderData }: Route.ComponentProps) => {
           <div className='p-4 px-6  max-w-9xl  mt-4 md:mt-10'>
             <p className='font-semibold w-full max-w-2xl mb-5 font-outfit'>
               Homiq is a leading real estate company in the UAE, dedicated to
-              delivering premium residential and commercial properties. Our team
-              of experts combines innovation and quality to create spaces that
-              exceed client expectations.
+              helping clients buy, sell, and invest in premium residential and
+              commercial properties. With a focus on innovation, quality, and
+              trust, we deliver tailored solutions that ensure every property
+              exceeds expectations and achieves maximum value.
             </p>
             <Link
               className='text-sm bg-blue-500 hover:bg-blue-600 transition duration-200 text-white rounded-full px-4 py-2 font-outfit inline-block'
-              to='/contact'
+              to='/contact-us'
             >
-              Schedule A Meeting
+              Contact Us
               <FaArrowAltCircleRight className='text-lg inline-block ml-2' />
             </Link>
           </div>

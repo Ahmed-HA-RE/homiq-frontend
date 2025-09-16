@@ -6,7 +6,7 @@ import { useState } from 'react';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IoIosCheckmark } from 'react-icons/io';
-import type { Project } from '~/schema/projectsSchema';
+import type { Property } from '~/schema/propertiesSchema';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -37,11 +37,11 @@ function a11yProps(index: number) {
   };
 }
 
-type ProjectDetailsTabsProps = {
-  project: Project;
+type PropertyDetailsTabsProps = {
+  property: Property;
 };
 
-const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
+const PropertyDetailsTabs = ({ property }: PropertyDetailsTabsProps) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -111,7 +111,7 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
         <div className='bg-white shadow p-6 rounded max-w-2xl mx-auto mt-12 space-y-4'>
           <h3 className='font-outfit text-gray-600 text-xl mb-6'>Features</h3>
           <ul className='grid grid-cols-2 sm:grid-cols-3 items-center justify-center gap-y-4'>
-            {project.amenities.map((amenity) => (
+            {property.amenities.map((amenity) => (
               <li key={amenity} className='flex flex-row items-center'>
                 <span>
                   <IoIosCheckmark className='text-green-600 text-4xl opacity-65 font' />
@@ -132,7 +132,7 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
               Description
             </h3>
             <p className='tracking-wider text-gray-500 leading-6 text-sm max-w-5xl mb-6'>
-              {project.description}
+              {property.description}
             </p>
           </div>
           {/* amenities */}
@@ -147,7 +147,7 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
                   <div className='flex flex-col items-start'>
                     <h4 className='text-gray-700'>Area:</h4>
                     <span className='text-xs text-gray-400'>
-                      {project.area}
+                      {property.area}
                     </span>
                   </div>
                 </div>
@@ -165,12 +165,12 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
                   <div className='flex flex-col items-start'>
                     <h4 className='text-gray-700'>
                       {' '}
-                      {project.floors > 1 ? 'Floors:' : 'Floor:'}
+                      {property.floors > 1 ? 'Floors:' : 'Floor:'}
                     </h4>
                     <span className='text-xs text-gray-400'>
-                      {project.floors > 1
-                        ? `${project.floors} Floors`
-                        : `${project.floors} Floor`}
+                      {property.floors > 1
+                        ? `${property.floors} Floors`
+                        : `${property.floors} Floor`}
                     </span>
                   </div>
                 </div>
@@ -188,9 +188,9 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
                   <div className='flex flex-col items-start'>
                     <h4 className='text-gray-700'>Baths:</h4>
                     <span className='text-xs text-gray-400'>
-                      {project.Bathrooms > 1
-                        ? `${project.Bathrooms} Bathrooms`
-                        : `${project.Bathrooms} Bathroom`}
+                      {property.Bathrooms > 1
+                        ? `${property.Bathrooms} Bathrooms`
+                        : `${property.Bathrooms} Bathroom`}
                     </span>
                   </div>
                 </div>
@@ -200,7 +200,7 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
                 <div className='flex flex-row items-center justify-center space-x-2'>
                   {/* icon */}
                   <img
-                    src={`/svgs/features/${project.type === 'Villa' ? 'villa' : 'apartment'}.svg`}
+                    src={`/svgs/features/${property.type === 'Villa' ? 'villa' : 'apartment'}.svg`}
                     alt='area'
                     width={40}
                   />
@@ -208,7 +208,7 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
                   <div className='flex flex-col items-start'>
                     <h4 className='text-gray-700'>Type:</h4>
                     <span className='text-xs text-gray-400'>
-                      {project.type}
+                      {property.type}
                     </span>
                   </div>
                 </div>
@@ -222,12 +222,12 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
                   <div className='flex flex-col items-start'>
                     <h4 className='text-gray-700'>
                       {' '}
-                      {project.parking > 1 ? 'Garages:' : 'Garage:'}
+                      {property.parking > 1 ? 'Garages:' : 'Garage:'}
                     </h4>
                     <span className='text-xs text-gray-400'>
-                      {project.parking > 1
-                        ? `${project.parking} Garages`
-                        : `${project.parking} Garage`}
+                      {property.parking > 1
+                        ? `${property.parking} Garages`
+                        : `${property.parking} Garage`}
                     </span>
                   </div>
                 </div>
@@ -241,12 +241,12 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
                   <div className='flex flex-col items-start'>
                     <h4 className='text-gray-700'>
                       {' '}
-                      {project.beds > 1 ? 'Beds:' : 'Bed:'}
+                      {property.beds > 1 ? 'Beds:' : 'Bed:'}
                     </h4>
                     <span className='text-xs text-gray-400'>
-                      {project.beds > 1
-                        ? `${project.beds} Beds`
-                        : `${project.beds} Bed`}
+                      {property.beds > 1
+                        ? `${property.beds} Beds`
+                        : `${property.beds} Bed`}
                     </span>
                   </div>
                 </div>
@@ -259,4 +259,4 @@ const ProjectDetailsTabs = ({ project }: ProjectDetailsTabsProps) => {
   );
 };
 
-export default ProjectDetailsTabs;
+export default PropertyDetailsTabs;

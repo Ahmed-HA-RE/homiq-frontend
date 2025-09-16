@@ -15,9 +15,10 @@ const AboutHeader = () => {
           </div>
           <p className='text-gray-600 font-outfit flex-1 text-sm pt-0 md:pt-1 max-w-md'>
             Homiq is a leading real estate company in the UAE, dedicated to
-            delivering premium residential and commercial properties. Our team
-            of experts combines innovation and quality to create spaces that
-            exceed client expectations.
+            helping clients buy, sell, and invest in premium residential and
+            commercial properties. With a focus on innovation, quality, and
+            trust, we deliver tailored solutions that ensure every property
+            exceeds expectations and achieves maximum value.
           </p>
         </div>
 

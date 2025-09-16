@@ -15,10 +15,9 @@ const Glimpse = () => {
             of Us
           </span>
           <p className='mt-3 text-gray-600 md:max-w-lg mx-auto'>
-            We combine expertise in real estate with a commitment to
-            understanding your unique needs. Our mission is to guide you toward
-            properties that feel like home while delivering unmatched service
-            every step of the way.
+            With deep expertise in UAE real estate and a focus on your unique
+            needs, we help you find or sell properties that truly feel like
+            home—while ensuring exceptional service every step of the way
           </p>
         </div>
 
@@ -59,12 +58,12 @@ const Glimpse = () => {
             </div>
             {/* About description */}
             <p className='text-gray-600 max-w-lg'>
-              We specialize in delivering premium real estate solutions across
-              the UAE, offering properties that reflect modern design, comfort,
-              and long-term value. From luxurious apartments in Dubai to family
-              villas in Abu Dhabi, our mission is to connect you with homes and
-              investments that match your vision while maintaining the highest
-              standards of service and trust.
+              We provide premium real estate solutions across the UAE, offering
+              modern, comfortable, and high-value properties. Whether it’s a
+              luxury apartment in Dubai, a family villa in Abu Dhabi, or selling
+              your own property, our mission is to connect you with
+              opportunities that match your vision—backed by trust and
+              exceptional service.
             </p>
             <Link
               to={'/about'}

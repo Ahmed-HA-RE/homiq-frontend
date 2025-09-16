@@ -14,12 +14,12 @@ import Fade from '@mui/material/Fade';
 
 // import required modules
 import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
-import type { Projects } from '~/types';
+import type { Property } from '~/schema/propertiesSchema';
 import { Link } from 'react-router';
 const Images_Backend_URL = import.meta.env.VITE_BACKEND_URL_STATIC;
 
 type CourseSwiperProps = {
-  projects: Projects[];
+  properties: Property[];
 };
 
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -36,7 +36,7 @@ const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
   },
 }));
 
-const CarouselSwiper = ({ projects }: CourseSwiperProps) => {
+const CarouselSwiper = ({ properties }: CourseSwiperProps) => {
   return (
     <>
       <Swiper
@@ -55,7 +55,7 @@ const CarouselSwiper = ({ projects }: CourseSwiperProps) => {
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         className='mySwiper'
       >
-        {projects.map((project, index) => (
+        {properties.map((properties, index) => (
           <SwiperSlide>
             <HtmlTooltip
               title='Learn More'
@@ -66,12 +66,12 @@ const CarouselSwiper = ({ projects }: CourseSwiperProps) => {
             >
               <Link
                 className='inline-block'
-                key={project._id}
-                to={`/project/${project._id}`}
+                key={properties._id}
+                to={`/properties/${properties._id}`}
               >
                 <img
-                  src={`${Images_Backend_URL}/images/exterior/${project.images.exterior}.jpg`}
-                  alt={project.title}
+                  src={`${Images_Backend_URL}/images/exterior/${properties.images.exterior}.jpg`}
+                  alt={properties.name}
                   className={index === 5 ? 'object-center ' : 'object-cover'}
                 />
               </Link>

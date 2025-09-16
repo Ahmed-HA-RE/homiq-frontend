@@ -1,13 +1,13 @@
 import { Card, Image, Text, Button, Group } from '@mantine/core';
 import { Link } from 'react-router';
 import '../../app.css';
-import type { Project } from '~/schema/projectsSchema';
+import type { Property } from '~/schema/propertiesSchema';
 
-type ProjectCardProps = {
-  project: Project;
+type PropertyCardProps = {
+  property: Property;
 };
 
-const ProjectCard = ({ project }: ProjectCardProps) => {
+const PropertyCard = ({ property }: PropertyCardProps) => {
   return (
     <Card
       __size='md'
@@ -17,9 +17,13 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       withBorder
       className='!font-outfit'
     >
-      <Card.Section withBorder component={Link} to={`/project/${project._id}`}>
+      <Card.Section
+        withBorder
+        component={Link}
+        to={`/property/${property._id}`}
+      >
         <Image
-          src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/exterior/${project.images.exterior}.jpg`}
+          src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/exterior/${property.images.exterior}.jpg`}
           height={160}
           alt='properties'
           className='hover:scale-105 transition-all duration-200'
@@ -28,24 +32,24 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
       <Group justify='space-between' mt='md' mb='xs'>
         <Text fz={'h3'} fw={700}>
-          {project.title}
+          {property.name}
         </Text>
         <span className='bg-blue-400 !text-white text-xs font-medium rounded-full px-2 py-1 dirham-symbol'>
-          &#xea; {project.price.toLocaleString()}
+          &#xea; {property.price.toLocaleString()}
         </span>
       </Group>
 
       <Text fz={'lg'} mb='xs' fw={200} className='!text-gray-800'>
-        {project.location}
+        {property.location}
       </Text>
       <Text size='sm' c='dimmed' lineClamp={4}>
-        {project.description}
+        {property.description}
       </Text>
 
       <Button
         component={Link}
         variant='filled'
-        to={`/project/${project._id}`}
+        to={`/property/${property._id}`}
         fullWidth
         mt='md'
         radius='md'
@@ -57,4 +61,4 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   );
 };
 
-export default ProjectCard;
+export default PropertyCard;
