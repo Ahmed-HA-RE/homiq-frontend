@@ -2,12 +2,13 @@ import PropertyDetails from '~/components/PropertyDetails';
 import { propertySchema, type Property } from '~/schema/propertiesSchema';
 import type { Route } from './+types/details';
 import api from '~/lib/axios';
-import { deleteProperty } from '~/api/properties';
+import { useDisclosure } from '@mantine/hooks';
 import Footer from '~/components/ui/Footer';
 import { Button, Flex, Group } from '@mantine/core';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import classes from '../../mantine-themes/mantine.module.css';
 import { useNavigate } from 'react-router';
+import DeleteDialog from '~/components/ui/DeleteDialog';
 
 type LoaderReturn = {
   property: Property;
@@ -41,7 +42,7 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
   const { property } = loaderData;
   console.log(property._id);
   const matchesBr = useMediaQuery('(min-width:768px)');
-  const navigate = useNavigate();
+  const [opened, { toggle, close }] = useDisclosure(false);
 
   return (
     <>
@@ -59,15 +60,13 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
                 Edit
               </Button>
               <Button
-                onClick={() => {
-                  deleteProperty(property._id);
-                  navigate('/properties');
-                }}
+                onClick={toggle}
                 classNames={{ root: classes.project_dlt_Btn }}
               >
                 Delete
               </Button>
             </Group>
+            <DeleteDialog close={close} opened={opened} property={property} />
           </Flex>
           <PropertyDetails property={property} />
         </section>
