@@ -3,7 +3,7 @@ import { MdHomeWork } from 'react-icons/md';
 import { Controller } from 'react-hook-form';
 import classes from '../mantine-themes/mantine.module.css';
 import type { UseFormRegister, FieldErrors, Control } from 'react-hook-form';
-import type { Property } from '~/schema/propertiesSchema';
+import type { CreateProperty } from '~/schema/propertiesSchema';
 
 const selectTypeData = [
   { value: 'villa', label: 'Villa' },
@@ -15,9 +15,9 @@ const selectTypeData = [
 
 type PropertyFormBasicsProps = {
   matches: boolean;
-  register: UseFormRegister<Property>;
-  errors: FieldErrors<Property>;
-  control: Control<Property>;
+  register: UseFormRegister<CreateProperty>;
+  errors: FieldErrors<CreateProperty>;
+  control: Control<CreateProperty>;
 };
 
 const PropertyFormBasics = ({

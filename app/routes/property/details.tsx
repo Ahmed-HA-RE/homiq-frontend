@@ -2,10 +2,12 @@ import PropertyDetails from '~/components/PropertyDetails';
 import { propertySchema, type Property } from '~/schema/propertiesSchema';
 import type { Route } from './+types/details';
 import api from '~/lib/axios';
+import { deleteProperty } from '~/api/properties';
 import Footer from '~/components/ui/Footer';
 import { Button, Flex, Group } from '@mantine/core';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import classes from '../../mantine-themes/mantine.module.css';
+import { useNavigate } from 'react-router';
 
 type LoaderReturn = {
   property: Property;
@@ -37,7 +39,9 @@ export function meta({}: Route.MetaArgs) {
 
 const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
   const { property } = loaderData;
+  console.log(property._id);
   const matchesBr = useMediaQuery('(min-width:768px)');
+  const navigate = useNavigate();
 
   return (
     <>
@@ -54,7 +58,13 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
               <Button classNames={{ root: classes.project_edit_Btn }}>
                 Edit
               </Button>
-              <Button classNames={{ root: classes.project_dlt_Btn }}>
+              <Button
+                onClick={() => {
+                  deleteProperty(property._id);
+                  navigate('/properties');
+                }}
+                classNames={{ root: classes.project_dlt_Btn }}
+              >
                 Delete
               </Button>
             </Group>

@@ -7,11 +7,11 @@ import type { FileWithPath } from '@mantine/dropzone';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import type { FieldErrors, Control } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
-import type { Property } from '~/schema/propertiesSchema';
+import type { CreateProperty } from '~/schema/propertiesSchema';
 
 type DropZoneProps = {
-  errors: FieldErrors<Property>;
-  control: Control<Property>;
+  errors: FieldErrors<CreateProperty>;
+  control: Control<CreateProperty>;
   matches: boolean;
   interiorFile: FileWithPath[];
   setInteriorFile: React.Dispatch<React.SetStateAction<FileWithPath[]>>;

@@ -1,10 +1,10 @@
-import { Box, TextInput } from '@mantine/core';
+import { Box } from '@mantine/core';
 import classes from '../mantine-themes/mantine.module.css';
 import { Divider, Flex, NumberInput, Select } from '@mantine/core';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
-import type { Property } from '~/schema/propertiesSchema';
+import type { CreateProperty } from '~/schema/propertiesSchema';
 
 const selectEmiratesData = [
   { value: 'abu_dhabi', label: 'Abu Dhabi' },
@@ -18,14 +18,12 @@ const selectEmiratesData = [
 
 type PropertyFormDetailsProps = {
   matches: boolean;
-  register: UseFormRegister<Property>;
-  errors: FieldErrors<Property>;
-  control: Control<Property>;
+  errors: FieldErrors<CreateProperty>;
+  control: Control<CreateProperty>;
 };
 
 const PropertyFormDetails = ({
   matches,
-  register,
   errors,
   control,
 }: PropertyFormDetailsProps) => {

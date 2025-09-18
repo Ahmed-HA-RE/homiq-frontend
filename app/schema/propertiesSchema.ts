@@ -1,7 +1,7 @@
 import z from 'zod';
 
 export const propertySchema = z.object({
-  _id: z.string().optional(),
+  _id: z.string().nonempty(),
   name: z
     .string()
     .nonempty({ error: 'Property name is required' })
@@ -64,3 +64,7 @@ export const pagenatedProperties = z.object({
 });
 
 export type PaginatedProperties = z.infer<typeof pagenatedProperties>;
+
+export const createPropertySchema = propertySchema.partial({ _id: true });
+
+export type CreateProperty = z.infer<typeof createPropertySchema>;

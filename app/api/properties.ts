@@ -92,3 +92,8 @@ export async function createProperty(formData: FormData): Promise<Property> {
     throw new Error(message);
   }
 }
+
+//Delete property
+export async function deleteProperty(_id: string) {
+  await api.delete(`/properties/${_id}`);
+}

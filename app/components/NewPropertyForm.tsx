@@ -6,13 +6,16 @@ import PropertyFormBasics from './PropertyFormBasics';
 import PropertyFormDetails from './PropertyFormDetails';
 import { DropZone } from './PropertyFormDropzone';
 import { Button, Group, Stepper } from '@mantine/core';
-import { type Property, propertySchema } from '~/schema/propertiesSchema';
+import {
+  type CreateProperty,
+  createPropertySchema,
+} from '~/schema/propertiesSchema';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { createProperty } from '~/api/properties';
 import { toast } from 'sonner';
 import { MdInfo, MdOutlineError } from 'react-icons/md';
-import { FaCheck, FaClipboardList } from 'react-icons/fa';
+import { FaClipboardList } from 'react-icons/fa';
 import {
   IoImagesSharp,
   IoShieldCheckmarkSharp,
@@ -33,9 +36,9 @@ const NewPropertyForm = () => {
     reset,
     control,
     handleSubmit,
-    formState: { errors, isValid, isSubmitted },
-  } = useForm<Property>({
-    resolver: zodResolver(propertySchema),
+    formState: { errors, isValid },
+  } = useForm<CreateProperty>({
+    resolver: zodResolver(createPropertySchema),
     defaultValues: {
       type: 'villa',
       floors: 1,
@@ -76,7 +79,7 @@ const NewPropertyForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<Property> = async (data) => {
+  const onSubmit: SubmitHandler<CreateProperty> = async (data) => {
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('type', data.type);
@@ -133,7 +136,6 @@ const NewPropertyForm = () => {
         >
           {/* Price && Area && Floors */}
           <PropertyFormDetails
-            register={register}
             errors={errors}
             matches={matches}
             control={control}
