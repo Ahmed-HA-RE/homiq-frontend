@@ -14,7 +14,7 @@ const Navbar = () => {
     threshold: 50,
   });
   return (
-    <>
+    <nav className='max-w-7xl mx-auto'>
       <AppBar
         component={'div'}
         position='fixed'
@@ -40,7 +40,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop nav */}
-        <ul className='hidden md:flex flex-row space-x-6 justify-center items-center pt-1 '>
+        <ul className='hidden md:flex flex-row space-x-6  pt-1'>
           <li>
             <NavLink
               className={({ isActive }) =>
@@ -117,7 +117,7 @@ const Navbar = () => {
 
         <NavbarDrawer />
       </AppBar>
-    </>
+    </nav>
   );
 };
 export default Navbar;

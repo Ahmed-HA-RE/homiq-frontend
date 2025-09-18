@@ -20,10 +20,10 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
       <Card.Section
         withBorder
         component={Link}
-        to={`/property/${property._id}`}
+        to={`/properties/${property._id}`}
       >
         <Image
-          src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/exterior/${property.images.exterior}.jpg`}
+          src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/exterior/${property.images?.exterior}`}
           height={160}
           alt='properties'
           className='hover:scale-105 transition-all duration-200'
@@ -49,7 +49,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
       <Button
         component={Link}
         variant='filled'
-        to={`/property/${property._id}`}
+        to={`/properties/${property._id}`}
         fullWidth
         mt='md'
         radius='md'

@@ -152,3 +152,25 @@
   background-color: #ccc;
   border-radius: 2px;
 }
+
+.prevBtn {
+  background-color: #9a0f7c;
+  border-color: #9a0f7c;
+  &:hover {
+    background-color: #800d67;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+  transition: all 0.15s ease-in-out;
+}
+
+.nextBtn {
+  background-color: #663399;
+  border-color: #663399;
+  &:hover {
+    background-color: #502878;
+  }
+  transition: all 0.15s ease-in-out;
+}

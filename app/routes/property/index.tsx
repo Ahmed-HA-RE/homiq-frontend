@@ -2,7 +2,7 @@ import type { Route } from '../../+types/root';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '~/components/Spinner';
 import { useState } from 'react';
-import { getPaginatedProperties } from '~/api/getProperties';
+import { getPaginatedProperties } from '~/api/properties';
 import PaginationComponent from '~/components/ui/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
@@ -60,7 +60,7 @@ const PropertiesPage = () => {
             <AnimatePresence mode='wait'>
               <motion.div
                 key={page}
-                className='grid grid-cols-1 md:grid-cols-2 gap-6 items-center justify-items-center'
+                className='grid grid-cols-1 md:grid-cols-2 gap-6 '
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -10, opacity: 0 }}

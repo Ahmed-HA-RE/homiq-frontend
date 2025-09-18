@@ -1,4 +1,4 @@
-import PropertyDetailsTabs from './ui/Tabs';
+import PropertyDetailsTabs from './PropertyDetailsInfo';
 import type { Property } from '~/schema/propertiesSchema';
 
 type PropertyDetailsProps = {
@@ -13,15 +13,15 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
           <div>
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/exterior/${property.images.exterior}.jpg`}
+              src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/exterior/${property.images?.exterior}`}
               alt={property.name}
               className='overflow-hidden rounded-lg w-full h-full object-cover'
             />
           </div>
           <div className='grid grid-cols-1 gap-4'>
-            {property.images.interior.map((interior, indx) => (
+            {property.images?.interior.map((interior, indx) => (
               <img
-                src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/interior/${interior}.jpg`}
+                src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/interior/${interior}`}
                 alt={property.name}
                 className='overflow-hidden rounded-lg object-cover w-full md:h-42 lg:h-48'
                 key={indx}

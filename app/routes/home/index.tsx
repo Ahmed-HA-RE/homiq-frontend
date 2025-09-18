@@ -8,7 +8,7 @@ import {
   type Testimonial,
   testimonialSchema,
 } from '~/schema/testimonialsSchema';
-import { getLatestProperties } from '~/api/getProperties';
+import { getLatestProperties } from '~/api/properties';
 import { getTestimonials } from '~/api/getTestimonials';
 import Footer from '~/components/ui/Footer';
 import TestimonialsCarousel from '~/components/ui/Testimonials';

@@ -17,7 +17,7 @@ const CreatePropertyForm = () => {
       </header>
 
       <main className='py-8 pb-10 px-6 bg-gray-200'>
-        <section className='max-w-4xl mx-auto'>
+        <section className='max-w-5xl mx-auto'>
           {/* Form */}
           <NewPropertyForm />
         </section>
