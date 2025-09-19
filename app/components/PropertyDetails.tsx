@@ -1,3 +1,4 @@
+import { formatLocationName } from '~/utils/formatters';
 import PropertyDetailsTabs from './PropertyDetailsInfo';
 import type { Property } from '~/schema/propertiesSchema';
 
@@ -36,7 +37,7 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
               {property.name}
             </h2>
             <small className='text-gray-500 md:text-base text-left'>
-              {property.location}
+              {formatLocationName(property.location)}
             </small>
           </div>
           <span className='dirham-symbol !text-2xl md:!text-4xl'>

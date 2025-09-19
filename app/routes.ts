@@ -5,6 +5,7 @@ export default [
   route('/properties', './routes/property/index.tsx'),
   route('/properties/:id', './routes/property/details.tsx'),
   route('/property/new', './routes/property/new.tsx'),
+  route('/property/edit/:id', './routes/property/edit.tsx'),
   route('/about', './routes/about/index.tsx'),
   route('/contact-us', './routes/contact/index.tsx'),
   route('/reviews/add', './routes/reviews/index.tsx'),

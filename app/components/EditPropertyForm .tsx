@@ -7,24 +7,25 @@ import PropertyFormDetails from './PropertyFormDetails';
 import { DropZone } from './PropertyFormDropzone';
 import { Button, Group, Stepper } from '@mantine/core';
 import {
-  type CreateProperty,
-  createPropertySchema,
+  type EditProperty,
+  editPropertySchema,
+  type Property,
 } from '~/schema/propertiesSchema';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { createProperty } from '~/api/properties';
+import { updateProperty } from '~/api/properties';
 import { toast } from 'sonner';
-import { MdInfo, MdOutlineError } from 'react-icons/md';
+import { MdInfo } from 'react-icons/md';
 import { FaClipboardList } from 'react-icons/fa';
 import {
   IoImagesSharp,
   IoShieldCheckmarkSharp,
   IoWarningOutline,
 } from 'react-icons/io5';
-
 import classes from '../mantine-themes/mantine.module.css';
 import { useNavigate } from 'react-router';
-const NewPropertyForm = () => {
+
+const EditPropertyForm = ({ property }: { property: Property }) => {
   const matches = useMediaQuery('(min-width:768px)');
   const [interiorFile, setInteriorFile] = useState<FileWithPath[]>([]);
   const [exteriorFile, setExteriorFile] = useState<FileWithPath[]>([]);
@@ -33,33 +34,34 @@ const NewPropertyForm = () => {
 
   const {
     register,
-    reset,
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<CreateProperty>({
-    resolver: zodResolver(createPropertySchema),
+  } = useForm<EditProperty>({
+    resolver: zodResolver(editPropertySchema),
+
     defaultValues: {
-      name: '',
-      price: 0,
-      area: 0,
+      name: property.name,
+      price: property.price,
+      area: property.area,
       images: {
         interior: [],
         exterior: [],
       },
-      type: 'villa',
-      floors: 1,
-      Bathrooms: 1,
-      beds: 1,
-      parking: 1,
-      location: 'sharjah',
+      type: property.type,
+      floors: property.floors,
+      Bathrooms: property.Bathrooms,
+      beds: property.beds,
+      parking: property.parking,
+      location: property.location,
+      description: property.description,
     },
   });
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (formData: FormData) => createProperty(formData),
+    mutationFn: ({ formData, _id }: { formData: FormData; _id: string }) =>
+      updateProperty(formData, _id),
     onSuccess: () => {
-      reset();
       toast.success('Form Submitted Thanks!', {
         icon: <IoShieldCheckmarkSharp size={20} />,
         style: {
@@ -86,7 +88,7 @@ const NewPropertyForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<CreateProperty> = async (data) => {
+  const onSubmit: SubmitHandler<EditProperty> = async (data) => {
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('type', data.type);
@@ -102,9 +104,9 @@ const NewPropertyForm = () => {
     interiorFile.forEach((file) => formData.append('interior', file));
     exteriorFile.forEach((file) => formData.append('exterior', file));
 
-    await mutateAsync(formData);
+    await mutateAsync({ formData, _id: property._id });
   };
-  const onError = (errors: unknown, event: unknown) => console.log(errors);
+  const onError = (errors: any, event: any) => console.log(errors);
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)} className='space-y-8'>
@@ -204,4 +206,4 @@ const NewPropertyForm = () => {
   );
 };
 
-export default NewPropertyForm;
+export default EditPropertyForm;

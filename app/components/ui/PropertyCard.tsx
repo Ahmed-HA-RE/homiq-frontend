@@ -2,6 +2,7 @@ import { Card, Image, Text, Button, Group } from '@mantine/core';
 import { Link } from 'react-router';
 import '../../app.css';
 import type { Property } from '~/schema/propertiesSchema';
+import { formatLocationName } from '~/utils/formatters';
 
 type PropertyCardProps = {
   property: Property;
@@ -40,7 +41,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
       </Group>
 
       <Text fz={'lg'} mb='xs' fw={200} className='!text-gray-800'>
-        {property.location}
+        {formatLocationName(property.location)}
       </Text>
       <Text size='sm' c='dimmed' lineClamp={4}>
         {property.description}

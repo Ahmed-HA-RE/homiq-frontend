@@ -68,3 +68,7 @@ export type PaginatedProperties = z.infer<typeof pagenatedProperties>;
 export const createPropertySchema = propertySchema.partial({ _id: true });
 
 export type CreateProperty = z.infer<typeof createPropertySchema>;
+
+export const editPropertySchema = propertySchema.partial({ _id: true });
+
+export type EditProperty = z.infer<typeof editPropertySchema>;

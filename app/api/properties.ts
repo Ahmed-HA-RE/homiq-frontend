@@ -6,6 +6,7 @@ import {
   pagenatedProperties,
 } from '~/schema/propertiesSchema';
 import z from 'zod';
+import axios from 'axios';
 
 const propertiesSchema = z.array(propertySchema);
 
@@ -89,6 +90,30 @@ export async function createProperty(formData: FormData): Promise<Property> {
     } else if (error.message) {
       message = error.message;
     }
+    throw new Error(message);
+  }
+}
+
+//Update property
+export async function updateProperty(
+  formData: FormData,
+  _id: string
+): Promise<Property> {
+  try {
+    const { data } = await api.put(`/properties/${_id}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    console.log(data);
+    return data;
+  } catch (error: any) {
+    let message = 'Something went wrong';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    } else if (error.message) {
+      message = error.message;
+    }
+
     throw new Error(message);
   }
 }

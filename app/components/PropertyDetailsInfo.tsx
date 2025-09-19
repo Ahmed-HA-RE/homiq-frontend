@@ -1,4 +1,5 @@
 import type { Property } from '~/schema/propertiesSchema';
+import { capitalizeText } from '~/utils/formatters';
 
 const PropertyDetailsInfo = ({ property }: { property: Property }) => {
   return (
@@ -65,14 +66,16 @@ const PropertyDetailsInfo = ({ property }: { property: Property }) => {
             <div className='flex flex-row items-center justify-center space-x-2'>
               {/* icon */}
               <img
-                src={`/svgs/features/${property.type === 'Villa' ? 'villa' : 'apartment'}.svg`}
+                src={`/svgs/features/${property.type === 'villa' ? 'villa' : 'apartment'}.svg`}
                 alt='area'
                 width={40}
               />
               {/* info */}
               <div className='flex flex-col items-start'>
                 <h4 className='text-gray-700'>Type:</h4>
-                <span className='text-xs text-gray-400'>{property.type}</span>
+                <span className='text-xs text-gray-400'>
+                  {capitalizeText(property.type)}
+                </span>
               </div>
             </div>
           </li>
