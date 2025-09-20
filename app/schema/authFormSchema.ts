@@ -1,20 +1,13 @@
 import z from 'zod';
 
 export const signUpSchema = z.object({
-  firstName: z
+  name: z
     .string()
     .nonempty({ error: 'Field is required' })
     .regex(/^[a-zA-Z ]+$/, { error: 'Invalid Name' })
     .trim()
     .min(3, { error: 'Must be at least 3 characters' })
-    .max(10, { error: 'Must not exceed 10 characters' }),
-  lastName: z
-    .string()
-    .nonempty({ error: 'Field is required' })
-    .regex(/^[a-zA-Z ]+$/, { error: 'Invalid Name' })
-    .trim()
-    .min(3, { error: 'Must be at least 3 characters' })
-    .max(10, { error: 'Must not exceed 10 characters' }),
+    .max(20, { error: 'Must not exceed 20 characters' }),
   email: z
     .string()
     .nonempty({ error: 'Field is required' })

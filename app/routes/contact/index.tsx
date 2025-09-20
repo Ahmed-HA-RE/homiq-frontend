@@ -8,9 +8,9 @@ import ContactForm from '~/components/ContactUsForm';
 
 const ContactPage = () => {
   return (
-    <section className='min-h-screen bg-gradient-contact w-full grid grid-cols-1 lg:grid-cols-2 items-center  pt-20 lg:pt-0 '>
+    <section className='min-h-screen bg-gradient-contact w-full grid grid-cols-1 lg:grid-cols-2 items-center   pt-20 lg:pt-0 '>
       {/* left side */}
-      <div className=' h-full p-8 md:p-10 lg:px-6 font-outfit space-y-5  lg:flex lg:flex-col justify-center'>
+      <div className='p-6 pb-0 md:py-10  font-outfit space-y-5  lg:flex lg:flex-col justify-center'>
         <h1 className='text-3xl md:text-4xl text-white font-medium'>
           Get in Touch with Homiq
         </h1>
@@ -56,7 +56,7 @@ const ContactPage = () => {
       </div>
 
       {/* right side */}
-      <div className='p-8 flex flex-col justify-center lg:h-full'>
+      <div className='p-6 py-0 flex flex-col justify-center lg:h-full'>
         <ContactForm />
       </div>
     </section>

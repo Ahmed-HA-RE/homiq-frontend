@@ -1,26 +1,14 @@
 import api from '~/lib/axios';
 
-type ContactUsData = {
-  email: string;
-  fullName: string;
+type SendContactFormProps = {
   message: string;
 };
 
-type ContactUsResponse = {
-  message: string;
-};
-
-export async function sendContactForm({
-  email,
-  fullName,
-  message,
-}: ContactUsData): Promise<ContactUsResponse> {
+export async function sendContactForm({ message }: SendContactFormProps) {
   try {
     const { data } = await api.post(
       `${import.meta.env.VITE_BACKEND_URL_STATIC}/emails/contact`,
       {
-        email,
-        fullName,
         message,
       }
     );

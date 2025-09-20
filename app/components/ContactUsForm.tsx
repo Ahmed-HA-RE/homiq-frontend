@@ -1,15 +1,12 @@
-import { TextInput, Textarea } from '@mantine/core';
-import { FaEnvelope, FaUser } from 'react-icons/fa';
+import { Textarea } from '@mantine/core';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { sendContactForm } from '~/api/contactUs';
 import { toast } from 'sonner';
-import { BiSolidErrorAlt } from 'react-icons/bi';
+
 import { IoShieldCheckmarkSharp, IoWarningOutline } from 'react-icons/io5';
 
 type FormInputs = {
-  email: string;
-  fullName: string;
   message: string;
 };
 
@@ -58,74 +55,6 @@ const ContactForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
       <div className='font-outfit space-y-3'>
-        <div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4'>
-          {/* Email */}
-          <TextInput
-            label='Email'
-            placeholder='example@gmail.com'
-            className='sm:w-full'
-            styles={{
-              label: { color: '#fff', margin: '0 0 4px', fontSize: '15px' },
-              input: {
-                backgroundColor: 'transparent',
-                borderColor: '#fff',
-                fontFamily: 'inherit',
-                color: '#fff',
-              },
-              error: { marginLeft: '5px' },
-            }}
-            size='md'
-            radius={'md'}
-            withAsterisk
-            rightSectionPointerEvents='none'
-            rightSection={<FaEnvelope color='#fff' size={20} />}
-            {...register('email', {
-              required: 'Email is Required',
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: 'Enter a valid email',
-              },
-              maxLength: { value: 100, message: 'Email is too long' },
-            })}
-            error={errors.email?.message}
-          />
-          {/* Full Name */}
-          <TextInput
-            label='Full Name'
-            placeholder='Enter Your Name'
-            className='sm:w-full'
-            styles={{
-              label: { color: '#fff', margin: '0 0 4px', fontSize: '15px' },
-              input: {
-                backgroundColor: 'transparent',
-                borderColor: '#fff',
-                fontFamily: 'inherit',
-                color: '#fff',
-              },
-              error: { marginLeft: '5px' },
-            }}
-            size='md'
-            radius='md'
-            withAsterisk
-            rightSectionPointerEvents='none'
-            rightSection={<FaUser color='#fff' size={20} />}
-            {...register('fullName', {
-              required: 'Full Name is Required',
-              maxLength: {
-                value: 50,
-                message: 'Name cannot exceed 50 characters',
-              },
-              pattern: { value: /^[a-z ,.'-]+$/i, message: 'Name is Invalid' },
-              validate: (value) => {
-                if (typeof value !== 'string' || value === '') {
-                  return 'Please Enter Your Name';
-                }
-                return true;
-              },
-            })}
-            error={errors.fullName?.message}
-          />
-        </div>
         {/* Message */}
         <Textarea
           size='md'

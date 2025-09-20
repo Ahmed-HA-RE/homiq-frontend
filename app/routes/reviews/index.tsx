@@ -9,7 +9,7 @@ const AddReviewPage = () => {
   return (
     <section className='min-h-screen bg-contact-primary w-full grid grid-cols-1 lg:grid-cols-2 items-center bg-gradient-review pt-20 lg:pt-0 '>
       {/* left side */}
-      <div className='h-full p-8 md:p-10 lg:px-6 font-outfit space-y-5  lg:flex lg:flex-col justify-center'>
+      <div className='p-6 md:p-10 font-outfit space-y-5  lg:flex lg:flex-col justify-center'>
         <h1 className='text-3xl md:text-4xl text-white font-medium'>
           Share Your Experience
         </h1>
@@ -53,7 +53,7 @@ const AddReviewPage = () => {
       </div>
 
       {/* right side */}
-      <div className='p-8 flex flex-col justify-center lg:h-full '>
+      <div className='p-6'>
         <AddReview />
       </div>
     </section>

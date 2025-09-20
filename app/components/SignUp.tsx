@@ -1,5 +1,5 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { TextInput, PasswordInput, Group, Button } from '@mantine/core';
+import { TextInput, PasswordInput, Button } from '@mantine/core';
 import classes from '../mantine-themes/mantine.module.css';
 import { MdAlternateEmail } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
@@ -26,37 +26,25 @@ const SignUpForm = () => {
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
         {/* Full Name */}
-        <Group justify='center' grow gap={'sm'}>
-          <TextInput
-            label='First name'
-            withAsterisk
-            placeholder='Your first name'
-            classNames={{
-              input: errors.firstName ? classes.errorInput : classes.input,
-              label: classes.labelInput,
-              error: classes.errorMessage,
-            }}
-            {...register('firstName')}
-            error={errors.firstName?.message}
-          />
-          <TextInput
-            label='Last name'
-            withAsterisk
-            placeholder='Your last name'
-            classNames={{
-              input: errors.lastName ? classes.errorInput : classes.input,
-              label: classes.labelInput,
-              error: classes.errorMessage,
-            }}
-            error={errors.lastName?.message}
-            {...register('lastName')}
-          />
-        </Group>
+
+        <TextInput
+          label='Name'
+          withAsterisk
+          placeholder='Enter your name'
+          classNames={{
+            input: errors.name ? classes.errorInput : classes.input,
+            label: classes.labelInput,
+            error: classes.errorMessage,
+          }}
+          {...register('name')}
+          error={errors.name?.message}
+        />
+
         {/* Email */}
         <TextInput
           label='Email'
           withAsterisk
-          placeholder='Your Email'
+          placeholder='Your email'
           leftSection={
             <MdAlternateEmail
               color={errors.email ? '#fa5252' : '#fff'}

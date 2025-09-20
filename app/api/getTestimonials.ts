@@ -1,8 +1,8 @@
 import api from '~/lib/axios';
-import type { Testimonials } from '~/types';
+import type { Testimonial } from '~/schema/testimonialsSchema';
 
 // fetch all testimonials
-export async function getTestimonials(): Promise<Testimonials[]> {
+export async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const { data } = await api.get(
       `${import.meta.env.VITE_BACKEND_URL}/testimonials`
@@ -13,27 +13,14 @@ export async function getTestimonials(): Promise<Testimonials[]> {
   }
 }
 
-type CreateTestimonialResponse = {
-  message: string;
-  testimonial: {
-    _id: string;
-    name: string;
-    role: string;
-    feedback: string;
-    status: string;
-  };
-};
-
 // Create new testimonial || review
 export async function createTestimonial({
-  name,
   role,
   feedback,
 }: {
-  name: string;
   role: string;
   feedback: string;
-}): Promise<CreateTestimonialResponse> {
+}) {
   try {
     const { data } = await api.post(
       `${import.meta.env.VITE_BACKEND_URL}/testimonials`,
