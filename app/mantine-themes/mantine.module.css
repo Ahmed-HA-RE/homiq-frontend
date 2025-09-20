@@ -4,12 +4,12 @@
   }
 
   &::placeholder {
-    color: #fff;
+    color: black;
   }
 
   background-color: transparent;
-  color: #fff;
-  border-color: white;
+  color: black;
+  border-color: black;
   border-radius: 8px;
 }
 
@@ -20,18 +20,18 @@
   &::placeholder {
     color: #fa5252;
   }
-  color: #fff;
+  color: black;
   background-color: transparent;
   border-radius: 8px;
 }
 
 .visibilityToggle {
-  color: #fff;
+  color: black;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
   }
-  transition: all 0.2s ease-in;
+  transition: all 0.15s ease-in;
 }
 
 .visibilityToggleError {
@@ -39,7 +39,7 @@
 }
 
 .labelInput {
-  color: #e0e0e0;
+  color: black;
   margin: 0 0 5px;
 }
 

@@ -3,12 +3,10 @@ import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { Link, NavLink } from 'react-router';
 import { Button, Group } from '@mantine/core';
 import NavbarDrawer from './NavbarDrawer';
-import { useModalStore } from '~/store/modalStore';
+
 import classes from '../../mantine-themes/mantine.module.css';
 
 const Navbar = () => {
-  const openModal = useModalStore((state) => state.openModal);
-
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 50,
@@ -102,7 +100,8 @@ const Navbar = () => {
             Add Property
           </Button>
           <Button
-            onClick={openModal}
+            component={Link}
+            to='/auth/signup'
             size='sm'
             classNames={{
               root: '!hidden md:!block',

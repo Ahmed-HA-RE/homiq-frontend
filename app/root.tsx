@@ -20,7 +20,6 @@ import { Toaster } from './components/ui/sonner';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Navbar from './components/ui/Navbar';
-import AuthModal from './components/ui/AuthModal';
 
 // new instance for query hooks
 const queryClient = new QueryClient();
@@ -49,9 +48,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className='h-21'>
         <MantineProvider>
-          <AuthModal />
           <Navbar />
           {children}
         </MantineProvider>

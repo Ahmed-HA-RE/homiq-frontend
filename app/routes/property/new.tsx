@@ -1,4 +1,5 @@
 import NewPropertyForm from '~/components/NewPropertyForm';
+import Footer from '~/components/ui/Footer';
 
 const CreatePropertyForm = () => {
   return (
@@ -22,6 +23,7 @@ const CreatePropertyForm = () => {
           <NewPropertyForm />
         </section>
       </main>
+      <Footer />
     </>
   );
 };

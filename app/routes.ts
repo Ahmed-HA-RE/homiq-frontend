@@ -9,5 +9,7 @@ export default [
   route('/about', './routes/about/index.tsx'),
   route('/contact-us', './routes/contact/index.tsx'),
   route('/reviews/add', './routes/reviews/index.tsx'),
+  route('/auth/signup', './routes/auth/signup.tsx'),
+  route('/auth/login', './routes/auth/login.tsx'),
   route('*', './routes/error/index.tsx'),
 ] satisfies RouteConfig;

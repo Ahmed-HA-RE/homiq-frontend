@@ -28,6 +28,12 @@
     #8e9eab,
     #eef2f3
   );
+
+  --background-image-gradient-register: linear-gradient(
+    90deg,
+    #3b82f6,
+    #6366f1
+  );
 }
 
 @font-face {

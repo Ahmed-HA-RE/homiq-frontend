@@ -3,13 +3,11 @@ import { useDisclosure } from '@mantine/hooks';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoCloseCircle } from 'react-icons/io5';
 import { Link, NavLink } from 'react-router';
-import { useModalStore } from '~/store/modalStore';
+
 import classes from '../../mantine-themes/mantine.module.css';
 
 const NavbarDrawer = () => {
   const [opened, { open, close }] = useDisclosure(false);
-
-  const openModal = useModalStore((state) => state.openModal);
 
   return (
     <>
@@ -99,10 +97,11 @@ const NavbarDrawer = () => {
         <Flex justify='center' px={5} direction='column' gap={14}>
           <Button
             onClick={() => {
-              openModal();
               close();
             }}
             size='sm'
+            component={Link}
+            to='/auth/signup'
             styles={{
               root: { backgroundColor: '#20B2AA' },
             }}

@@ -3,18 +3,18 @@ import z from 'zod';
 export const signUpSchema = z.object({
   name: z
     .string()
-    .nonempty({ error: 'Field is required' })
+    .nonempty({ error: 'Name is required' })
     .regex(/^[a-zA-Z ]+$/, { error: 'Invalid Name' })
     .trim()
     .min(3, { error: 'Must be at least 3 characters' })
     .max(20, { error: 'Must not exceed 20 characters' }),
   email: z
     .string()
-    .nonempty({ error: 'Field is required' })
+    .nonempty({ error: 'Email is required' })
     .email({ error: 'Invalid email address' }),
   password: z
     .string()
-    .nonempty({ error: 'Field is required' })
+    .nonempty({ error: 'Password is required' })
     .min(6, { error: 'Must be at least 8 characters' })
     .max(20, { error: 'Must not exceed 10 characters' })
     .regex(/(?=.*[A-Z])/, {
