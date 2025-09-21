@@ -12,9 +12,6 @@ const CarouselProperties = ({ properties }: { properties: Property[] }) => {
         <h3 className='font-bold inline-block text-2xl md:text-4xl'>
           Latest Projects
         </h3>
-        <span className='inline-block underline-offset-4 decoration-1 underline ml-1.5 text-2xl  md:text-4xl font-light'>
-          Completed
-        </span>
         <p className='mt-3 text-gray-600 text-sm md:max-w-3xl mx-auto'>
           Explore our curated portfolio of real estate properties across the
           UAE. Each listing reflects our commitment to quality, modern design,

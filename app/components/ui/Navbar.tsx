@@ -9,8 +9,8 @@ import classes from '../../mantine-themes/mantine.module.css';
 import { logoutUser } from '~/api/auth';
 
 const Navbar = () => {
-  const user = useAuthStore((set) => set.user);
-  const setLogout = useAuthStore((set) => set.setLogout);
+  const user = useAuthStore((state) => state.user);
+  const setLogout = useAuthStore((state) => state.setLogout);
   const navigate = useNavigate();
 
   const trigger = useScrollTrigger({
@@ -34,54 +34,15 @@ const Navbar = () => {
           zIndex: 10,
         }}
       >
-        <div>
+        <div className='flex flex-row items-center justify-center space-x-10'>
           <Link
             className='font-outfit text-3xl text-white font-semibold'
             to={'/'}
           >
             Homiq
           </Link>
-        </div>
-
-        {/* Desktop nav */}
-        <ul className='hidden md:flex flex-row space-x-6  pt-1'>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-cyan-500 font-outfit font-bold'
-                  : 'desktop-nav-items'
-              }
-              to={'/'}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-cyan-500 font-outfit font-bold'
-                  : 'desktop-nav-items'
-              }
-              to={'/properties'}
-            >
-              Properties
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-cyan-500 font-outfit font-bold'
-                  : 'desktop-nav-items'
-              }
-              to={'/about'}
-            >
-              About
-            </NavLink>
-          </li>
-          {user && (
+          {/* Desktop nav */}
+          <ul className='hidden md:flex flex-row space-x-6 pt-1'>
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -89,13 +50,51 @@ const Navbar = () => {
                     ? 'text-cyan-500 font-outfit font-bold'
                     : 'desktop-nav-items'
                 }
-                to={'/contact-us'}
+                to={'/'}
               >
-                Contact Us
+                Home
               </NavLink>
             </li>
-          )}
-        </ul>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-cyan-500 font-outfit font-bold'
+                    : 'desktop-nav-items'
+                }
+                to={'/properties'}
+              >
+                Properties
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-cyan-500 font-outfit font-bold'
+                    : 'desktop-nav-items'
+                }
+                to={'/about'}
+              >
+                About
+              </NavLink>
+            </li>
+            {user && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-cyan-500 font-outfit font-bold'
+                      : 'desktop-nav-items'
+                  }
+                  to={'/contact-us'}
+                >
+                  Contact Us
+                </NavLink>
+              </li>
+            )}
+          </ul>
+        </div>
 
         {/* auth && add property */}
         <Group justify='center'>

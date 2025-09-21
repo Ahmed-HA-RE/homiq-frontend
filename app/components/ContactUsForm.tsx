@@ -75,6 +75,7 @@ const ContactForm = () => {
           {...register('message', {
             required:
               'Please share what’s on your mind or any questions you have!',
+            minLength: { value: 4, message: 'Characters must be at least 4' },
             maxLength: {
               value: 400,
               message: 'Message cannot exceed 400 characters',

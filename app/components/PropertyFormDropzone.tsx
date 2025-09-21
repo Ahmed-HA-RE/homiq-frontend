@@ -2,7 +2,6 @@ import { Flex, Text, Image } from '@mantine/core';
 import { FaFileUpload } from 'react-icons/fa';
 import { BsFillFileEarmarkXFill } from 'react-icons/bs';
 import { MdInsertPhoto } from 'react-icons/md';
-import { useState } from 'react';
 import type { FileWithPath } from '@mantine/dropzone';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import type { FieldErrors, Control } from 'react-hook-form';
@@ -56,12 +55,10 @@ export function DropZone({
             {...field}
             onDrop={(droppedFiles) => {
               setInteriorFile(droppedFiles);
-              console.log(droppedFiles);
               field.onChange(
                 droppedFiles.map((droppedFile) => droppedFile.name)
               );
             }}
-            onReject={(files) => console.log('rejected files', files)}
             maxSize={5 * 1024 ** 2}
             accept={IMAGE_MIME_TYPE}
             className='bg-gradient-create-project rounded-md cursor-pointer hover:opacity-85 transition duration-200'
@@ -96,7 +93,7 @@ export function DropZone({
                   {interiorPreview}
                 </div>
               ) : (
-                <div className='pr-2'>
+                <div className='px-4'>
                   <Text size='xl' inline>
                     Drag images here or click to select files
                   </Text>
@@ -127,7 +124,6 @@ export function DropZone({
           <Dropzone
             {...field}
             onDrop={(droppedFiles) => {
-              console.log(droppedFiles);
               setExteriorFile(droppedFiles);
               field.onChange(
                 droppedFiles.map((droppedFile) => droppedFile.name)
@@ -168,7 +164,7 @@ export function DropZone({
                   {exteriorPreview}
                 </div>
               ) : (
-                <div className='pr-2'>
+                <div className='px-4'>
                   <Text size='xl' inline>
                     Drag images here or click to select files
                   </Text>

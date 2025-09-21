@@ -2,6 +2,7 @@ import z from 'zod';
 
 export const propertySchema = z.object({
   _id: z.string().nonempty(),
+  user: z.string().nonempty().optional(),
   name: z
     .string()
     .nonempty({ error: 'Property name is required' })

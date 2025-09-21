@@ -14,7 +14,7 @@ import { useMediaQuery } from '@mantine/hooks';
 const LogInForm = () => {
   const navigate = useNavigate();
   const matches = useMediaQuery('(max-width:768px)');
-  const setUser = useAuthStore((set) => set.setUser);
+  const setUser = useAuthStore((state) => state.setUser);
 
   const {
     register,

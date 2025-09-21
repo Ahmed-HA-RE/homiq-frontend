@@ -1,5 +1,9 @@
 import axios from 'axios';
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+import { refreshAccessToken } from '~/api/auth';
+import { useAuthStore } from '~/store/authstore';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_PRODUCTION;
+
+const setUser = useAuthStore.getState().setUser;
 
 const api = axios.create({
   baseURL: BACKEND_URL,
@@ -7,5 +11,36 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+api.interceptors.request.use((config) => {
+  const token = useAuthStore.getState().token;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+api.interceptors.response.use(
+  (res) => res,
+  async (error) => {
+    const originalRequest = error.config;
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes('/auth/refresh')
+    ) {
+      originalRequest._retry = true;
+
+      const data = await refreshAccessToken();
+      setUser(
+        { name: data.user.name, email: data.user.email, id: data.user._id },
+        data.accessToken
+      );
+      originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
+      return api(originalRequest);
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;

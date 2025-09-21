@@ -39,7 +39,7 @@ const AboutPage = ({ loaderData }: Route.ComponentProps) => {
           {/* Hero Image */}
           <div className='relative z-0'>
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/about_us/About_hero.jpg`}
+              src='https://res.cloudinary.com/ahmed--dev/image/upload/v1758479730/About_hero_nh5y0z.jpg'
               alt='Hero-image'
               className='w-full md:h-[500px] mx-auto object-cover'
             />

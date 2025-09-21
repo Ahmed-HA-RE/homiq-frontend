@@ -74,8 +74,8 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
       });
       navigate('/properties');
     },
-    onError: () => {
-      toast.error('Something Went Wrong', {
+    onError: (error) => {
+      toast.error(error.message, {
         icon: <IoWarningOutline size={20} />,
         style: {
           fontSize: '16px',
@@ -85,6 +85,7 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
           color: '#fff',
         },
       });
+      navigate('/auth/login');
     },
   });
 

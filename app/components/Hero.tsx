@@ -17,7 +17,7 @@ const Hero = ({ title, subtitle, bgImage }: HeroProps) => {
       <div
         className={`min-h-screen min-w-screen flex items-center justify-center p-4 bg-cover bg-no-repeat bg-center z-40 `}
         style={{
-          backgroundImage: `url(${import.meta.env.VITE_BACKEND_URL_STATIC}${bgImage})`,
+          backgroundImage: `url(https://res.cloudinary.com/ahmed--dev/image/upload/v1758479750/header_img_nhnkfl.jpg)`,
         }}
       >
         {/* Hero info */}
@@ -31,7 +31,7 @@ const Hero = ({ title, subtitle, bgImage }: HeroProps) => {
         >
           <ShimmeringText
             text={title}
-            className='text-3xl md:text-6xl xl:text-7xl max-w-3xl md:max-w-5xl font-outfit font-semibold  md:leading-18 pt-20 w-full text-center capitalize'
+            className='text-[28px] sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl md:max-w-5xl font-outfit font-semibold  md:leading-18 pt-20 w-full text-center capitalize'
             color='#fff'
             shimmeringColor='#11111'
           />

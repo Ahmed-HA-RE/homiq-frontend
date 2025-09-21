@@ -14,7 +14,7 @@ import { useAuthStore } from '~/store/authstore';
 const SignUpForm = () => {
   const matches = useMediaQuery('(max-width:768px)');
   const navigate = useNavigate();
-  const setUser = useAuthStore((set) => set.setUser);
+  const setUser = useAuthStore((state) => state.setUser);
 
   const {
     register,
@@ -32,7 +32,7 @@ const SignUpForm = () => {
         { name: data.user.name, email: data.user.email, id: data.user.email },
         data.accessToken
       );
-      // navigate('/');
+      navigate('/');
     },
 
     onError: (error) => {

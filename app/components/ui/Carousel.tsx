@@ -16,7 +16,6 @@ import Fade from '@mui/material/Fade';
 import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
 import type { Property } from '~/schema/propertiesSchema';
 import { Link } from 'react-router';
-const Images_Backend_URL = import.meta.env.VITE_BACKEND_URL_STATIC;
 
 type CourseSwiperProps = {
   properties: Property[];
@@ -70,7 +69,7 @@ const CarouselSwiper = ({ properties }: CourseSwiperProps) => {
                 to={`/properties/${properties._id}`}
               >
                 <img
-                  src={`${Images_Backend_URL}/images/exterior/${properties.images?.exterior}`}
+                  src={`${properties.images.exterior}`}
                   alt={properties.name}
                   className={index === 5 ? 'object-center ' : 'object-cover'}
                 />

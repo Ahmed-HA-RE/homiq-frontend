@@ -35,7 +35,7 @@ export function AgentsMemberCard({ agent }: { agent: AgentData }) {
     <div className='group bg-card w-96 overflow-hidden rounded-xl opacity-100 shadow-sm transition-opacity hover:opacity-75'>
       <div className='relative h-64 w-full overflow-hidden pt-2'>
         <img
-          src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/about_us/${agent.image}.jpg`}
+          src={agent.image}
           alt={agent.name}
           className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
         />

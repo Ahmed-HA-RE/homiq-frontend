@@ -26,7 +26,7 @@ const Glimpse = () => {
           {/* About Image */}
           <div className=''>
             <img
-              src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/brand_img.png`}
+              src='https://res.cloudinary.com/ahmed--dev/image/upload/v1758479749/brand_img_cmvghi.png'
               alt='about our brand'
               className='w-full max-w-sm md:max-w-[600px] object-cover'
             />

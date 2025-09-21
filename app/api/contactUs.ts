@@ -7,7 +7,7 @@ type SendContactFormProps = {
 export async function sendContactForm({ message }: SendContactFormProps) {
   try {
     const { data } = await api.post(
-      `${import.meta.env.VITE_BACKEND_URL_STATIC}/emails/contact`,
+      `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/emails/contact`,
       {
         message,
       }

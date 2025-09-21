@@ -12,7 +12,6 @@ import { getLatestProperties } from '~/api/properties';
 import { getTestimonials } from '~/api/getTestimonials';
 import Footer from '~/components/ui/Footer';
 import TestimonialsCarousel from '~/components/ui/Testimonials';
-import { useAuthStore } from '~/store/authstore';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -48,14 +47,11 @@ export async function loader({
 
     return { properties: parsedProperties, testimonials: parsedtestimonials };
   } catch (error: any) {
-    console.log(error);
     throw new Error(error.message);
   }
 }
 
 const HomePage = ({ loaderData }: Route.ComponentProps) => {
-  const user = useAuthStore((set) => set.user);
-
   const { properties, testimonials } = loaderData;
   return (
     <>

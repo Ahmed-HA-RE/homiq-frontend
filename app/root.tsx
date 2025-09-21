@@ -20,13 +20,19 @@ import { Toaster } from './components/ui/sonner';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Navbar from './components/ui/Navbar';
+import { useEffect } from 'react';
+import { refreshAccessToken } from './api/auth';
+import { useAuthStore } from './store/authstore';
 
 // new instance for query hooks
 const queryClient = new QueryClient();
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  { rel: 'icon', href: '/svgs/favicon.svg' },
+  {
+    rel: 'icon',
+    href: 'data:;base64,iVBORw0KGgo=', // blank favicon
+  },
   {
     rel: 'preconnect',
     href: 'https://fonts.gstatic.com',
@@ -69,6 +75,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const setUser = useAuthStore((state) => state.setUser);
+  useEffect(() => {
+    async function refreshUser() {
+      const data = await refreshAccessToken();
+      setUser(
+        {
+          id: data.user._id,
+          name: data.user._name,
+          email: data.user.email,
+        },
+        data.accessToken
+      );
+    }
+    refreshUser();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />

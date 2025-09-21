@@ -5,11 +5,19 @@ import type { Testimonial } from '~/schema/testimonialsSchema';
 export async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const { data } = await api.get(
-      `${import.meta.env.VITE_BACKEND_URL}/testimonials`
+      `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/testimonials`
     );
     return data;
   } catch (error: any) {
-    throw new Error('Something went Wrong');
+    let message = 'Something Went Wrong';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    } else if (error.message) {
+      message = error.message;
+    }
+
+    throw new Error(message);
   }
 }
 
@@ -23,7 +31,7 @@ export async function createTestimonial({
 }) {
   try {
     const { data } = await api.post(
-      `${import.meta.env.VITE_BACKEND_URL}/testimonials`,
+      `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/testimonials`,
       { name, role, feedback }
     );
     console.log(data);
@@ -31,12 +39,12 @@ export async function createTestimonial({
   } catch (error: any) {
     let message = 'Something Went Wrong';
 
-    if (error.response?.data.message) {
-      message = error.response.data.message;
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
     } else if (error.message) {
       message = error.message;
     }
 
-    throw new Error(error);
+    throw new Error(message);
   }
 }

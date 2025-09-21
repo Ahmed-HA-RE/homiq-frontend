@@ -6,7 +6,6 @@ import {
   pagenatedProperties,
 } from '~/schema/propertiesSchema';
 import z from 'zod';
-import axios from 'axios';
 
 const propertiesSchema = z.array(propertySchema);
 
@@ -14,7 +13,7 @@ const propertiesSchema = z.array(propertySchema);
 export async function getProperties(): Promise<Property[]> {
   try {
     const { data } = await api.get(
-      `${import.meta.env.VITE_BACKEND_URL}/properties`
+      `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/properties`
     );
 
     const parsed = propertiesSchema.parse(data);
@@ -103,7 +102,6 @@ export async function updateProperty(
     const { data } = await api.put(`/properties/${_id}`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
-    console.log(data);
     return data;
   } catch (error: any) {
     let message = 'Something went wrong';
@@ -120,5 +118,17 @@ export async function updateProperty(
 
 //Delete property
 export async function deleteProperty(_id: string) {
-  await api.delete(`/properties/${_id}`);
+  try {
+    const { data } = await api.delete(`/properties/${_id}`);
+    return data;
+  } catch (error: any) {
+    let message = 'Something went wrong';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    } else if (error.message) {
+      message = error.message;
+    }
+    throw new Error(message);
+  }
 }

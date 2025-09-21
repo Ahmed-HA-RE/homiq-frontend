@@ -11,8 +11,8 @@ import { logoutUser } from '~/api/auth';
 const NavbarDrawer = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
-  const user = useAuthStore((set) => set.user);
-  const setLogout = useAuthStore((set) => set.setLogout);
+  const user = useAuthStore((state) => state.user);
+  const setLogout = useAuthStore((state) => state.setLogout);
   const navigate = useNavigate();
 
   return (
@@ -37,7 +37,7 @@ const NavbarDrawer = () => {
         size='xs'
         padding='md'
         position='right'
-        hiddenFrom='xs'
+        hiddenFrom='sm'
         zIndex={1000000}
         overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
         transitionProps={{ transition: 'slide-left', duration: 300 }}

@@ -24,7 +24,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         to={`/properties/${property._id}`}
       >
         <Image
-          src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/exterior/${property.images?.exterior}`}
+          src={property.images.exterior}
           height={160}
           alt='properties'
           className='hover:scale-105 transition-all duration-200'
