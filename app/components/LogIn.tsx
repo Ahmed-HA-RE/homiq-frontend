@@ -5,14 +5,16 @@ import { MdAlternateEmail } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
 import { logInSchema, type LogIn } from '~/schema/authFormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { login } from '~/api/auth';
+import { loginUser } from '~/api/auth';
 import { Link, useNavigate } from 'react-router';
+import { useAuthStore } from '~/store/authstore';
 import { useMutation } from '@tanstack/react-query';
 import { useMediaQuery } from '@mantine/hooks';
 
 const LogInForm = () => {
   const navigate = useNavigate();
   const matches = useMediaQuery('(max-width:768px)');
+  const setUser = useAuthStore((set) => set.setUser);
 
   const {
     register,
@@ -24,8 +26,16 @@ const LogInForm = () => {
   });
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (data: LogIn) => login(data),
-    onSuccess: () => {
+    mutationFn: (data: LogIn) => loginUser(data),
+    onSuccess: (data) => {
+      setUser(
+        {
+          name: data.user.name,
+          email: data.user.email,
+          id: data.user._id,
+        },
+        data.accessToken
+      );
       navigate('/');
     },
 

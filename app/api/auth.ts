@@ -1,9 +1,9 @@
 import api from '~/lib/axios';
 import type { SignUp, LogIn } from '~/schema/authFormSchema';
 
-export async function signUp(SignUpData: SignUp) {
+export async function signUpUser(credentials: SignUp) {
   try {
-    const { data } = await api.post('/auth/register', SignUpData);
+    const { data } = await api.post('/auth/register', credentials);
     console.log(data);
     return data;
   } catch (error: any) {
@@ -20,9 +20,9 @@ export async function signUp(SignUpData: SignUp) {
   }
 }
 
-export async function login(LogInData: LogIn) {
+export async function loginUser(credentials: LogIn) {
   try {
-    const { data } = await api.post('/auth/login', LogInData);
+    const { data } = await api.post('/auth/login', credentials);
     console.log(data);
     return data;
   } catch (error: any) {

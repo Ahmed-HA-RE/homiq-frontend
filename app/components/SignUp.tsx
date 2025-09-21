@@ -5,14 +5,16 @@ import { MdAlternateEmail } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
 import { signUpSchema, type SignUp } from '~/schema/authFormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signUp } from '~/api/auth';
+import { signUpUser } from '~/api/auth';
 import { Link, useNavigate } from 'react-router';
 import { useMutation } from '@tanstack/react-query';
 import { useMediaQuery } from '@mantine/hooks';
+import { useAuthStore } from '~/store/authstore';
 
 const SignUpForm = () => {
-  const navigate = useNavigate();
   const matches = useMediaQuery('(max-width:768px)');
+  const navigate = useNavigate();
+  const setUser = useAuthStore((set) => set.setUser);
 
   const {
     register,
@@ -24,9 +26,13 @@ const SignUpForm = () => {
   });
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (data: SignUp) => signUp(data),
-    onSuccess: () => {
-      navigate('/');
+    mutationFn: (data: SignUp) => signUpUser(data),
+    onSuccess: (data) => {
+      setUser(
+        { name: data.user.name, email: data.user.email, id: data.user.email },
+        data.accessToken
+      );
+      // navigate('/');
     },
 
     onError: (error) => {
@@ -36,7 +42,6 @@ const SignUpForm = () => {
 
   const onSubmit: SubmitHandler<SignUp> = async (data) => {
     await mutateAsync(data);
-    navigate('/');
   };
 
   return (
@@ -106,6 +111,7 @@ const SignUpForm = () => {
           type='submit'
           size='md'
           fullWidth
+          disabled={isPending}
           radius={'xl'}
           classNames={{ root: classes.modalBtnCta }}
         >

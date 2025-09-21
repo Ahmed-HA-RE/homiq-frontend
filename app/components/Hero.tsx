@@ -41,7 +41,7 @@ const Hero = ({ title, subtitle, bgImage, cta }: HeroProps) => {
             color='#fff'
             shimmeringColor='#11111'
           />
-          <p className='my-4 md:my-6 text-gray-200 text-base md:text-2xl text-center md:max-w-2xl mx-auto'>
+          <p className='my-6  text-gray-200 text-base md:text-2xl text-center md:max-w-2xl mx-auto'>
             {subtitle}
           </p>
           {/* Hero Buttons */}
