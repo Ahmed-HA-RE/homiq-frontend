@@ -2,12 +2,18 @@ import { Button, Divider, Drawer, Flex, Group } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoCloseCircle } from 'react-icons/io5';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
+import { useAuthStore } from '~/store/authstore';
 
 import classes from '../../mantine-themes/mantine.module.css';
+import { logoutUser } from '~/api/auth';
 
 const NavbarDrawer = () => {
   const [opened, { open, close }] = useDisclosure(false);
+
+  const user = useAuthStore((set) => set.user);
+  const setLogout = useAuthStore((set) => set.setLogout);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -81,41 +87,62 @@ const NavbarDrawer = () => {
           >
             Properties
           </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
-            }
-            onClick={close}
-            to='/contact-us'
-          >
-            Contact Us
-          </NavLink>
+          {user && (
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
+              }
+              onClick={close}
+              to='/contact-us'
+            >
+              Contact Us
+            </NavLink>
+          )}
         </Flex>
 
         <Divider mb='md' />
         {/* auth && add property */}
         <Flex justify='center' px={5} direction='column' gap={14}>
-          <Button
-            onClick={() => {
-              close();
-            }}
-            size='sm'
-            component={Link}
-            to='/auth/signup'
-            styles={{
-              root: { backgroundColor: '#20B2AA' },
-            }}
-          >
-            Get Started
-          </Button>
-          <Button
-            onClick={close}
-            component={Link}
-            to={'/property/new'}
-            classNames={{ root: classes.add_propertyBtn }}
-          >
-            Add Property
-          </Button>
+          {user ? (
+            <>
+              <Button
+                onClick={() => {
+                  close();
+                  setLogout();
+                  logoutUser();
+                  navigate('/');
+                }}
+                size='sm'
+                styles={{
+                  root: { backgroundColor: 'red' },
+                }}
+              >
+                Log Out
+              </Button>
+              <Button
+                onClick={close}
+                component={Link}
+                to={'/property/new'}
+                classNames={{ root: classes.add_propertyBtn }}
+              >
+                Add Property
+              </Button>
+            </>
+          ) : (
+            <Button
+              onClick={() => {
+                close();
+              }}
+              size='sm'
+              component={Link}
+              to='/auth/signup'
+              styles={{
+                root: { backgroundColor: '#20B2AA' },
+              }}
+            >
+              Get Started
+            </Button>
+          )}
         </Flex>
       </Drawer>
     </>

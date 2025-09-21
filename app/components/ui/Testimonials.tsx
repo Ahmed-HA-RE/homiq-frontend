@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 import { type Testimonial } from '~/schema/testimonialsSchema';
 import { Link } from 'react-router';
+import { useAuthStore } from '~/store/authstore';
 
 type TestimonialsCarouselProps = {
   testimonials: Testimonial[];
@@ -34,6 +35,8 @@ const TestimonialsCarousel = ({
       clearInterval(autoplay);
     };
   }, [emblaApi, autoplaySpeed]);
+
+  const user = useAuthStore((set) => set.user);
 
   return (
     <section className={cn('relative overflow-hidden py-16 md:py-24')}>
@@ -149,10 +152,10 @@ const TestimonialsCarousel = ({
         </div>
       </div>
       <Link
-        to={'/reviews/add'}
+        to={`${user ? '/reviews/add' : '/auth/signup'}`}
         className='p-4 mt-8 w-full text-center bg-cyan-500 font-outfit rounded text-white flex justify-center text-lg max-w-md mx-auto hover:bg-cyan-600 hover:scale-90 transition duration-200 '
       >
-        Add Your Review
+        {user ? 'Add Your Review' : 'Please Log In to share your review'}
       </Link>
     </section>
   );

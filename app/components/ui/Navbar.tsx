@@ -1,12 +1,18 @@
 import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import { Button, Group } from '@mantine/core';
 import NavbarDrawer from './NavbarDrawer';
+import { useAuthStore } from '~/store/authstore';
 
 import classes from '../../mantine-themes/mantine.module.css';
+import { logoutUser } from '~/api/auth';
 
 const Navbar = () => {
+  const user = useAuthStore((set) => set.user);
+  const setLogout = useAuthStore((set) => set.setLogout);
+  const navigate = useNavigate();
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 50,
@@ -75,43 +81,66 @@ const Navbar = () => {
               About
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-cyan-500 font-outfit font-bold'
-                  : 'desktop-nav-items'
-              }
-              to={'/contact-us'}
-            >
-              Contact Us
-            </NavLink>
-          </li>
+          {user && (
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-cyan-500 font-outfit font-bold'
+                    : 'desktop-nav-items'
+                }
+                to={'/contact-us'}
+              >
+                Contact Us
+              </NavLink>
+            </li>
+          )}
         </ul>
 
         {/* auth && add property */}
         <Group justify='center'>
-          <Button
-            component={Link}
-            to={'/property/new'}
-            visibleFrom='sm'
-            classNames={{ root: classes.add_propertyBtn }}
-          >
-            Add Property
-          </Button>
-          <Button
-            component={Link}
-            to='/auth/signup'
-            size='sm'
-            classNames={{
-              root: '!hidden md:!block',
-            }}
-            styles={{
-              root: { backgroundColor: '#20B2AA' },
-            }}
-          >
-            Get Started
-          </Button>
+          {user && (
+            <Button
+              component={Link}
+              to={'/property/new'}
+              visibleFrom='sm'
+              classNames={{ root: classes.add_propertyBtn }}
+            >
+              Add Property
+            </Button>
+          )}
+          {user ? (
+            <Button
+              size='sm'
+              classNames={{
+                root: '!hidden md:!block',
+              }}
+              styles={{
+                root: { backgroundColor: 'red' },
+              }}
+              onClick={() => {
+                setLogout();
+                logoutUser();
+                navigate('/');
+              }}
+            >
+              Log Out
+            </Button>
+          ) : (
+            <Button
+              component={Link}
+              to='/auth/signup'
+              size='sm'
+              classNames={{
+                root: '!hidden md:!block',
+              }}
+              styles={{
+                root: { backgroundColor: '#20B2AA' },
+              }}
+            >
+              Get Started
+            </Button>
+          )}
         </Group>
 
         <NavbarDrawer />

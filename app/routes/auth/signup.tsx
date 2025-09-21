@@ -4,7 +4,7 @@ import Footer from '~/components/ui/Footer';
 const SignUpPage = () => {
   return (
     <>
-      <main className='pt-40 sm:pt-30  min-h-screen flex items-center bg-gradient-register p-6'>
+      <main className='py-40 sm:pt-30  min-h-screen flex items-center bg-gradient-register p-6'>
         <div className='bg-gray-100 shadow rounded-4xl  sm:h-[600px] sm:flex sm:flex-row   items-center gap-4 overflow-hidden'>
           <img
             src={`${import.meta.env.VITE_BACKEND_URL_STATIC}/images/auth.jpg`}

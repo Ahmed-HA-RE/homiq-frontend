@@ -1,22 +1,16 @@
-import { Link } from 'react-router';
-import clsx from 'clsx';
 import { ShimmeringText } from './ui/shimmering';
 import { motion } from 'framer-motion';
-
-type Cta = {
-  label: string;
-  href: string;
-  variant: 'primary' | 'secondary';
-};
+import { useAuthStore } from '~/store/authstore';
 
 type HeroProps = {
   title: string;
   subtitle: string;
   bgImage: string;
-  cta: Cta[];
 };
 
-const Hero = ({ title, subtitle, bgImage, cta }: HeroProps) => {
+const Hero = ({ title, subtitle, bgImage }: HeroProps) => {
+  const user = useAuthStore((set) => set.user);
+
   return (
     <div className='relative z-0'>
       {/* Hero section */}
@@ -44,23 +38,6 @@ const Hero = ({ title, subtitle, bgImage, cta }: HeroProps) => {
           <p className='my-6  text-gray-200 text-base md:text-2xl text-center md:max-w-2xl mx-auto'>
             {subtitle}
           </p>
-          {/* Hero Buttons */}
-          <div className='flex flex-row max-w-sm items-center space-x-4 justify-center mx-auto text-center mt-3'>
-            {cta.map((cta) => (
-              <Link
-                key={cta.label}
-                to={`${cta.href}`}
-                className={clsx(
-                  'text-white w-1/2 py-3 inline-block  rounded transition-colors duration-200 md:text-lg',
-                  cta.variant === 'primary' &&
-                    'border border-white  hover:bg-gray-700 hover:border-gray-700',
-                  cta.variant === 'secondary' && 'bg-blue-500 hover:bg-blue-600'
-                )}
-              >
-                {cta.label}
-              </Link>
-            ))}
-          </div>
         </motion.div>
       </div>
 

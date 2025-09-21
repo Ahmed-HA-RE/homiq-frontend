@@ -8,6 +8,7 @@ import { getAgents } from '~/api/getAgents';
 import type { AgentData } from '~/schema/agentsSchema';
 import AgentsSection from '~/components/ui/AgentsCard';
 import Footer from '~/components/ui/Footer';
+import { useAuthStore } from '~/store/authstore';
 
 type LoaderReturn = {
   agents: AgentData[];
@@ -26,6 +27,7 @@ export async function loader({
 
 const AboutPage = ({ loaderData }: Route.ComponentProps) => {
   const { agents } = loaderData;
+  const user = useAuthStore((set) => set.user);
 
   const starOffsets = [-634.728, -447.914, -261.961, -76.024, 109.853];
 
@@ -71,20 +73,33 @@ const AboutPage = ({ loaderData }: Route.ComponentProps) => {
             </div>
           </div>
           <div className='p-4 px-6  max-w-9xl  mt-4 md:mt-10'>
-            <p className='font-semibold w-full max-w-2xl mb-5 font-outfit'>
+            <p className='font-semibold w-full max-w-2xl mb-4 font-outfit'>
               Homiq is a leading real estate company in the UAE, dedicated to
               helping clients buy, sell, and invest in premium residential and
               commercial properties. With a focus on innovation, quality, and
               trust, we deliver tailored solutions that ensure every property
               exceeds expectations and achieves maximum value.
             </p>
-            <Link
-              className='text-sm bg-blue-500 hover:bg-blue-600 transition duration-200 text-white rounded-full px-4 py-2 font-outfit inline-block'
-              to='/contact-us'
-            >
-              Contact Us
-              <FaArrowAltCircleRight className='text-lg inline-block ml-2' />
-            </Link>
+            {user ? (
+              <Link
+                className='text-sm bg-blue-500 hover:bg-blue-600 transition duration-200 text-white rounded-full px-4 py-2 font-outfit inline-block'
+                to='/contact-us'
+              >
+                Contact Us
+                <FaArrowAltCircleRight className='text-lg inline-block ml-2' />
+              </Link>
+            ) : (
+              <p className='text-sm font-outfit text-gray-700 font-bold '>
+                Want to get in touch?{' '}
+                <Link
+                  to='/auth/signup'
+                  className='text-blue-500 hover:underline'
+                >
+                  Create an account
+                </Link>{' '}
+                to contact us and share your requirements.
+              </p>
+            )}
           </div>
         </section>
         <WhyWeAreDifferent />

@@ -12,6 +12,7 @@ import { getLatestProperties } from '~/api/properties';
 import { getTestimonials } from '~/api/getTestimonials';
 import Footer from '~/components/ui/Footer';
 import TestimonialsCarousel from '~/components/ui/Testimonials';
+import { useAuthStore } from '~/store/authstore';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -53,6 +54,8 @@ export async function loader({
 }
 
 const HomePage = ({ loaderData }: Route.ComponentProps) => {
+  const user = useAuthStore((set) => set.user);
+
   const { properties, testimonials } = loaderData;
   return (
     <>
@@ -61,10 +64,6 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
           bgImage='/images/header_img.png'
           title='your perfect home awaits'
           subtitle='Explore our handpicked villas and apartments across the UAE, see what satisfied residents have to say, and discover why our properties and services stand out—whether you’re buying or selling your home.'
-          cta={[
-            { label: 'Projects', href: '/properties', variant: 'primary' },
-            { label: 'Contact Us', href: '/contact-us', variant: 'secondary' },
-          ]}
         />
       </header>
       <main>
