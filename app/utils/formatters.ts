@@ -6,7 +6,7 @@ export function capitalizeText(text: string) {
 export function formatLocationName(text: string) {
   if (text.includes('_')) {
     return text
-      .replace('_', ' ')
+      .replace(/_/g, ' ')
       .toLowerCase()
       .split(' ')
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

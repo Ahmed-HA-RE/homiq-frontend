@@ -1,7 +1,13 @@
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import { TextInput, PasswordInput, Button, Divider } from '@mantine/core';
+import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Divider,
+  Select,
+} from '@mantine/core';
 import classes from '../mantine-themes/mantine.module.css';
-import { MdAlternateEmail } from 'react-icons/md';
+import { MdAlternateEmail, MdOutlineWork } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
 import { signUpSchema, type SignUp } from '~/schema/authFormSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -20,6 +26,7 @@ const SignUpForm = () => {
     register,
     handleSubmit,
     setError,
+    control,
     formState: { errors },
   } = useForm<SignUp>({
     resolver: zodResolver(signUpSchema),
@@ -29,7 +36,11 @@ const SignUpForm = () => {
     mutationFn: (data: SignUp) => signUpUser(data),
     onSuccess: (data) => {
       setUser(
-        { name: data.user.name, email: data.user.email, id: data.user.email },
+        {
+          name: data.user.name,
+          email: data.user.email,
+          id: data.user._id,
+        },
         data.accessToken
       );
       navigate('/');
@@ -66,6 +77,99 @@ const SignUpForm = () => {
           }}
           {...register('name')}
           error={errors.name?.message}
+        />
+
+        {/* role */}
+        <Controller
+          name='role'
+          control={control}
+          rules={{
+            required: { value: true, message: 'Role is Required' },
+          }}
+          render={({ field }) => {
+            return (
+              <Select
+                {...field}
+                error={errors.role?.message}
+                value={field.value}
+                onChange={(value) => field.onChange(value)}
+                checkIconPosition='right'
+                label='Role'
+                placeholder='Choose your role'
+                classNames={{
+                  input: errors.name ? classes.errorInput : classes.input,
+                  label: classes.labelInput,
+                  error: classes.errorMessage,
+                }}
+                size='md'
+                radius='md'
+                withAsterisk
+                comboboxProps={{
+                  width: 250,
+                  position: 'bottom-start',
+                  transitionProps: {
+                    transition: 'scale-y',
+                    duration: 300,
+                  },
+                }}
+                rightSection={
+                  <MdOutlineWork
+                    color={`${errors.role?.message ? 'red' : 'black'}`}
+                    size={16}
+                  />
+                }
+                clearable
+                data={[
+                  {
+                    group: 'Designers',
+                    items: [
+                      { value: 'ui_designer', label: 'UI Designer' },
+                      { value: 'ux_designer', label: 'UX Designer' },
+                      { value: 'graphic_designer', label: 'Graphic Designer' },
+                    ],
+                  },
+                  {
+                    group: 'Web Developers',
+                    items: [
+                      { value: 'frontend_dev', label: 'Frontend Developer' },
+                      { value: 'backend_dev', label: 'Backend Developer' },
+                      { value: 'fullstack_dev', label: 'Fullstack Developer' },
+                    ],
+                  },
+                  {
+                    group: 'Business',
+                    items: [
+                      { value: 'manager', label: 'Manager' },
+                      { value: 'marketing', label: 'Marketing Specialist' },
+                      { value: 'sales', label: 'Sales Executive' },
+                    ],
+                  },
+                  {
+                    group: 'Software Engineers',
+                    items: [
+                      { value: 'mobile_eng', label: 'Mobile Engineer' },
+                      { value: 'ai_eng', label: 'AI Engineer' },
+                      { value: 'cloud_eng', label: 'Cloud Engineer' },
+                    ],
+                  },
+                  {
+                    group: 'Hardware Engineers',
+                    items: [
+                      {
+                        value: 'embedded_eng',
+                        label: 'Embedded Systems Engineer',
+                      },
+                      {
+                        value: 'network_eng',
+                        label: 'Network Hardware Engineer',
+                      },
+                      { value: 'chip_eng', label: 'Chip Design Engineer' },
+                    ],
+                  },
+                ]}
+              />
+            );
+          }}
         />
 
         {/* Email */}

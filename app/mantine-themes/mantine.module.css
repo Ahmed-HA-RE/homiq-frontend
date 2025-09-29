@@ -174,3 +174,23 @@
   }
   transition: all 0.15s ease-in-out;
 }
+
+/* Tabs */
+.propertiesTabs_root {
+  margin: 10px auto 30px;
+}
+
+.propertiesTabs_tab {
+  &:hover {
+    background-color: #0891b2;
+    color: #fff;
+  }
+  font-size: 15px;
+  transition: all 0.15s;
+}
+
+.propertiesTabs_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

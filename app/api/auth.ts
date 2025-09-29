@@ -6,6 +6,7 @@ export async function signUpUser(credentials: SignUp) {
     const { data } = await api.post('/auth/register', credentials, {
       withCredentials: true,
     });
+    console.log(data);
     return data;
   } catch (error: any) {
     let message = 'Something Went Wrong! Please try again later.';

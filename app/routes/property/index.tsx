@@ -8,6 +8,8 @@ import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
 import Footer from '~/components/ui/Footer';
 import PropertyCard from '~/components/ui/PropertyCard';
+import PropertyTabs from '~/components/ui/PropertyTabs';
+import { formatLocationName } from '~/utils/formatters';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -22,17 +24,17 @@ export function meta({}: Route.MetaArgs) {
 
 const PropertiesPage = () => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(3);
+  const [activeTabs, setActiveTabs] = useState('all');
 
   // query to fetch limit projects
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['properties', page],
-    queryFn: () => getPaginatedProperties(limit, page),
+    queryKey: ['properties', page, activeTabs],
+    queryFn: () => getPaginatedProperties(page, activeTabs),
   });
 
   return (
     <>
-      <main className='p-6 pt-40 bg-gray-200'>
+      <main className='p-6 pt-40 bg-gray-200 min-h-screen'>
         <section className='mt-20'>
           <div className='max-w-7xl mx-auto'>
             {/* Intro */}
@@ -48,6 +50,11 @@ const PropertiesPage = () => {
               </p>
             </div>
 
+            <PropertyTabs
+              activeTabs={activeTabs}
+              setActiveTabs={setActiveTabs}
+            />
+
             {isLoading && <Spinner />}
             {isError && (
               <div className='min-h-screen flex items-start justify-center mt-10'>
@@ -58,27 +65,37 @@ const PropertiesPage = () => {
             )}
 
             <AnimatePresence mode='wait'>
-              <motion.div
-                key={page}
-                className='grid grid-cols-1 md:grid-cols-2 gap-6 '
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                {data?.properties?.map((property) => (
-                  <PropertyCard key={property._id} property={property} />
-                ))}
-              </motion.div>
+              {data?.data.length === 0 ? (
+                <div className='bg-red-400/40 p-4 rounded w-full max-w-lg mx-auto mt-10'>
+                  <p className='text-red-800 font-outfit text-center '>
+                    Oops! No properties match your search in{' '}
+                    {formatLocationName(activeTabs)}. Try exploring other
+                    locations or relaxing your filters.
+                  </p>
+                </div>
+              ) : (
+                <motion.div
+                  key={`${page}-${activeTabs}`}
+                  className='grid grid-cols-1 md:grid-cols-2 gap-6 '
+                  initial={{ y: 10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -10, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {data?.data.map((property) => (
+                    <PropertyCard key={property._id} property={property} />
+                  ))}
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
 
           {/* Pagination */}
-          {data?.page && data?.pages > 0 && (
+          {data && data?.total_page > 1 && (
             <PaginationComponent
               page={page}
               setPage={setPage}
-              total={data?.pages as number}
+              total={data?.total_page}
             />
           )}
         </section>

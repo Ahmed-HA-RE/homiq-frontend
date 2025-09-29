@@ -56,16 +56,6 @@ export const propertySchema = z.object({
 
 export type Property = z.infer<typeof propertySchema>;
 
-export const pagenatedProperties = z.object({
-  page: z.number(),
-  limit: z.number(),
-  total: z.number(),
-  pages: z.number(),
-  properties: z.array(propertySchema),
-});
-
-export type PaginatedProperties = z.infer<typeof pagenatedProperties>;
-
 export const createPropertySchema = propertySchema.partial({ _id: true });
 
 export type CreateProperty = z.infer<typeof createPropertySchema>;

@@ -56,7 +56,7 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
               </span>
             </h1>
             <Group>
-              {user?.id === property.user && (
+              {user?.id !== property._id ? null : (
                 <>
                   <Button
                     component={Link}

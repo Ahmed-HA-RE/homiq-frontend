@@ -7,7 +7,7 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     const { data } = await api.get(
       `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/testimonials`
     );
-    return data;
+    return data.data;
   } catch (error: any) {
     let message = 'Something Went Wrong';
 
@@ -22,19 +22,12 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 }
 
 // Create new testimonial || review
-export async function createTestimonial({
-  role,
-  feedback,
-}: {
-  role: string;
-  feedback: string;
-}) {
+export async function createTestimonial({ feedback }: { feedback: string }) {
   try {
     const { data } = await api.post(
       `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/testimonials`,
-      { name, role, feedback }
+      { feedback }
     );
-    console.log(data);
     return data;
   } catch (error: any) {
     let message = 'Something Went Wrong';
