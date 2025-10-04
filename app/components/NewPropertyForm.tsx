@@ -1,35 +1,29 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { type FileWithPath } from '@mantine/dropzone';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMediaQuery } from '@mantine/hooks';
 import PropertyFormBasics from './PropertyFormBasics';
 import PropertyFormDetails from './PropertyFormDetails';
-import { DropZone } from './PropertyFormDropzone';
 import { Button, Group, Stepper } from '@mantine/core';
 import {
-  type CreateProperty,
-  createPropertySchema,
+  propertyFormSchema,
+  type PropertyForm,
 } from '~/schema/propertiesSchema';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { createProperty } from '~/api/properties';
 import { toast } from 'sonner';
-import { MdInfo, MdOutlineError } from 'react-icons/md';
+import { MdInfo } from 'react-icons/md';
 import { FaClipboardList } from 'react-icons/fa';
-import {
-  IoImagesSharp,
-  IoShieldCheckmarkSharp,
-  IoWarningOutline,
-} from 'react-icons/io5';
+import { IoWarningOutline } from 'react-icons/io5';
 
 import classes from '../mantine-themes/mantine.module.css';
 import { useNavigate } from 'react-router';
+import useImageModalStore from '~/store/imageModalStore';
 const NewPropertyForm = () => {
   const matches = useMediaQuery('(min-width:768px)');
-  const [interiorFile, setInteriorFile] = useState<FileWithPath[]>([]);
-  const [exteriorFile, setExteriorFile] = useState<FileWithPath[]>([]);
   const [active, setActive] = useState(0);
-  const navigate = useNavigate();
+  const setPropertyId = useImageModalStore((state) => state.setPropertyId);
+  const open = useImageModalStore((state) => state.open);
 
   const {
     register,
@@ -37,16 +31,12 @@ const NewPropertyForm = () => {
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<CreateProperty>({
-    resolver: zodResolver(createPropertySchema),
+  } = useForm<PropertyForm>({
+    resolver: zodResolver(propertyFormSchema),
     defaultValues: {
       name: '',
       price: 0,
       area: 0,
-      images: {
-        interior: [],
-        exterior: [],
-      },
       type: 'villa',
       floors: 1,
       Bathrooms: 1,
@@ -57,20 +47,12 @@ const NewPropertyForm = () => {
   });
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (formData: FormData) => createProperty(formData),
-    onSuccess: () => {
+    mutationFn: (newProperty: PropertyForm) => createProperty(newProperty),
+    onSuccess: (data) => {
+      const _id = data._id;
+      open();
+      setPropertyId(_id);
       reset();
-      toast.success('Form Submitted Thanks!', {
-        icon: <IoShieldCheckmarkSharp size={20} />,
-        style: {
-          fontSize: '16px',
-          fontWeight: 'bold',
-          backgroundColor: '#06923E',
-          borderColor: '#06923E',
-          color: '#fff',
-        },
-      });
-      navigate('/properties');
     },
     onError: () => {
       toast.error('Something Went Wrong', {
@@ -86,23 +68,8 @@ const NewPropertyForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<CreateProperty> = async (data) => {
-    const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('type', data.type);
-    formData.append('description', data.description);
-    formData.append('price', data.price.toString());
-    formData.append('area', data.area.toString());
-    formData.append('floors', data.floors.toString());
-    formData.append('Bathrooms', data.Bathrooms.toString());
-    formData.append('beds', data.beds.toString());
-    formData.append('parking', data.parking.toString());
-    formData.append('location', data.location);
-
-    interiorFile.forEach((file) => formData.append('interior', file));
-    exteriorFile.forEach((file) => formData.append('exterior', file));
-
-    await mutateAsync(formData);
+  const onSubmit: SubmitHandler<PropertyForm> = async (data) => {
+    await mutateAsync(data);
   };
   const onError = (errors: unknown, event: unknown) => console.log(errors);
 
@@ -148,22 +115,6 @@ const NewPropertyForm = () => {
             control={control}
           />
         </Stepper.Step>
-        <Stepper.Step
-          icon={<IoImagesSharp size={20} />}
-          label='Property Gallery'
-          color={errors.images ? 'red' : 'blue'}
-        >
-          {/* DropZone */}
-          <DropZone
-            control={control}
-            errors={errors}
-            matches={matches}
-            interiorFile={interiorFile}
-            setInteriorFile={setInteriorFile}
-            exteriorFile={exteriorFile}
-            setExteriorFile={setExteriorFile}
-          />
-        </Stepper.Step>
         <Stepper.Completed>
           <p
             className={`my-10 text-center text-white p-4 max-w-md mx-auto font-outfit font-medium rounded ${isValid ? 'bg-green-500' : 'bg-red-500'}`}
@@ -186,10 +137,10 @@ const NewPropertyForm = () => {
         </Button>
         <Button
           onClick={() => {
-            if (active < 3) {
+            if (active < 2) {
               setActive((prev) => prev + 1);
             } else {
-              setActive(3);
+              setActive(2);
               handleSubmit(onSubmit)();
             }
           }}
@@ -197,7 +148,7 @@ const NewPropertyForm = () => {
           size='sm'
           fz={'h4'}
         >
-          {active === 3 ? (isPending ? 'Submiting...' : 'Submit') : 'Next'}
+          {active === 2 ? (isPending ? 'Submiting...' : 'Submit') : 'Next'}
         </Button>
       </Group>
     </form>

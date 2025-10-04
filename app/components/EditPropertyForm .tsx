@@ -1,15 +1,13 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { type FileWithPath } from '@mantine/dropzone';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMediaQuery } from '@mantine/hooks';
 import PropertyFormBasics from './PropertyFormBasics';
 import PropertyFormDetails from './PropertyFormDetails';
-import { DropZone } from './PropertyFormDropzone';
 import { Button, Group, Stepper } from '@mantine/core';
 import {
-  type EditProperty,
-  editPropertySchema,
+  propertyFormSchema,
   type Property,
+  type PropertyForm,
 } from '~/schema/propertiesSchema';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
@@ -17,18 +15,13 @@ import { updateProperty } from '~/api/properties';
 import { toast } from 'sonner';
 import { MdInfo } from 'react-icons/md';
 import { FaClipboardList } from 'react-icons/fa';
-import {
-  IoImagesSharp,
-  IoShieldCheckmarkSharp,
-  IoWarningOutline,
-} from 'react-icons/io5';
+import { IoWarningOutline } from 'react-icons/io5';
 import classes from '../mantine-themes/mantine.module.css';
 import { useNavigate } from 'react-router';
+import useImageModalStore from '~/store/imageModalStore';
 
 const EditPropertyForm = ({ property }: { property: Property }) => {
   const matches = useMediaQuery('(min-width:768px)');
-  const [interiorFile, setInteriorFile] = useState<FileWithPath[]>([]);
-  const [exteriorFile, setExteriorFile] = useState<FileWithPath[]>([]);
   const [active, setActive] = useState(0);
   const navigate = useNavigate();
 
@@ -37,17 +30,13 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<EditProperty>({
-    resolver: zodResolver(editPropertySchema),
+  } = useForm<PropertyForm>({
+    resolver: zodResolver(propertyFormSchema),
 
     defaultValues: {
       name: property.name,
       price: property.price,
       area: property.area,
-      images: {
-        interior: [],
-        exterior: [],
-      },
       type: property.type,
       floors: property.floors,
       Bathrooms: property.Bathrooms,
@@ -59,21 +48,13 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
   });
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: ({ formData, _id }: { formData: FormData; _id: string }) =>
-      updateProperty(formData, _id),
-    onSuccess: () => {
-      toast.success('Form Submitted Thanks!', {
-        icon: <IoShieldCheckmarkSharp size={20} />,
-        style: {
-          fontSize: '16px',
-          fontWeight: 'bold',
-          backgroundColor: '#06923E',
-          borderColor: '#06923E',
-          color: '#fff',
-        },
-      });
-      navigate('/properties');
-    },
+    mutationFn: ({
+      updateValues,
+      id,
+    }: {
+      updateValues: PropertyForm;
+      id: string;
+    }) => updateProperty(updateValues, id),
     onError: (error) => {
       toast.error(error.message, {
         icon: <IoWarningOutline size={20} />,
@@ -89,23 +70,8 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
     },
   });
 
-  const onSubmit: SubmitHandler<EditProperty> = async (data) => {
-    const formData = new FormData();
-    formData.append('name', data.name);
-    formData.append('type', data.type);
-    formData.append('description', data.description);
-    formData.append('price', data.price.toString());
-    formData.append('area', data.area.toString());
-    formData.append('floors', data.floors.toString());
-    formData.append('Bathrooms', data.Bathrooms.toString());
-    formData.append('beds', data.beds.toString());
-    formData.append('parking', data.parking.toString());
-    formData.append('location', data.location);
-
-    interiorFile.forEach((file) => formData.append('interior', file));
-    exteriorFile.forEach((file) => formData.append('exterior', file));
-
-    await mutateAsync({ formData, _id: property._id });
+  const onSubmit: SubmitHandler<PropertyForm> = async (data) => {
+    await mutateAsync({ updateValues: data, id: property._id });
   };
   const onError = (errors: any, event: any) => console.log(errors);
 
@@ -151,22 +117,6 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
             control={control}
           />
         </Stepper.Step>
-        <Stepper.Step
-          icon={<IoImagesSharp size={20} />}
-          label='Property Gallery'
-          color={errors.images ? 'red' : 'blue'}
-        >
-          {/* DropZone */}
-          <DropZone
-            control={control}
-            errors={errors}
-            matches={matches}
-            interiorFile={interiorFile}
-            setInteriorFile={setInteriorFile}
-            exteriorFile={exteriorFile}
-            setExteriorFile={setExteriorFile}
-          />
-        </Stepper.Step>
         <Stepper.Completed>
           <p
             className={`my-10 text-center text-white p-4 max-w-md mx-auto font-outfit font-medium rounded ${isValid ? 'bg-green-500' : 'bg-red-500'}`}
@@ -189,10 +139,10 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
         </Button>
         <Button
           onClick={() => {
-            if (active < 3) {
+            if (active < 2) {
               setActive((prev) => prev + 1);
             } else {
-              setActive(3);
+              setActive(2);
               handleSubmit(onSubmit)();
             }
           }}
@@ -200,7 +150,7 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
           size='sm'
           fz={'h4'}
         >
-          {active === 3 ? (isPending ? 'Submiting...' : 'Submit') : 'Next'}
+          {active === 2 ? (isPending ? 'Submiting...' : 'Submit') : 'Next'}
         </Button>
       </Group>
     </form>

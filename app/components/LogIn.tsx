@@ -33,6 +33,7 @@ const LogInForm = () => {
           name: data.user.name,
           email: data.user.email,
           id: data.user._id,
+          userType: data.user.userType,
         },
         data.accessToken
       );

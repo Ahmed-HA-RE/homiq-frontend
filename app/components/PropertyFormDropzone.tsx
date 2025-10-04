@@ -2,54 +2,50 @@ import { Flex, Text, Image } from '@mantine/core';
 import { FaFileUpload } from 'react-icons/fa';
 import { BsFillFileEarmarkXFill } from 'react-icons/bs';
 import { MdInsertPhoto } from 'react-icons/md';
-import type { FileWithPath } from '@mantine/dropzone';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import type { FieldErrors, Control } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
-import type { CreateProperty } from '~/schema/propertiesSchema';
+import type { UploadImages } from '~/schema/propertiesSchema';
+import useImageModalStore from '~/store/imageModalStore';
 
 type DropZoneProps = {
-  errors: FieldErrors<CreateProperty>;
-  control: Control<CreateProperty>;
+  errors: FieldErrors<UploadImages>;
+  control: Control<UploadImages>;
   matches: boolean;
-  interiorFile: FileWithPath[];
-  setInteriorFile: React.Dispatch<React.SetStateAction<FileWithPath[]>>;
-  exteriorFile: FileWithPath[];
-  setExteriorFile: React.Dispatch<React.SetStateAction<FileWithPath[]>>;
 };
 
-export function DropZone({
-  errors,
-  control,
-  matches,
-  interiorFile,
-  setInteriorFile,
-  exteriorFile,
-  setExteriorFile,
-}: DropZoneProps) {
-  const interiorPreview = interiorFile.map((file) => {
-    const path = URL.createObjectURL(file);
-    return <Image key={file.name} src={path} />;
+export function DropZone({ errors, control, matches }: DropZoneProps) {
+  const interiorFile = useImageModalStore((state) => state.interiorFiles);
+  const exteriorFile = useImageModalStore((state) => state.exteriorFiles);
+  const setInteriorFile = useImageModalStore((state) => state.setInteriorFile);
+  const setExteriorFile = useImageModalStore((state) => state.setExteriorFile);
+
+  const interiorPreview = interiorFile.map((files, index) => {
+    const imageURL = URL.createObjectURL(files);
+    return <img src={imageURL} key={index} />;
   });
-  const exteriorPreview = exteriorFile.map((file) => {
-    const path = URL.createObjectURL(file);
-    return <Image key={file.name} src={path} />;
+
+  const exteriorPreview = exteriorFile.map((files, index) => {
+    const imageURL = URL.createObjectURL(files);
+    return <img src={imageURL} key={index} />;
   });
 
   return (
-    <Flex gap={20} direction='column' mt={30}>
+    <>
       {/* Interior */}
-      <h1 className='text-center font-bold text-2xl sm:text-3xl '>
-        Interior Design
-      </h1>
-      {errors.images?.interior && (
-        <span className=' text-red-500 inline-block text-lg text-center'>
-          {errors.images.interior.message}
-        </span>
-      )}
+      <div className='text-center mb-4 mt-10'>
+        <h1 className='text-center font-bold text-2xl sm:text-3xl'>
+          Interior Design
+        </h1>
+        {errors?.interior && (
+          <span className=' text-red-500 inline-block'>
+            {errors.interior.message}
+          </span>
+        )}
+      </div>
       <Controller
         control={control}
-        name='images.interior'
+        name='interior'
         render={({ field }) => (
           <Dropzone
             {...field}
@@ -109,17 +105,19 @@ export function DropZone({
       />
 
       {/* Exterior */}
-      <h1 className=' text-center font-bold text-2xl sm:text-3xl '>
-        Exterior Design
-      </h1>
-      {errors.images?.exterior && (
-        <span className=' text-red-500 inline-block text-lg text-center'>
-          {errors.images.exterior.message}
-        </span>
-      )}
+      <div className='text-center mb-4 mt-10'>
+        <h1 className=' text-center font-bold text-2xl sm:text-3xl '>
+          Exterior Design
+        </h1>
+        {errors?.exterior && (
+          <span className=' text-red-500 text-center'>
+            {errors.exterior.message}
+          </span>
+        )}
+      </div>
       <Controller
         control={control}
-        name='images.exterior'
+        name='exterior'
         render={({ field }) => (
           <Dropzone
             {...field}
@@ -178,6 +176,6 @@ export function DropZone({
           </Dropzone>
         )}
       />
-    </Flex>
+    </>
   );
 }

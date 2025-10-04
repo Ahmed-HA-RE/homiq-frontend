@@ -29,6 +29,7 @@ export async function loginUser(credentials: LogIn) {
     });
     return data;
   } catch (error: any) {
+    console.log(error);
     let message = 'Something Went Wrong! Please try again later.';
 
     if (error.response?.data?.message === 'Invalid Credentials') {

@@ -22,7 +22,7 @@ export async function loader({
     const { data } = await api.get(`properties/${id}`);
     const parsed = propertySchema.parse(data);
     return { property: parsed };
-  } catch (error) {
+  } catch (error: any) {
     throw new Error('Failed to fetch project');
   }
 }
@@ -56,7 +56,8 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
               </span>
             </h1>
             <Group>
-              {user?.id !== property._id ? null : (
+              {user?.id !== property.user &&
+              user?.userType !== 'admin' ? null : (
                 <>
                   <Button
                     component={Link}

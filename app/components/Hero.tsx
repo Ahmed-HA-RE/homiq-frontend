@@ -42,7 +42,7 @@ const Hero = ({ title, subtitle, bgImage }: HeroProps) => {
       </div>
 
       {/* Overlay */}
-      <div className='absolute inset-0 bg-black/45 z-0'></div>
+      <div className='absolute inset-0 w-full bg-black/45 z-0'></div>
     </div>
   );
 };

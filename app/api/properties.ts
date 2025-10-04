@@ -1,5 +1,10 @@
 import api from '~/lib/axios';
-import { propertySchema, type Property } from '~/schema/propertiesSchema';
+import {
+  propertySchema,
+  type Property,
+  type PropertyForm,
+  type UploadImages,
+} from '~/schema/propertiesSchema';
 import z from 'zod';
 
 const propertiesSchema = z.array(propertySchema);
@@ -15,7 +20,7 @@ export async function getProperties(
 ): Promise<PropertiesPromise> {
   try {
     const { data } = await api.get(
-      `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/properties`,
+      `${import.meta.env.VITE_BACKEND_URL_DEVELOPMENT}/properties`,
       { params }
     );
 
@@ -47,11 +52,11 @@ export async function getLatestProperties() {
 }
 
 //Create new property
-export async function createProperty(formData: FormData): Promise<Property> {
+export async function createProperty(
+  newProperty: PropertyForm
+): Promise<Property> {
   try {
-    const { data } = await api.post('/properties', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    const { data } = await api.post('/properties', newProperty);
     return data;
   } catch (error: any) {
     let message = 'Something went wrong';
@@ -67,13 +72,11 @@ export async function createProperty(formData: FormData): Promise<Property> {
 
 //Update property
 export async function updateProperty(
-  formData: FormData,
-  _id: string
-): Promise<Property> {
+  updatedValues: PropertyForm,
+  id: string
+): Promise<PropertyForm> {
   try {
-    const { data } = await api.put(`/properties/${_id}`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    const { data } = await api.put(`/properties/${id}`, updatedValues);
     return data;
   } catch (error: any) {
     let message = 'Something went wrong';
@@ -104,3 +107,31 @@ export async function deleteProperty(_id: string) {
     throw new Error(message);
   }
 }
+
+type uploadPropertyImagesProps = {
+  id: string;
+  uploadImagesData: FormData;
+};
+
+// Upload Property Images
+export const uploadPropertyImages = async ({
+  id,
+  uploadImagesData,
+}: uploadPropertyImagesProps): Promise<Property> => {
+  try {
+    const { data } = await api.put(
+      `/properties/${id}/upload-images`,
+      uploadImagesData,
+      { headers: { 'Content-Type': 'multipart/form-data' } }
+    );
+    return data;
+  } catch (error: any) {
+    let message = 'Something went wrong. Please try again later';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    }
+
+    throw new Error(message);
+  }
+};

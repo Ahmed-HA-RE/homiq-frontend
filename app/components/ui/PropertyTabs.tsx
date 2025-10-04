@@ -4,9 +4,14 @@ import classes from '../../mantine-themes/mantine.module.css';
 type PropertyTabsProprs = {
   activeTabs: string;
   setActiveTabs: React.Dispatch<React.SetStateAction<string>>;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const PropertyTabs = ({ activeTabs, setActiveTabs }: PropertyTabsProprs) => {
+const PropertyTabs = ({
+  activeTabs,
+  setActiveTabs,
+  setPage,
+}: PropertyTabsProprs) => {
   return (
     <Tabs
       color='cyan'
@@ -18,6 +23,9 @@ const PropertyTabs = ({ activeTabs, setActiveTabs }: PropertyTabsProprs) => {
         root: classes.propertiesTabs_root,
         tab: classes.propertiesTabs_tab,
         list: classes.propertiesTabs_list,
+      }}
+      onClick={() => {
+        setPage(1);
       }}
     >
       <Tabs.List>

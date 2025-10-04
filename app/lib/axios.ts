@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { refreshAccessToken } from '~/api/auth';
 import { useAuthStore } from '~/store/authstore';
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_PRODUCTION;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEVELOPMENT;
 
 const setUser = useAuthStore.getState().setUser;
 
@@ -27,18 +27,26 @@ api.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
-      !originalRequest.url.includes('/auth/refresh')
+      !originalRequest.url.includes('/auth/refresh') &&
+      error.response?.data?.message ===
+        'Your session has expired. Please log in again.'
     ) {
       originalRequest._retry = true;
 
       const data = await refreshAccessToken();
       setUser(
-        { name: data.user.name, email: data.user.email, id: data.user._id },
+        {
+          name: data.user.name,
+          email: data.user.email,
+          id: data.user._id,
+          userType: data.user.userType,
+        },
         data.accessToken
       );
       originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
       return api(originalRequest);
     }
+
     return Promise.reject(error);
   }
 );

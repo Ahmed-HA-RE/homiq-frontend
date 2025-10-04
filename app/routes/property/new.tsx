@@ -1,7 +1,10 @@
 import NewPropertyForm from '~/components/NewPropertyForm';
 import Footer from '~/components/ui/Footer';
+import UploadImagesForm from '~/components/ui/UploadImagesForm';
+import useImageModalStore from '~/store/imageModalStore';
 
 const CreatePropertyForm = () => {
+  const propertyId = useImageModalStore((state) => state.propertyId);
   return (
     <>
       <main className='py-8 pb-10 pt-40 px-6 min-h-screen bg-gray-200'>
@@ -18,6 +21,11 @@ const CreatePropertyForm = () => {
           </div>
           {/* Form */}
           <NewPropertyForm />
+          {/* Upload image form */}
+          <UploadImagesForm
+            id={propertyId}
+            subtitle='Your property was saved. Would you like to add images too'
+          />
         </section>
       </main>
       <Footer />

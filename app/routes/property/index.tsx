@@ -1,8 +1,8 @@
-import type { Route } from '../../+types/root';
+import type { Route } from './+types';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '~/components/Spinner';
 import { useState } from 'react';
-import { getPaginatedProperties } from '~/api/properties';
+import { getPaginatedProperties, getProperties } from '~/api/properties';
 import PaginationComponent from '~/components/ui/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
@@ -10,6 +10,7 @@ import Footer from '~/components/ui/Footer';
 import PropertyCard from '~/components/ui/PropertyCard';
 import PropertyTabs from '~/components/ui/PropertyTabs';
 import { formatLocationName } from '~/utils/formatters';
+import type { Property } from '~/schema/propertiesSchema';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -27,7 +28,7 @@ const PropertiesPage = () => {
   const [activeTabs, setActiveTabs] = useState('all');
 
   // query to fetch limit projects
-  const { data, isLoading, isError } = useQuery({
+  const { data, isFetching, isError } = useQuery({
     queryKey: ['properties', page, activeTabs],
     queryFn: () => getPaginatedProperties(page, activeTabs),
   });
@@ -53,9 +54,10 @@ const PropertiesPage = () => {
             <PropertyTabs
               activeTabs={activeTabs}
               setActiveTabs={setActiveTabs}
+              setPage={setPage}
             />
 
-            {isLoading && <Spinner />}
+            {isFetching && <Spinner />}
             {isError && (
               <div className='min-h-screen flex items-start justify-center mt-10'>
                 <p className='text-2xl md:text-4xl text-white bg-red-300 py-3 px-4 rounded-lg'>
@@ -95,7 +97,7 @@ const PropertiesPage = () => {
             <PaginationComponent
               page={page}
               setPage={setPage}
-              total={data?.total_page}
+              total_page={data?.total_page}
             />
           )}
         </section>

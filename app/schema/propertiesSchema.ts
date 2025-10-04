@@ -48,7 +48,8 @@ export const propertySchema = z.object({
         .array(z.string().trim().toLowerCase(), {
           error: 'Must include at least 1 exterior image',
         })
-        .min(1, { error: 'Must include at least 1 exterior image' }),
+        .min(1, { error: 'Must include at least 1 exterior image' })
+        .max(1, { error: 'Max limit is only 1' }),
     },
     { error: 'Must include at least 1 interior and 1 exterior image' }
   ),
@@ -56,10 +57,27 @@ export const propertySchema = z.object({
 
 export type Property = z.infer<typeof propertySchema>;
 
-export const createPropertySchema = propertySchema.partial({ _id: true });
+// Schema for creating and updating property
+export const propertyFormSchema = propertySchema.omit({
+  images: true,
+  _id: true,
+  user: true,
+});
+export type PropertyForm = z.infer<typeof propertyFormSchema>;
 
-export type CreateProperty = z.infer<typeof createPropertySchema>;
+// Schema for uplading property images
+export const uploadImagesSchema = z.object({
+  interior: z
+    .array(z.string().trim().toLowerCase(), {
+      error: 'Must include at least 1 interior image',
+    })
+    .min(1, { error: 'Must include at least 1 interior image' }),
+  exterior: z
+    .array(z.string().trim().toLowerCase(), {
+      error: 'Must include at least 1 exterior image',
+    })
+    .min(1, { error: 'Must include at least 1 exterior image' })
+    .max(1, { error: 'Max limit is only 1' }),
+});
 
-export const editPropertySchema = propertySchema.partial({ _id: true });
-
-export type EditProperty = z.infer<typeof editPropertySchema>;
+export type UploadImages = z.infer<typeof uploadImagesSchema>;

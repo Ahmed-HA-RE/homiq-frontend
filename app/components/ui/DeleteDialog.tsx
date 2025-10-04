@@ -31,7 +31,7 @@ const DeleteDialog = ({ opened, close, property }: DeleteDialogProp) => {
           color: '#fff',
         },
       });
-      navigate('/auth/login');
+      navigate('/properties');
     },
   });
 

@@ -82,8 +82,9 @@ export default function App() {
       setUser(
         {
           id: data.user._id,
-          name: data.user._name,
+          name: data.user.name,
           email: data.user.email,
+          userType: data.user.userType,
         },
         data.accessToken
       );

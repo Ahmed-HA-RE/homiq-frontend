@@ -4,7 +4,7 @@ import { Divider, Flex, NumberInput, Select } from '@mantine/core';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
-import type { CreateProperty } from '~/schema/propertiesSchema';
+import { type PropertyForm } from '~/schema/propertiesSchema';
 
 const selectEmiratesData = [
   { value: 'abu_dhabi', label: 'Abu Dhabi' },
@@ -18,8 +18,8 @@ const selectEmiratesData = [
 
 type PropertyFormDetailsProps = {
   matches: boolean;
-  errors: FieldErrors<CreateProperty>;
-  control: Control<CreateProperty>;
+  errors: FieldErrors<PropertyForm>;
+  control: Control<PropertyForm>;
 };
 
 const PropertyFormDetails = ({

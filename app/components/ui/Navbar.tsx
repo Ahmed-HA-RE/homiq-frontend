@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from 'react-router';
 import { Button, Group } from '@mantine/core';
 import NavbarDrawer from './NavbarDrawer';
 import { useAuthStore } from '~/store/authstore';
+import { useLocation } from 'react-router';
 
 import classes from '../../mantine-themes/mantine.module.css';
 import { logoutUser } from '~/api/auth';
@@ -12,10 +13,11 @@ const Navbar = () => {
   const user = useAuthStore((state) => state.user);
   const setLogout = useAuthStore((state) => state.setLogout);
   const navigate = useNavigate();
+  const isHome = useLocation().pathname === '/';
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 50,
+    threshold: isHome ? 250 : 50,
   });
   return (
     <nav className='max-w-7xl mx-auto'>

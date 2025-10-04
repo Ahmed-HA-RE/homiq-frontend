@@ -3,6 +3,8 @@ import { type Property, propertySchema } from '~/schema/propertiesSchema';
 import EditPropertyForm from '~/components/EditPropertyForm ';
 import api from '~/lib/axios';
 import Footer from '~/components/ui/Footer';
+import UploadImagesForm from '~/components/ui/UploadImagesForm';
+import useImageModalStore from '~/store/imageModalStore';
 
 type LoaderReturn = {
   property: Property;
@@ -18,6 +20,7 @@ export async function loader({
 }
 
 const EditProperty = ({ loaderData }: Route.ComponentProps) => {
+  const setId = useImageModalStore((state) => state.setPropertyId);
   const { property } = loaderData;
 
   return (
@@ -34,9 +37,15 @@ const EditProperty = ({ loaderData }: Route.ComponentProps) => {
               before being published.
             </h3>
           </div>
+
           {/* Form */}
           <EditPropertyForm property={property} />
         </section>
+        {/* Upload image form */}
+        <UploadImagesForm
+          id={property._id}
+          subtitle='Your property was saved. Would you like to edit images too?'
+        />
       </main>
       <Footer />
     </>
