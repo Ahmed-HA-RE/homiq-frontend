@@ -57,7 +57,7 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
     <>
       <header>
         <Hero
-          bgImage='/images/header_img.png'
+          bgImage='https://res.cloudinary.com/ahmed--dev/image/upload/v1758479750/header_img_nhnkfl.jpg'
           title='your perfect home awaits'
           subtitle='Explore our handpicked villas and apartments across the UAE, see what satisfied residents have to say, and discover why our properties and services stand out—whether you’re buying or selling your home.'
         />

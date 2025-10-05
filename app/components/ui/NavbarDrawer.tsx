@@ -34,22 +34,22 @@ const NavbarDrawer = () => {
       <Drawer
         opened={opened}
         onClose={close}
-        size='xs'
+        size='sm'
         padding='md'
-        position='right'
+        position='top'
         hiddenFrom='sm'
         zIndex={1000000}
         overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
-        transitionProps={{ transition: 'slide-left', duration: 300 }}
+        transitionProps={{ transition: 'slide-down', duration: 300 }}
         closeButtonProps={{
           icon: <IoCloseCircle size={30} color='' />,
         }}
         styles={{
           content: {
-            backgroundColor: '#fff',
+            backgroundColor: '#1B1B1B',
           },
           header: {
-            backgroundColor: '#fff',
+            backgroundColor: 'transparent',
           },
           body: {
             display: 'flex',
@@ -57,12 +57,12 @@ const NavbarDrawer = () => {
             padding: 0,
           },
         }}
-        classNames={{ close: 'hover:!bg-black/10 ' }}
+        classNames={{ close: 'hover:!bg-black/50 ' }}
       >
         <Flex direction={'column'} justify={'start'} align={'start'}>
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
+              isActive ? 'mobile-slider-nav' : 'text-white mobile-slider-nav'
             }
             onClick={close}
             to='/'
@@ -71,7 +71,7 @@ const NavbarDrawer = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
+              isActive ? 'mobile-slider-nav' : 'text-white mobile-slider-nav'
             }
             onClick={close}
             to='/about'
@@ -80,7 +80,7 @@ const NavbarDrawer = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
+              isActive ? 'mobile-slider-nav' : 'text-white mobile-slider-nav'
             }
             onClick={close}
             to='/properties'
@@ -90,7 +90,7 @@ const NavbarDrawer = () => {
           {user && (
             <NavLink
               className={({ isActive }) =>
-                isActive ? 'mobile-slider-nav' : 'text-black mobile-slider-nav'
+                isActive ? 'mobile-slider-nav' : 'text-white mobile-slider-nav'
               }
               onClick={close}
               to='/contact-us'
@@ -135,7 +135,7 @@ const NavbarDrawer = () => {
               }}
               size='sm'
               component={Link}
-              to='/auth/signup'
+              to='/signup'
               styles={{
                 root: { backgroundColor: '#20B2AA' },
               }}

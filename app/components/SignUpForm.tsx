@@ -35,11 +35,13 @@ const SignUpForm = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: (data: SignUp) => signUpUser(data),
     onSuccess: (data) => {
+      console.log(data);
       setUser(
         {
           name: data.user.name,
           email: data.user.email,
           id: data.user._id,
+          userType: data.userType,
         },
         data.accessToken
       );
@@ -230,10 +232,10 @@ const SignUpForm = () => {
 
       {matches && <Divider color='gray' mt={30} />}
 
-      <h3 className='font-outfit text-black transition duration-300 text-base text-center md:text-left mt-6'>
+      <h3 className='font-outfit text-black transition duration-300 text-base mt-6'>
         Already Have an account ? {'  '}
         <Link
-          to={'/auth/login'}
+          to={'/login'}
           className='text-cyan-500 hover:underline underline-offset-4 decoration-1 cursor-pointer'
         >
           Log In

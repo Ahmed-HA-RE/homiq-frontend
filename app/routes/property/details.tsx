@@ -46,7 +46,7 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
 
   return (
     <>
-      <main className='p-4 pt-35 bg-gray-200'>
+      <main className='p-4 py-35  bg-gray-200'>
         <section className='mt-10 max-w-7xl mx-auto'>
           <Flex justify='space-between' align='center' px={matchesBr ? 20 : 10}>
             <h1 className='text-center text-4xl md:text-5xl font-medium'>

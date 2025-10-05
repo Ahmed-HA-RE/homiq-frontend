@@ -130,7 +130,7 @@ const Navbar = () => {
           ) : (
             <Button
               component={Link}
-              to='/auth/signup'
+              to='/signup'
               size='sm'
               classNames={{
                 root: '!hidden md:!block',

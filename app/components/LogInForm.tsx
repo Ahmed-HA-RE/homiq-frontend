@@ -1,5 +1,11 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { TextInput, PasswordInput, Button, Divider } from '@mantine/core';
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Divider,
+  Group,
+} from '@mantine/core';
 import classes from '../mantine-themes/mantine.module.css';
 import { MdAlternateEmail } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
@@ -104,6 +110,7 @@ const LogInForm = () => {
           fullWidth
           radius={'xl'}
           classNames={{ root: classes.modalBtnCta }}
+          disabled={isPending}
         >
           {isPending ? 'Logging In...' : 'Log In'}
         </Button>
@@ -117,15 +124,23 @@ const LogInForm = () => {
 
       {matches && <Divider color='gray' mt={30} />}
 
-      <h3 className='font-outfit text-black transition duration-300 text-base text-center md:text-left mt-6'>
-        Don't Have an account ? {'  '}
+      <Group justify='space-between' align='center' mt={20}>
+        <h3 className='font-outfit text-black  md:text-left '>
+          Don't Have an account ? {'  '}
+          <Link
+            to={'/signup'}
+            className='text-cyan-500 hover:underline underline-offset-4 decoration-1 cursor-pointer'
+          >
+            Sign Up
+          </Link>
+        </h3>
         <Link
-          to={'/auth/signup'}
-          className='text-cyan-500 hover:underline underline-offset-4 decoration-1 cursor-pointer'
+          to={'/recover-password'}
+          className='text-cyan-500 hover:underline underline-offset-4 decoration-1 cursor-pointer font-outfit capitalize'
         >
-          Sign Up
+          forgot password?
         </Link>
-      </h3>
+      </Group>
     </div>
   );
 };
