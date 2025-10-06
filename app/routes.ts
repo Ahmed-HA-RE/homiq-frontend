@@ -14,5 +14,5 @@ export default [
   route('/login', './routes/auth/login.tsx'),
   route('/recover-password', './routes/auth/recoverPassword.tsx'),
   route('/reset-password/:resetToken', './routes/auth/resetPassword.tsx'),
-  route('*', './routes/error/index.tsx'),
+  route('*', './routes/not-found/index.tsx'),
 ] satisfies RouteConfig;

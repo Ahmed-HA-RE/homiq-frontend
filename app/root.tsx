@@ -23,6 +23,7 @@ import Navbar from './components/ui/Navbar';
 import { useEffect } from 'react';
 import { refreshAccessToken } from './api/auth';
 import { useAuthStore } from './store/authstore';
+import ErrorPage from './components/ErrorPage';
 
 // new instance for query hooks
 const queryClient = new QueryClient();
@@ -100,12 +101,11 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = 'Oops!';
-  let details = 'An unexpected error occurred.';
+  const message = 'Something bad just happened...';
+  let details = `${import.meta.env.DEV ? 'An unexpected error occurred.' : 'Our servers could not handle your request. Don&apos;t worry, our development team was already notified. Try refreshing the page.'}`;
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
     details =
       error.status === 404
         ? 'The requested page could not be found.'
@@ -116,14 +116,6 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className='pt-40 p-4 bg-white'>
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className='w-full p-4 overflow-x-auto'>
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <ErrorPage status={401} details={details} stack={stack} message={message} />
   );
 }
