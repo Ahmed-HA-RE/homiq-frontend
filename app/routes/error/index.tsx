@@ -1,4 +1,16 @@
+import type { Route } from './+types';
 import Hero from '~/components/Hero';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Homiq | Page Not Found' },
+    {
+      name: 'description',
+      content:
+        'The page you are looking for could not be found. Return to Homiq’s homepage to continue exploring property listings and real estate opportunities.',
+    },
+  ];
+}
 
 const NotFoundPage = () => {
   return (

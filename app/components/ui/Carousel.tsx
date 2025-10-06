@@ -14,7 +14,7 @@ import Fade from '@mui/material/Fade';
 
 // import required modules
 import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
-import type { Property } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 import { Link } from 'react-router';
 
 type CourseSwiperProps = {

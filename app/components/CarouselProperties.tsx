@@ -1,5 +1,5 @@
 import CarouselSwiper from './ui/Carousel';
-import type { Property } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 
 const CarouselProperties = ({ properties }: { properties: Property[] }) => {
   return (

@@ -1,10 +1,11 @@
 import type { Route } from './+types/edit';
-import { type Property, propertySchema } from '~/schema/propertiesSchema';
+
 import EditPropertyForm from '~/components/EditPropertyForm ';
 import api from '~/lib/axios';
 import Footer from '~/components/ui/Footer';
 import UploadImagesForm from '~/components/ui/UploadImagesForm';
 import useImageModalStore from '~/store/imageModalStore';
+import type { Property } from '~/type';
 
 type LoaderReturn = {
   property: Property;
@@ -19,14 +20,24 @@ export async function loader({
   return { property: data };
 }
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Homiq | Edit Property Details' },
+    {
+      name: 'description',
+      content:
+        'Update your property information, images, and details to keep your Homiq listing accurate and appealing to potential clients.',
+    },
+  ];
+}
+
 const EditProperty = ({ loaderData }: Route.ComponentProps) => {
-  const setId = useImageModalStore((state) => state.setPropertyId);
   const { property } = loaderData;
 
   return (
     <>
-      <main className='py-8 pb-10 pt-40 px-6 min-h-screen bg-gray-200'>
-        <section className='max-w-5xl mx-auto'>
+      <main className='py-8 pb-10 pt-40 px-6 min-h-screen bg-white'>
+        <section className='max-w-7xl mx-auto'>
           {/* top content */}
           <div className='space-y-3'>
             <h1 className='text-3xl md:text-4xl text-center font-outfit font-bold'>

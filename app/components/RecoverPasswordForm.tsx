@@ -7,7 +7,7 @@ import {
   recoverPassSchema,
 } from '~/schema/authFormSchema';
 import classes from '../mantine-themes/mantine.module.css';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { recoverPassword } from '~/api/auth';
 import { MdAlternateEmail } from 'react-icons/md';
 
@@ -119,6 +119,12 @@ const RecoverPassowrdForm = () => {
           </div>
         )}
       </form>
+      <Link
+        className='inline-block text-end w-full pr-3 mt-2 font-outfit text-blue-500 hover:underline underline-offset-2'
+        to={'/login'}
+      >
+        Login
+      </Link>
     </div>
   );
 };

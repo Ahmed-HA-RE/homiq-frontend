@@ -3,7 +3,7 @@ import z from 'zod';
 import Glimpse from '~/components/Glimpse';
 import CarouselProperties from '~/components/CarouselProperties';
 import Hero from '~/components/Hero';
-import { type Property, propertySchema } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 import {
   type Testimonial,
   testimonialSchema,
@@ -25,7 +25,6 @@ export function meta({}: Route.MetaArgs) {
 }
 
 // Validate project and testimonial objects from backend and ensure correct array structure
-const propertiesSchema = z.array(propertySchema);
 const testimonialsSchema = z.array(testimonialSchema);
 
 type LoaderReturn = {
@@ -42,10 +41,9 @@ export async function loader({
       getTestimonials(),
     ]);
 
-    const parsedProperties = propertiesSchema.parse(properties);
     const parsedtestimonials = testimonialsSchema.parse(testimonials);
 
-    return { properties: parsedProperties, testimonials: parsedtestimonials };
+    return { properties, testimonials: parsedtestimonials };
   } catch (error: any) {
     throw new Error(error.message);
   }

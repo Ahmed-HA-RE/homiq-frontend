@@ -1,3 +1,4 @@
+import type { Route } from './+types';
 import {
   FaFacebookSquare,
   FaMeetup,
@@ -5,6 +6,17 @@ import {
   FaLinkedin,
 } from 'react-icons/fa';
 import ContactForm from '~/components/ContactUsForm';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Homiq | Contact Us' },
+    {
+      name: 'description',
+      content:
+        'Get in touch with the Homiq team for inquiries, support, or partnership opportunities. We’re here to help you with your real estate journey.',
+    },
+  ];
+}
 
 const ContactPage = () => {
   return (

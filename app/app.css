@@ -12,6 +12,11 @@
   --color-user-experience: #0e2148;
   --color-link: #30e3ca;
   --color-secondary-link: #1eae9b;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1024px;
+  --breakpoint-2xl: 1250px;
 
   --background-image-gradient-review: linear-gradient(
     to right,
@@ -53,7 +58,7 @@
   }
 
   .desktop-nav-items {
-    @apply text-white font-outfit hover:text-cyan-500 transition-colors duration-200 font-semibold;
+    @apply text-black font-outfit hover:text-cyan-500 transition-colors duration-200 font-light;
   }
 
   .about-stats-numbers {
@@ -73,7 +78,7 @@
 
   body,
   html {
-    @apply bg-gray-200;
+    @apply bg-white;
   }
 }
 

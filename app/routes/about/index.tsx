@@ -10,6 +10,17 @@ import AgentsSection from '~/components/ui/AgentsCard';
 import Footer from '~/components/ui/Footer';
 import { useAuthStore } from '~/store/authstore';
 
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Homiq | About Us' },
+    {
+      name: 'description',
+      content:
+        'Learn more about Homiq — our mission, vision, and the passionate team helping you find your dream home with ease and confidence.',
+    },
+  ];
+}
+
 type LoaderReturn = {
   agents: AgentData[];
 };

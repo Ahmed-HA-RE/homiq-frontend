@@ -22,7 +22,9 @@ const PropertyDetailsInfo = ({ property }: { property: Property }) => {
               {/* info */}
               <div className='flex flex-col items-start'>
                 <h4 className='text-gray-700'>Area:</h4>
-                <span className='text-xs text-gray-400'>{property.area}</span>
+                <span className='text-xs text-gray-400'>
+                  {property.area} Sqft
+                </span>
               </div>
             </div>
           </li>

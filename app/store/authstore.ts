@@ -3,7 +3,12 @@ import { devtools } from 'zustand/middleware';
 
 type AuthStoreProps = {
   token: string | null;
-  user: { id: string; name: string; email: string; userType: string } | null;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    userType: string;
+  } | null;
   setUser: (user: AuthStoreProps['user'], token: string) => void;
   setLogout: () => void;
 };

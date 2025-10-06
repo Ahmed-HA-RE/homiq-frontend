@@ -1,3 +1,4 @@
+import type { Route } from './+types';
 import {
   FaFacebookSquare,
   FaInstagram,
@@ -5,6 +6,17 @@ import {
   FaMeetup,
 } from 'react-icons/fa';
 import AddReview from '~/components/AddReview';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Homiq | Share Your Review' },
+    {
+      name: 'description',
+      content:
+        'Share your experience with Homiq. Your feedback helps us improve and assist others in finding the perfect property.',
+    },
+  ];
+}
 const AddReviewPage = () => {
   return (
     <section className='min-h-screen bg-contact-primary w-full grid grid-cols-1 lg:grid-cols-2 items-center bg-gradient-review pt-20 lg:pt-0 '>

@@ -35,7 +35,6 @@ const SignUpForm = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: (data: SignUp) => signUpUser(data),
     onSuccess: (data) => {
-      console.log(data);
       setUser(
         {
           name: data.user.name,

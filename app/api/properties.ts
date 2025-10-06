@@ -1,17 +1,10 @@
 import api from '~/lib/axios';
-import {
-  propertySchema,
-  type Property,
-  type PropertyForm,
-  type UploadImages,
-} from '~/schema/propertiesSchema';
-import z from 'zod';
-
-const propertiesSchema = z.array(propertySchema);
+import { type PropertyForm } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 
 type PropertiesPromise = {
   total_page: number;
-  data: Property[];
+  results: Property[];
 };
 
 // fetch all properties
@@ -24,8 +17,7 @@ export async function getProperties(
       { params }
     );
 
-    const parsed = propertiesSchema.parse(data.data);
-    return { data: parsed, total_page: data.pagination.total_page };
+    return { results: data.results, total_page: data.pagination.total_page };
   } catch (error: any) {
     let message = 'Something went wrong';
 
@@ -42,13 +34,14 @@ export async function getProperties(
 // paginated properties
 export async function getPaginatedProperties(page: number, location: string) {
   const data = await getProperties({ page: page, limit: 4, location });
+  console.log(data);
   return data;
 }
 
 // fetch latest properties
 export async function getLatestProperties() {
-  const { data } = await getProperties({ sort: '-createdAt', limit: 3 });
-  return data;
+  const data = await getProperties({ sort: '-createdAt', limit: 3 });
+  return data.results;
 }
 
 //Create new property
@@ -117,7 +110,7 @@ type uploadPropertyImagesProps = {
 export const uploadPropertyImages = async ({
   id,
   uploadImagesData,
-}: uploadPropertyImagesProps): Promise<Property> => {
+}: uploadPropertyImagesProps): Promise<Property[]> => {
   try {
     const { data } = await api.put(
       `/properties/${id}/upload-images`,

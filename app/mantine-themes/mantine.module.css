@@ -47,17 +47,26 @@
   font-family: Roboto;
 }
 
-.add_propertyBtn {
-  background-color: #fff;
-  border: 1px solid #068fff;
-  color: #068fff;
+.add_propertyBtn_drawer {
+  color: #fff;
 
   &:hover {
     background-color: #068fff;
-    color: #fff;
-    border-color: #fff;
   }
   transition: all 0.2s;
+  width: 100%;
+  max-width: 250px;
+}
+
+.logout_drawer_Btn {
+  color: #fff;
+  background-color: red;
+  &:hover {
+    background-color: #dc2525;
+  }
+  transition: all 0.2s;
+  width: 100%;
+  max-width: 250px;
 }
 
 .project_edit_Btn {
@@ -177,4 +186,32 @@
 
 .modal_header {
   background-color: transparent;
+}
+
+/* card */
+.card {
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+}
+
+.section_card {
+  border-bottom: 1px solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  padding-left: var(--mantine-spacing-md);
+  padding-right: var(--mantine-spacing-md);
+  padding-bottom: var(--mantine-spacing-md);
+}
+
+.like_card {
+  color: var(--mantine-color-red-6);
+  width: 20px;
+  height: 20px;
+}
+
+.label_card {
+  text-transform: capitalize;
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 700;
 }

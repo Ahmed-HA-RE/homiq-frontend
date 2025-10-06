@@ -1,5 +1,5 @@
 import PropertyDetails from '~/components/PropertyDetails';
-import { propertySchema, type Property } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 import type { Route } from './+types/details';
 import api from '~/lib/axios';
 import { useDisclosure } from '@mantine/hooks';
@@ -11,20 +11,10 @@ import { Link } from 'react-router';
 import DeleteDialog from '~/components/ui/DeleteDialog';
 import { useAuthStore } from '~/store/authstore';
 
-type LoaderReturn = {
-  property: Property;
-};
-export async function loader({
-  params,
-}: Route.LoaderArgs): Promise<LoaderReturn> {
-  try {
-    const { id } = params;
-    const { data } = await api.get(`properties/${id}`);
-    const parsed = propertySchema.parse(data);
-    return { property: parsed };
-  } catch (error: any) {
-    throw new Error('Failed to fetch project');
-  }
+export async function loader({ params }: Route.LoaderArgs): Promise<Property> {
+  const { id } = params;
+  const { data } = await api.get(`properties/${id}`);
+  return data;
 }
 
 export function meta({}: Route.MetaArgs) {
@@ -39,14 +29,14 @@ export function meta({}: Route.MetaArgs) {
 }
 
 const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
-  const { property } = loaderData;
+  const property = loaderData;
   const matchesBr = useMediaQuery('(min-width:768px)');
   const [opened, { toggle, close }] = useDisclosure(false);
   const user = useAuthStore((state) => state.user);
 
   return (
     <>
-      <main className='p-4 py-35  bg-gray-200'>
+      <main className='p-4 py-35  bg-white'>
         <section className='mt-10 max-w-7xl mx-auto'>
           <Flex justify='space-between' align='center' px={matchesBr ? 20 : 10}>
             <h1 className='text-center text-4xl md:text-5xl font-medium'>
@@ -56,7 +46,7 @@ const ProjectDetailsPage = ({ loaderData }: Route.ComponentProps) => {
               </span>
             </h1>
             <Group>
-              {user?.id !== property.user &&
+              {user?.id !== property.user._id &&
               user?.userType !== 'admin' ? null : (
                 <>
                   <Button

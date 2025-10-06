@@ -1,10 +1,7 @@
-import AppBar from '@mui/material/AppBar';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { Button, Group } from '@mantine/core';
 import NavbarDrawer from './NavbarDrawer';
 import { useAuthStore } from '~/store/authstore';
-import { useLocation } from 'react-router';
 
 import classes from '../../mantine-themes/mantine.module.css';
 import { logoutUser } from '~/api/auth';
@@ -13,34 +10,11 @@ const Navbar = () => {
   const user = useAuthStore((state) => state.user);
   const setLogout = useAuthStore((state) => state.setLogout);
   const navigate = useNavigate();
-  const isHome = useLocation().pathname === '/';
-
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: isHome ? 250 : 50,
-  });
   return (
-    <nav className='max-w-7xl mx-auto'>
-      <AppBar
-        component={'div'}
-        position='fixed'
-        sx={{
-          p: '20px 25px',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          backgroundColor: trigger ? 'rgba(0, 0, 0, 0.85)' : 'transparent',
-          boxShadow: 'none',
-          transition: 'all ease-in-out 0.25s',
-          zIndex: 10,
-        }}
-      >
+    <nav className='max-w-7xl mx-auto absolute z-10 w-full p-6 inset-0'>
+      <div className='flex justify-between flex-row items-center'>
         <div className='flex flex-row items-center justify-center space-x-10'>
-          <Link
-            className='font-outfit text-3xl text-white font-semibold'
-            to={'/'}
-          >
+          <Link className='font-outfit text-3xl text-black font-light' to={'/'}>
             Homiq
           </Link>
           {/* Desktop nav */}
@@ -95,6 +69,20 @@ const Navbar = () => {
                 </NavLink>
               </li>
             )}
+            {user && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-cyan-500 font-outfit font-bold'
+                      : 'desktop-nav-items'
+                  }
+                  to={`/my-properties`}
+                >
+                  My Properties
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
 
@@ -113,12 +101,8 @@ const Navbar = () => {
           {user ? (
             <Button
               size='sm'
-              classNames={{
-                root: '!hidden md:!block',
-              }}
-              styles={{
-                root: { backgroundColor: 'red' },
-              }}
+              visibleFrom='sm'
+              classNames={{ root: classes.add_propertyBtn }}
               onClick={() => {
                 setLogout();
                 logoutUser();
@@ -131,21 +115,15 @@ const Navbar = () => {
             <Button
               component={Link}
               to='/signup'
-              size='sm'
-              classNames={{
-                root: '!hidden md:!block',
-              }}
-              styles={{
-                root: { backgroundColor: '#20B2AA' },
-              }}
+              visibleFrom='sm'
+              classNames={{ root: classes.add_propertyBtn }}
             >
               Get Started
             </Button>
           )}
         </Group>
-
         <NavbarDrawer />
-      </AppBar>
+      </div>
     </nav>
   );
 };

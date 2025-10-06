@@ -7,7 +7,7 @@ export async function getTestimonials(): Promise<Testimonial[]> {
     const { data } = await api.get(
       `${import.meta.env.VITE_BACKEND_URL_DEVELOPMENT}/testimonials`
     );
-    return data.data;
+    return data.results;
   } catch (error: any) {
     let message = 'Something Went Wrong';
 

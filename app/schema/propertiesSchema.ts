@@ -1,8 +1,7 @@
 import z from 'zod';
 
-export const propertySchema = z.object({
-  _id: z.string().nonempty(),
-  user: z.string().nonempty().optional(),
+// Schema for creating and updating property
+export const propertyFormSchema = z.object({
   name: z
     .string()
     .nonempty({ error: 'Property name is required' })
@@ -37,35 +36,11 @@ export const propertySchema = z.object({
     .number({ error: 'Garage is required' })
     .min(1, { error: 'Garage must be at least 1' })
     .max(6, { error: 'Garage cannot exceed  6' }),
-  images: z.object(
-    {
-      interior: z
-        .array(z.string().trim().toLowerCase(), {
-          error: 'Must include at least 1 interior image',
-        })
-        .min(1, { error: 'Must include at least 1 interior image' }),
-      exterior: z
-        .array(z.string().trim().toLowerCase(), {
-          error: 'Must include at least 1 exterior image',
-        })
-        .min(1, { error: 'Must include at least 1 exterior image' })
-        .max(1, { error: 'Max limit is only 1' }),
-    },
-    { error: 'Must include at least 1 interior and 1 exterior image' }
-  ),
-});
-
-export type Property = z.infer<typeof propertySchema>;
-
-// Schema for creating and updating property
-export const propertyFormSchema = propertySchema.omit({
-  images: true,
-  _id: true,
-  user: true,
+  amenities: z.array(z.string()),
 });
 export type PropertyForm = z.infer<typeof propertyFormSchema>;
 
-// Schema for uplading property images
+// Schema for uploding property images
 export const uploadImagesSchema = z.object({
   interior: z
     .array(z.string().trim().toLowerCase(), {
