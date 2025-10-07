@@ -62,12 +62,12 @@ const ContactForm = () => {
           label='Message'
           withAsterisk
           styles={{
-            label: { color: '#fff', margin: '0 0 4px', fontSize: '15px' },
+            label: { color: 'black', margin: '0 0 4px', fontSize: '15px' },
             input: {
               backgroundColor: 'transparent',
               fontFamily: 'inherit',
-              color: '#fff',
-              borderColor: '#fff',
+              color: 'black',
+              borderColor: 'black',
               height: '200px',
             },
             error: { marginLeft: '5px' },
@@ -85,7 +85,7 @@ const ContactForm = () => {
         />
       </div>
       <button
-        className='w-full bg-blue-600 text-white font-outfit py-3 rounded-md cursor-pointer hover:bg-blue-700 !font-bold transition duration-200'
+        className='w-full bg-white border text-black font-outfit py-3 rounded-md cursor-pointer hover:bg-black hover:text-white !font-bold transition duration-200'
         type='submit'
         disabled={isPending}
       >

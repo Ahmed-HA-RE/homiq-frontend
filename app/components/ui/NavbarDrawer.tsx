@@ -1,6 +1,4 @@
 import { Button, Divider, Drawer, Flex, Group } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoCloseCircle } from 'react-icons/io5';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { useAuthStore } from '~/store/authstore';
@@ -9,29 +7,18 @@ import { Overlay } from '@mantine/core';
 import classes from '../../mantine-themes/mantine.module.css';
 import { logoutUser } from '~/api/auth';
 
-const NavbarDrawer = () => {
-  const [opened, { open, close }] = useDisclosure(false);
+type NavbarDrawerProps = {
+  opened: boolean;
+  close: () => void;
+};
 
+const NavbarDrawer = ({ opened, close }: NavbarDrawerProps) => {
   const user = useAuthStore((state) => state.user);
   const setLogout = useAuthStore((state) => state.setLogout);
   const navigate = useNavigate();
 
   return (
     <>
-      <Button
-        variant='transparent'
-        color='#fff'
-        onClick={open}
-        classNames={{ root: '!block md:!hidden' }}
-        styles={{
-          root: {
-            padding: '0',
-          },
-        }}
-      >
-        <RxHamburgerMenu size={34} />
-      </Button>
-
       <Drawer
         opened={opened}
         onClose={close}
@@ -103,19 +90,6 @@ const NavbarDrawer = () => {
                 Contact Us
               </NavLink>
             )}
-            {user && (
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? 'mobile-slider-nav'
-                    : 'text-white mobile-slider-nav'
-                }
-                to={'/my-properties'}
-                onClick={close}
-              >
-                My Properties
-              </NavLink>
-            )}
           </Flex>
 
           <Divider mb='md' />
@@ -129,18 +103,6 @@ const NavbarDrawer = () => {
           >
             {user ? (
               <>
-                <Button
-                  onClick={() => {
-                    close();
-                    setLogout();
-                    logoutUser();
-                    navigate('/');
-                  }}
-                  size='sm'
-                  classNames={{ root: classes.logout_drawer_Btn }}
-                >
-                  Log Out
-                </Button>
                 <Button
                   onClick={close}
                   component={Link}

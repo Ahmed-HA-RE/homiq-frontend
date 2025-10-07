@@ -1,8 +1,6 @@
-import { TextInput, Textarea, Select } from '@mantine/core';
+import { Textarea } from '@mantine/core';
 import { useForm, type SubmitHandler, Controller } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { FaUser } from 'react-icons/fa';
-import { MdOutlineWork } from 'react-icons/md';
 import { toast } from 'sonner';
 import { createTestimonial } from '~/api/getTestimonials';
 import { IoShieldCheckmarkSharp, IoWarningOutline } from 'react-icons/io5';
@@ -61,12 +59,13 @@ const AddReview = () => {
           label='Feedback'
           withAsterisk
           styles={{
-            label: { color: '#fff', margin: '0 0 4px', fontSize: '15px' },
+            label: { color: 'black', margin: '0 0 4px', fontSize: '15px' },
             input: {
               backgroundColor: 'transparent',
               fontFamily: 'inherit',
-              color: '#fff',
+              color: 'black',
               height: '200px',
+              borderColor: 'black',
             },
             error: { marginLeft: '5px' },
           }}

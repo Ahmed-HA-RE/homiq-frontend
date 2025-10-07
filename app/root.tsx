@@ -19,11 +19,12 @@ import './app.css';
 import { Toaster } from './components/ui/sonner';
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import Navbar from './components/ui/Navbar';
+
 import { useEffect } from 'react';
 import { refreshAccessToken } from './api/auth';
 import { useAuthStore } from './store/authstore';
 import ErrorPage from './components/ErrorPage';
+import Navbar from './components/Navbar/Navbar';
 
 // new instance for query hooks
 const queryClient = new QueryClient();
@@ -57,8 +58,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className='h-21'>
         <MantineProvider>
-          <Navbar />
-          {children}
+          <QueryClientProvider client={queryClient}>
+            <Navbar />
+            {children}
+          </QueryClientProvider>
+          {/* <Navbar /> */}
         </MantineProvider>
         <ScrollRestoration />
         <Scripts />
@@ -93,11 +97,7 @@ export default function App() {
     refreshUser();
   }, []);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <Outlet />
-    </QueryClientProvider>
-  );
+  return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

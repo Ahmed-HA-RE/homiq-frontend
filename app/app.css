@@ -24,10 +24,11 @@
     #1565c0
   );
   --background-image-gradient-contact: linear-gradient(
-    to right,
-    #00c6ff,
-    #0072ff
+    90deg,
+    #fefefe 0%,
+    #ffe4e1 100%
   );
+
   --background-image-gradient-create-project: linear-gradient(
     to bottom,
     #8e9eab,

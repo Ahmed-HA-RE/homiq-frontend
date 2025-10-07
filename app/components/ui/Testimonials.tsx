@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { cn } from '~/utils/utils';
-import { Avatar, AvatarFallback } from './Avatar';
+import { Avatar, AvatarFallback } from './avatar';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 import { type Testimonial } from '~/schema/testimonialsSchema';
@@ -165,7 +165,7 @@ const TestimonialsCarousel = ({
       </div>
       <div className='p-4 sm:p-0'>
         <Link
-          to={`${user ? '/reviews/add' : '/auth/login'}`}
+          to={`${user ? '/reviews/add' : '/login'}`}
           className='p-4 mt-8 w-full text-center bg-cyan-500 font-outfit rounded text-white flex justify-center text-lg max-w-md mx-auto hover:bg-cyan-600 hover:scale-90 transition duration-200 '
         >
           {user ? 'Add Your Review' : 'Please Log In to share your review'}

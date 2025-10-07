@@ -100,6 +100,7 @@ type User = {
   name: string;
   role: string;
   userType: 'admin' | 'user';
+  avatar: string;
 };
 
 export async function resetPassword({
@@ -114,6 +115,21 @@ export async function resetPassword({
       `/auth/reset-password/${resetToken}`,
       credentials
     );
+    return data;
+  } catch (error: any) {
+    let message = 'Something Went Wrong! Please try again later.';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    }
+
+    throw new Error(message);
+  }
+}
+
+export async function getMe(): Promise<User> {
+  try {
+    const { data } = await api.get('/auth/me');
     return data;
   } catch (error: any) {
     let message = 'Something Went Wrong! Please try again later.';

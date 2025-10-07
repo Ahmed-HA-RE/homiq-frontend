@@ -34,7 +34,6 @@ export async function getProperties(
 // paginated properties
 export async function getPaginatedProperties(page: number, location: string) {
   const data = await getProperties({ page: page, limit: 4, location });
-  console.log(data);
   return data;
 }
 
