@@ -3,7 +3,7 @@ import z from 'zod';
 import Glimpse from '~/components/Glimpse';
 import CarouselProperties from '~/components/CarouselProperties';
 import Hero from '~/components/Hero';
-import type { Property } from '~/type';
+import type { CarouselProperty } from '~/type';
 import {
   type Testimonial,
   testimonialSchema,
@@ -28,7 +28,7 @@ export function meta({}: Route.MetaArgs) {
 const testimonialsSchema = z.array(testimonialSchema);
 
 type LoaderReturn = {
-  properties: Property[];
+  properties: CarouselProperty[];
   testimonials: Testimonial[];
 };
 

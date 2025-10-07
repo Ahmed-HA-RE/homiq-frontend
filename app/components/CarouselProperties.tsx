@@ -1,7 +1,29 @@
-import CarouselSwiper from './ui/Carousel';
-import type { Property } from '~/type';
+// import CarouselSwiper from './ui/Carousel';
+import type { CarouselProperty } from '~/type';
+import Autoplay from 'embla-carousel-autoplay';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from './ui/carousel';
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from './ui/card';
+import { Button } from './ui/button';
+import { Link } from 'react-router';
+import { formatLocationName } from '~/utils/formatters';
 
-const CarouselProperties = ({ properties }: { properties: Property[] }) => {
+const CarouselProperties = ({
+  properties,
+}: {
+  properties: CarouselProperty[];
+}) => {
   return (
     <section
       id='projects'
@@ -18,7 +40,52 @@ const CarouselProperties = ({ properties }: { properties: Property[] }) => {
           and client satisfaction—whether you’re looking to buy or sell.
         </p>
       </div>
-      <CarouselSwiper properties={properties} />
+
+      {/* Carousel */}
+      <Carousel
+        opts={{
+          align: 'start',
+          loop: true,
+        }}
+        className='w-full mx-auto'
+        plugins={[
+          Autoplay({
+            delay: 2000,
+          }),
+        ]}
+      >
+        <CarouselContent className='-ml-1'>
+          {properties.map((property) => (
+            <CarouselItem key={property._id} className='pl-1 md:basis-1/2'>
+              <Card
+                className='p-0 h-[600px] bg-no-repeat bg-cover bg-center border-0'
+                style={{ backgroundImage: `url(${property.images.exterior})` }}
+              >
+                <CardHeader className='pt-7'>
+                  <CardDescription className='uppercase font-outfit font-bold text-gray-50'>
+                    {formatLocationName(property.location)}
+                  </CardDescription>
+                  <CardTitle className='text-3xl text-white font-bold font-outfit'>
+                    {property.name}
+                  </CardTitle>
+                </CardHeader>
+                <CardFooter className='text-right items-end pb-7  h-full w-full'>
+                  <Button
+                    asChild
+                    className='text-black hover:bg-gray-50 bg-white'
+                  >
+                    <Link to={`/properties/${property._id}`} className=''>
+                      Learn More
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </section>
   );
 };

@@ -39,7 +39,11 @@ export async function getPaginatedProperties(page: number, location: string) {
 
 // fetch latest properties
 export async function getLatestProperties() {
-  const data = await getProperties({ sort: '-createdAt', limit: 3 });
+  const data = await getProperties({
+    sort: '-createdAt',
+    limit: 3,
+    select: 'name images.exterior location',
+  });
   return data.results;
 }
 

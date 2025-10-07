@@ -21,3 +21,8 @@ export type Property = {
     email: string;
   };
 };
+
+export type CarouselProperty = Pick<
+  Property,
+  '_id' | 'name' | 'location' | 'images'
+>;
