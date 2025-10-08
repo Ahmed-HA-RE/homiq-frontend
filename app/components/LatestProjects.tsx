@@ -1,4 +1,3 @@
-// import CarouselSwiper from './ui/Carousel';
 import type { CarouselProperty } from '~/type';
 import Autoplay from 'embla-carousel-autoplay';
 import {
@@ -19,15 +18,11 @@ import { Button } from './ui/button';
 import { Link } from 'react-router';
 import { formatLocationName } from '~/utils/formatters';
 
-const CarouselProperties = ({
-  properties,
-}: {
-  properties: CarouselProperty[];
-}) => {
+const LatestProjects = ({ properties }: { properties: CarouselProperty[] }) => {
   return (
     <section
       id='projects'
-      className='p-4 mt-20 my-4 max-w-4xl mx-auto relative z-0'
+      className='p-4 mt-40 my-4 max-w-4xl mx-auto relative z-0'
     >
       {/*project section - project completed */}
       <div className='text-center mb-8'>
@@ -90,4 +85,4 @@ const CarouselProperties = ({
   );
 };
 
-export default CarouselProperties;
+export default LatestProjects;

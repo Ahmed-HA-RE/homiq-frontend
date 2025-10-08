@@ -17,7 +17,6 @@ import { FaClipboardList } from 'react-icons/fa';
 import { IoWarningOutline } from 'react-icons/io5';
 
 import classes from '../mantine-themes/mantine.module.css';
-import { useNavigate } from 'react-router';
 import useImageModalStore from '~/store/imageModalStore';
 const NewPropertyForm = () => {
   const matches = useMediaQuery('(min-width:768px)');
@@ -32,17 +31,16 @@ const NewPropertyForm = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<PropertyForm>({
-    resolver: zodResolver(propertyFormSchema),
+    resolver: zodResolver(propertyFormSchema) as any,
     defaultValues: {
       name: '',
-      price: 0,
-      area: 0,
       type: 'villa',
       floors: 1,
       Bathrooms: 1,
       beds: 1,
       parking: 1,
       location: 'sharjah',
+      amenities: [],
     },
   });
 
@@ -113,6 +111,7 @@ const NewPropertyForm = () => {
             errors={errors}
             matches={matches}
             control={control}
+            register={register}
           />
         </Stepper.Step>
         <Stepper.Completed>

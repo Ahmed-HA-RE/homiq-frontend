@@ -36,7 +36,19 @@ export const propertyFormSchema = z.object({
     .number({ error: 'Garage is required' })
     .min(1, { error: 'Garage must be at least 1' })
     .max(6, { error: 'Garage cannot exceed  6' }),
-  amenities: z.array(z.string()),
+  amenities: z.preprocess(
+    (val) => {
+      if (typeof val === 'string') {
+        return val
+          .split(',')
+          .map((v) => v.trim())
+          .filter((v) => v !== '');
+      }
+      if (Array.isArray(val)) return val;
+      return [];
+    },
+    z.array(z.string()).min(1, { error: 'Please add at least one amenity' })
+  ),
 });
 export type PropertyForm = z.infer<typeof propertyFormSchema>;
 

@@ -63,7 +63,7 @@ export default function UserMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem asChild>
-            <Link to={'/settings'} className='cursor-pointer'>
+            <Link to={'/settings/account'} className='cursor-pointer'>
               <BoltIcon size={16} className='opacity-60' aria-hidden='true' />
               <span>Settings</span>
             </Link>
@@ -82,8 +82,8 @@ export default function UserMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className='cursor-pointer'
-          onClick={() => {
-            logoutUser();
+          onClick={async () => {
+            await logoutUser();
             setLogout();
             navigate('/');
             queryClient.removeQueries({ queryKey: ['user'] });

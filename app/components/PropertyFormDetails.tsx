@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core';
+import { Box, TextInput } from '@mantine/core';
 import classes from '../mantine-themes/mantine.module.css';
 import { Divider, Flex, NumberInput, Select } from '@mantine/core';
 import { FaMapLocationDot } from 'react-icons/fa6';
@@ -20,11 +20,13 @@ type PropertyFormDetailsProps = {
   matches: boolean;
   errors: FieldErrors<PropertyForm>;
   control: Control<PropertyForm>;
+  register: UseFormRegister<PropertyForm>;
 };
 
 const PropertyFormDetails = ({
   matches,
   errors,
+  register,
   control,
 }: PropertyFormDetailsProps) => {
   return (
@@ -80,7 +82,7 @@ const PropertyFormDetails = ({
               decimalScale={4}
               classNames={{
                 label: classes.labelInput_projects,
-                input: !errors.floors
+                input: !errors.area
                   ? classes.input_AddProject
                   : classes.errorInput_AddProject,
               }}
@@ -196,41 +198,65 @@ const PropertyFormDetails = ({
         />
       </Flex>
 
-      {/* Location */}
-      <Controller
-        control={control}
-        name='location'
-        render={({ field }) => (
-          <Select
-            {...field}
-            label='Location'
-            withAsterisk
-            flex={1}
-            data={selectEmiratesData}
-            allowDeselect={false}
-            checkIconPosition='right'
-            comboboxProps={{
-              position: 'bottom-start',
-              width: 230,
-              transitionProps: { transition: 'scale', duration: 300 },
-            }}
-            rightSection={
-              <FaMapLocationDot
-                size={24}
-                color={!errors.location ? 'black' : 'red'}
-              />
-            }
-            classNames={{
-              label: classes.labelInput_projects,
-              input: !errors.location
-                ? classes.input_AddProject
-                : classes.errorInput_AddProject,
-              section: classes.inputSection,
-            }}
-            error={errors.location?.message}
-          />
-        )}
-      />
+      <Flex
+        justify='center'
+        direction={matches ? 'row' : 'column'}
+        columnGap={'md'}
+        gap={10}
+      >
+        {/* Amenities */}
+        <TextInput
+          label='Amenities'
+          withAsterisk
+          flex={1}
+          radius={'sm'}
+          placeholder='e.g. Pool, Gym, Parking, Balcony'
+          classNames={{
+            label: classes.labelInput_projects,
+            input: !errors.amenities
+              ? classes.input_AddProject
+              : classes.errorInput_AddProject,
+          }}
+          {...register('amenities')}
+          error={errors.amenities?.message}
+        />
+
+        {/* Location */}
+        <Controller
+          control={control}
+          name='location'
+          render={({ field }) => (
+            <Select
+              {...field}
+              label='Location'
+              withAsterisk
+              flex={1}
+              data={selectEmiratesData}
+              allowDeselect={false}
+              checkIconPosition='right'
+              comboboxProps={{
+                position: 'bottom-start',
+                width: 230,
+                transitionProps: { transition: 'scale', duration: 300 },
+              }}
+              rightSection={
+                <FaMapLocationDot
+                  size={24}
+                  color={!errors.location ? 'black' : 'red'}
+                />
+              }
+              classNames={{
+                label: classes.labelInput_projects,
+                input: !errors.location
+                  ? classes.input_AddProject
+                  : classes.errorInput_AddProject,
+                section: classes.inputSection,
+              }}
+              error={errors.location?.message}
+            />
+          )}
+        />
+      </Flex>
     </Box>
   );
 };

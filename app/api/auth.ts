@@ -1,5 +1,11 @@
 import api from '~/lib/axios';
-import type { SignUp, LogIn, ResetPassword } from '~/schema/authFormSchema';
+import type {
+  SignUp,
+  LogIn,
+  ResetPassword,
+  ContactInfo,
+} from '~/schema/authFormSchema';
+import type { User } from '~/type';
 
 export async function signUpUser(credentials: SignUp) {
   try {
@@ -93,16 +99,6 @@ export async function recoverPassword(email: string) {
   }
 }
 
-type User = {
-  accessToken: string;
-  id: string;
-  email: string;
-  name: string;
-  role: string;
-  userType: 'admin' | 'user';
-  avatar: string;
-};
-
 export async function resetPassword({
   credentials,
   resetToken,
@@ -130,6 +126,26 @@ export async function resetPassword({
 export async function getMe(): Promise<User> {
   try {
     const { data } = await api.get('/auth/me');
+    return data;
+  } catch (error: any) {
+    let message = 'Something Went Wrong! Please try again later.';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    }
+
+    throw new Error(message);
+  }
+}
+
+export async function updateUserContact(
+  credentials: ContactInfo
+): Promise<User> {
+  try {
+    const { data } = await api.put('/auth/update-contact', credentials, {
+      withCredentials: true,
+    });
+    console.log(data);
     return data;
   } catch (error: any) {
     let message = 'Something Went Wrong! Please try again later.';

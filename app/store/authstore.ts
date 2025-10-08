@@ -9,7 +9,8 @@ type AuthStoreProps = {
     email: string;
     userType: string;
   } | null;
-  setUser: (user: AuthStoreProps['user'], token: string) => void;
+  setUser: (user: AuthStoreProps['user']) => void;
+  setToken: (token: string) => void;
   setLogout: () => void;
 };
 
@@ -17,7 +18,8 @@ export const useAuthStore = create<AuthStoreProps>()(
   devtools((set) => ({
     token: null,
     user: null,
-    setUser: (user, token) => set({ user, token }),
+    setUser: (user) => set({ user }),
+    setToken: (token) => set({ token }),
     setLogout: () => set({ user: null, token: null }),
   }))
 );

@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { cn } from '~/utils/utils';
-import { Avatar, AvatarFallback } from './avatar';
+import { Avatar, AvatarFallback } from '../ui/Avatar';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 import { type Testimonial } from '~/schema/testimonialsSchema';
@@ -39,7 +39,7 @@ const TestimonialsCarousel = ({
   const user = useAuthStore((set) => set.user);
 
   return (
-    <section className={cn('relative overflow-hidden py-16 md:py-24')}>
+    <section className={cn('relative overflow-hidden mt-20 py-16 md:py-24')}>
       <div className='absolute inset-0 -z-10'>
         <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.2),transparent_60%)]' />
         <div className='bg-primary/5 absolute top-1/4 left-1/4 h-32 w-32 rounded-full blur-3xl' />

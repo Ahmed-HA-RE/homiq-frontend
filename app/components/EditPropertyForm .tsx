@@ -6,9 +6,9 @@ import PropertyFormDetails from './PropertyFormDetails';
 import { Button, Group, Stepper } from '@mantine/core';
 import {
   propertyFormSchema,
-  type Property,
   type PropertyForm,
 } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { updateProperty } from '~/api/properties';
@@ -24,6 +24,7 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
   const matches = useMediaQuery('(min-width:768px)');
   const [active, setActive] = useState(0);
   const navigate = useNavigate();
+  const open = useImageModalStore((state) => state.open);
 
   const {
     register,
@@ -31,7 +32,7 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<PropertyForm>({
-    resolver: zodResolver(propertyFormSchema),
+    resolver: zodResolver(propertyFormSchema) as any,
 
     defaultValues: {
       name: property.name,
@@ -44,6 +45,7 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
       parking: property.parking,
       location: property.location,
       description: property.description,
+      amenities: property.amenities,
     },
   });
 
@@ -55,6 +57,11 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
       updateValues: PropertyForm;
       id: string;
     }) => updateProperty(updateValues, id),
+
+    onSuccess: () => {
+      open();
+    },
+
     onError: (error) => {
       toast.error(error.message, {
         icon: <IoWarningOutline size={20} />,
@@ -115,6 +122,7 @@ const EditPropertyForm = ({ property }: { property: Property }) => {
             errors={errors}
             matches={matches}
             control={control}
+            register={register}
           />
         </Stepper.Step>
         <Stepper.Completed>

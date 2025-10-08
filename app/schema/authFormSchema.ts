@@ -24,7 +24,11 @@ export const signUpSchema = z.object({
       error: 'Password must have at least one Lowercase character',
     })
     .regex(/[0-9]/, { error: 'Password must have at least one digit' }),
-  role: z.string({ error: 'Role is required' }).trim().toLowerCase(),
+  role: z
+    .string({ error: 'Role is required' })
+    .nonempty({ error: 'Role is required' })
+    .trim()
+    .toLowerCase(),
 });
 
 export type SignUp = z.infer<typeof signUpSchema>;
@@ -62,3 +66,11 @@ export type ResetPassword = z.infer<typeof resetPassSchema>;
 
 export const recoverPassSchema = signUpSchema.pick({ email: true });
 export type RecoverPassword = z.infer<typeof recoverPassSchema>;
+
+export const contactInfoSchema = z.object({
+  email: signUpSchema.shape.email,
+  name: signUpSchema.shape.name,
+  role: signUpSchema.shape.role,
+});
+
+export type ContactInfo = z.infer<typeof contactInfoSchema>;

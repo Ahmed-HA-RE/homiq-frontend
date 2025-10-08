@@ -101,7 +101,7 @@ const NavbarDrawer = ({ opened, close }: NavbarDrawerProps) => {
             direction='column'
             gap={14}
           >
-            {user ? (
+            {user && (
               <>
                 <Button
                   onClick={close}
@@ -112,20 +112,6 @@ const NavbarDrawer = ({ opened, close }: NavbarDrawerProps) => {
                   Add Property
                 </Button>
               </>
-            ) : (
-              <Button
-                onClick={() => {
-                  close();
-                }}
-                size='sm'
-                component={Link}
-                to='/signup'
-                styles={{
-                  root: { backgroundColor: '#20B2AA' },
-                }}
-              >
-                Get Started
-              </Button>
             )}
           </Flex>
         </div>

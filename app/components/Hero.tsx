@@ -1,6 +1,5 @@
 import { ShimmeringText } from './ui/shimmering';
 import { motion } from 'framer-motion';
-import { useAuthStore } from '~/store/authstore';
 
 type HeroProps = {
   title: string;

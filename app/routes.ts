@@ -12,6 +12,7 @@ export default [
   route('/reviews/add', './routes/reviews/index.tsx'),
   route('/signup', './routes/auth/signup.tsx'),
   route('/login', './routes/auth/login.tsx'),
+  route('/settings/account', './routes/settings/index.tsx'),
   route('/recover-password', './routes/auth/recoverPassword.tsx'),
   route('/reset-password/:resetToken', './routes/auth/resetPassword.tsx'),
   route('*', './routes/not-found/index.tsx'),

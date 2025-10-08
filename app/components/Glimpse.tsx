@@ -4,7 +4,7 @@ const Glimpse = () => {
     <section>
       <div
         id='about'
-        className='mt-16 px-10 md:px-4 max-w-5xl mx-auto font-outfit'
+        className='mt-8 px-10 pt-32 md:px-4 max-w-5xl mx-auto font-outfit'
       >
         {/*About section - shows brand intro and vision statement */}
         <div className='text-center mb-10'>

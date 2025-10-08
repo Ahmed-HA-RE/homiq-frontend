@@ -4,6 +4,7 @@ import { useAuthStore } from '~/store/authstore';
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEVELOPMENT;
 
 const setUser = useAuthStore.getState().setUser;
+const setToken = useAuthStore.getState().setToken;
 
 const api = axios.create({
   baseURL: BACKEND_URL,
@@ -34,15 +35,13 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       const data = await refreshAccessToken();
-      setUser(
-        {
-          name: data.user.name,
-          email: data.user.email,
-          id: data.user._id,
-          userType: data.user.userType,
-        },
-        data.accessToken
-      );
+      setUser({
+        name: data.user.name,
+        email: data.user.email,
+        id: data.user._id,
+        userType: data.user.userType,
+      });
+      setToken(data.accessToken);
       originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
       return api(originalRequest);
     }

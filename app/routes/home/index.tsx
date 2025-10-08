@@ -1,7 +1,6 @@
 import type { Route } from './+types';
 import z from 'zod';
 import Glimpse from '~/components/Glimpse';
-import CarouselProperties from '~/components/CarouselProperties';
 import Hero from '~/components/Hero';
 import type { CarouselProperty } from '~/type';
 import {
@@ -12,6 +11,7 @@ import { getLatestProperties } from '~/api/properties';
 import { getTestimonials } from '~/api/getTestimonials';
 import Footer from '~/components/ui/Footer';
 import TestimonialsCarousel from '~/components/ui/Testimonials';
+import LatestProjects from '~/components/LatestProjects';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -62,7 +62,7 @@ const HomePage = ({ loaderData }: Route.ComponentProps) => {
       </header>
       <main>
         <Glimpse />
-        <CarouselProperties properties={properties} />
+        <LatestProjects properties={properties} />
         <TestimonialsCarousel testimonials={testimonials} />
       </main>
       <Footer />

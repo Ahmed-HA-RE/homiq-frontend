@@ -1,6 +1,6 @@
 import { formatLocationName } from '~/utils/formatters';
 import PropertyDetailsTabs from './PropertyDetailsInfo';
-import type { Property } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 
 type PropertyDetailsProps = {
   property: Property;
@@ -8,7 +8,7 @@ type PropertyDetailsProps = {
 
 const PropertyDetails = ({ property }: PropertyDetailsProps) => {
   return (
-    <div className='rounded-md w-full p-4 overflow-hidden mt-10'>
+    <div className='rounded-md w-full overflow-hidden mt-5'>
       <div className='flex flex-col-reverse md:flex-col space-y-8'>
         {/* Image Gallery */}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4'>
@@ -24,7 +24,7 @@ const PropertyDetails = ({ property }: PropertyDetailsProps) => {
               <img
                 src={interior}
                 alt={property.name}
-                className='overflow-hidden rounded-lg object-cover w-full md:h-42 lg:h-48'
+                className='overflow-hidden rounded-lg object-cover w-full md:h-42 lg:h-[240px]'
                 key={indx}
               />
             ))}

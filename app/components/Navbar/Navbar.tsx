@@ -1,4 +1,3 @@
-import { useId } from 'react';
 import {
   Send,
   Building,
@@ -46,7 +45,7 @@ export default function Navbar() {
   const navigationLinks = [...baseLinks, ...dynamicLinks];
 
   return (
-    <nav className='px-4 md:px-6 bg-white shadow-black border-b border-b-gray-200 shadow '>
+    <nav className='px-4 md:px-6 bg-white shadow-black border-b border-b-gray-200  '>
       <div className='flex h-16 items-center justify-between gap-4 max-w-7xl mx-auto'>
         {/* Left side */}
         <div className='flex flex-1 items-center gap-2'>

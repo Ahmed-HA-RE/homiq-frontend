@@ -1,9 +1,9 @@
-import type { Property } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 import { capitalizeText } from '~/utils/formatters';
 
 const PropertyDetailsInfo = ({ property }: { property: Property }) => {
   return (
-    <div className='mt-12 space-y-4 bg-white shadow p-6 rounded max-w-4xl mx-auto'>
+    <div className='mt-12 space-y-4 bg-gray-50 shadow-lg p-6 rounded mx-auto'>
       {/* discription */}
       <div>
         <h3 className='font-outfit text-gray-600 text-xl mb-6'>Description</h3>

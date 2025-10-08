@@ -21,6 +21,7 @@ const LogInForm = () => {
   const navigate = useNavigate();
   const matches = useMediaQuery('(max-width:768px)');
   const setUser = useAuthStore((state) => state.setUser);
+  const setToken = useAuthStore((state) => state.setToken);
 
   const {
     register,
@@ -34,15 +35,13 @@ const LogInForm = () => {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: (data: LogIn) => loginUser(data),
     onSuccess: (data) => {
-      setUser(
-        {
-          name: data.user.name,
-          email: data.user.email,
-          id: data.user._id,
-          userType: data.user.userType,
-        },
-        data.accessToken
-      );
+      setUser({
+        name: data.user.name,
+        email: data.user.email,
+        id: data.user._id,
+        userType: data.user.userType,
+      });
+      setToken(data.accessToken);
       navigate('/');
     },
 

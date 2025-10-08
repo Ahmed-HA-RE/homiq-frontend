@@ -62,7 +62,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Navbar />
             {children}
           </QueryClientProvider>
-          {/* <Navbar /> */}
         </MantineProvider>
         <ScrollRestoration />
         <Scripts />
@@ -81,18 +80,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const setUser = useAuthStore((state) => state.setUser);
+  const setToken = useAuthStore((state) => state.setToken);
   useEffect(() => {
     async function refreshUser() {
       const data = await refreshAccessToken();
-      setUser(
-        {
-          id: data.user._id,
-          name: data.user.name,
-          email: data.user.email,
-          userType: data.user.userType,
-        },
-        data.accessToken
-      );
+      setUser({
+        id: data.user._id,
+        name: data.user.name,
+        email: data.user.email,
+        userType: data.user.userType,
+      });
+      setToken(data.accessToken);
     }
     refreshUser();
   }, []);
