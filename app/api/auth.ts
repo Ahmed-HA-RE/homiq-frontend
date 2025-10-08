@@ -145,6 +145,24 @@ export async function updateUserContact(
     const { data } = await api.put('/auth/update-contact', credentials, {
       withCredentials: true,
     });
+    return data;
+  } catch (error: any) {
+    let message = 'Something Went Wrong! Please try again later.';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    }
+
+    throw new Error(message);
+  }
+}
+
+export async function updateUserAvatar(avatar: FormData): Promise<User> {
+  try {
+    const { data } = await api.put('/auth/update-avatar', avatar, {
+      withCredentials: true,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
     console.log(data);
     return data;
   } catch (error: any) {

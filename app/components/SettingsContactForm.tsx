@@ -1,4 +1,3 @@
-import type { Route } from '../routes/settings/+types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   useForm,
