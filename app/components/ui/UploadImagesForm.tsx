@@ -84,7 +84,7 @@ const UploadImagesForm = ({
         }}
       >
         <div className='my-10'>
-          <h1 className='leading-8 tracking-wide font-outfit font-bold text-2xl md:text-3xl md:leading-10 max-w-4xl text-green-500'>
+          <h1 className='leading-8 tracking-wide font-outfit font-bold text-2xl md:text-3xl md:leading-10 max-w-4xl text-green-700'>
             Submitted Successfully!
           </h1>
           <p className='mt-2 text-green-100 font-outfit text-sm md:text-base '>

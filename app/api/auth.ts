@@ -4,6 +4,7 @@ import type {
   LogIn,
   ResetPassword,
   ContactInfo,
+  UpdateUserPass,
 } from '~/schema/authFormSchema';
 import type { User } from '~/type';
 
@@ -163,6 +164,32 @@ export async function updateUserAvatar(avatar: FormData): Promise<User> {
       withCredentials: true,
       headers: { 'Content-Type': 'multipart/form-data' },
     });
+    console.log(data);
+    return data;
+  } catch (error: any) {
+    let message = 'Something Went Wrong! Please try again later.';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    }
+
+    throw new Error(message);
+  }
+}
+
+export async function updateUserPassword({
+  password,
+  newPassword,
+  confirmPassword,
+}: UpdateUserPass): Promise<User> {
+  try {
+    const { data } = await api.put(
+      '/auth/update-password',
+      { password, newPassword, confirmPassword },
+      {
+        withCredentials: true,
+      }
+    );
     console.log(data);
     return data;
   } catch (error: any) {

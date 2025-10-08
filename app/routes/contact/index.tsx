@@ -20,7 +20,7 @@ export function meta({}: Route.MetaArgs) {
 
 const ContactPage = () => {
   return (
-    <section className='min-h-screen bg-gradient-contact w-full grid grid-cols-1 lg:grid-cols-2 items-center pt-20 lg:pt-0 '>
+    <section className='min-h-screen bg-gradient-primary w-full grid grid-cols-1 lg:grid-cols-2 items-center pt-20 lg:pt-0 '>
       {/* left side */}
       <div className='p-6 pb-0 md:py-10  font-outfit space-y-5  lg:flex lg:flex-col justify-center'>
         <h1 className='text-3xl md:text-4xl text-black font-medium'>

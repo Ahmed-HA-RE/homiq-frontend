@@ -56,7 +56,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className='space-y-4 p-4 py-6 md:py-8 rounded-md h-full'>
+    <div className='space-y-4 rounded-md h-full'>
       <h1 className='text-black font-outfit font-medium text-3xl md:text-4xl text-center mt-4'>
         Sign Up
       </h1>
@@ -227,8 +227,6 @@ const SignUpForm = () => {
           </span>
         )}
       </form>
-
-      {matches && <Divider color='gray' mt={30} />}
 
       <h3 className='font-outfit text-black transition duration-300 text-base mt-6'>
         Already Have an account ? {'  '}

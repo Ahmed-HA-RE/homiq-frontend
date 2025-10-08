@@ -30,8 +30,8 @@ const PropertyFormDetails = ({
   control,
 }: PropertyFormDetailsProps) => {
   return (
-    <Box className='bg-gradient-create-project rounded-md p-4 pt-5 space-y-4 mt-5'>
-      <h3 className='font-outfit text-2xl md:text-3xl font-semibold  text-gray-50'>
+    <Box className='bg-gradient-primary shadow rounded-md p-4 pt-5 space-y-4 mt-5'>
+      <h3 className='font-outfit text-2xl md:text-3xl font-semibold  text-black'>
         Property Details
       </h3>
       <Divider my={10} color='#fff' />

@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import type { User } from '~/type';
 import { Spinner } from './ui/spinner';
 import { toast } from 'sonner';
 import { Button } from './ui/button';
@@ -24,7 +23,6 @@ const SettingsAvatarForm = () => {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData();
-    console.log(avatar);
     if (avatar) {
       form.append('avatar', avatar);
       await mutateAsync(form);

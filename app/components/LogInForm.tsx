@@ -55,7 +55,7 @@ const LogInForm = () => {
   };
 
   return (
-    <div className='space-y-4 p-4 py-6 md:py-8 rounded-md h-full'>
+    <div className='space-y-4 rounded-md h-full'>
       <h1 className='text-black font-outfit font-medium text-3xl md:text-4xl text-center mt-4'>
         Log In
       </h1>
@@ -120,8 +120,6 @@ const LogInForm = () => {
           </span>
         )}
       </form>
-
-      {matches && <Divider color='gray' mt={30} />}
 
       <Group justify='space-between' align='center' mt={20}>
         <h3 className='font-outfit text-black  md:text-left '>

@@ -27,8 +27,8 @@ const PropertyFormBasics = ({
   control,
 }: PropertyFormBasicsProps) => {
   return (
-    <Box className='bg-gradient-create-project rounded-md p-6 mt-5'>
-      <h3 className='font-outfit text-2xl md:text-3xl font-semibold text-gray-50'>
+    <Box className='bg-gradient-primary shadow rounded-md p-6 mt-5'>
+      <h3 className='font-outfit text-2xl md:text-3xl font-semibold text-black'>
         Project Basics
       </h3>
       <Divider my={10} color='#fff' />

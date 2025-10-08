@@ -12,18 +12,14 @@
   --color-user-experience: #0e2148;
   --color-link: #30e3ca;
   --color-secondary-link: #1eae9b;
+  --color-auth: #50514f;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1024px;
   --breakpoint-2xl: 1250px;
 
-  --background-image-gradient-review: linear-gradient(
-    to right,
-    #b92b27,
-    #1565c0
-  );
-  --background-image-gradient-contact: linear-gradient(
+  --background-image-gradient-primary: linear-gradient(
     90deg,
     #fefefe 0%,
     #ffe4e1 100%
@@ -33,12 +29,6 @@
     to bottom,
     #8e9eab,
     #eef2f3
-  );
-
-  --background-image-gradient-register: linear-gradient(
-    90deg,
-    #3b82f6,
-    #6366f1
   );
 }
 
