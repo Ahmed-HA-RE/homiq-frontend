@@ -2,7 +2,7 @@ import type { Route } from './+types';
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '~/components/Spinner';
 import { useState } from 'react';
-import { getPaginatedProperties, getProperties } from '~/api/properties';
+import { getPaginatedProperties } from '~/api/properties';
 import PaginationComponent from '~/components/ui/Pagination';
 import { AnimatePresence } from 'motion/react';
 import * as motion from 'motion/react-client';
@@ -10,6 +10,7 @@ import PropertyCard from '~/components/ui/PropertyCard';
 import PropertyTabs from '~/components/ui/PropertyTabs';
 import { formatLocationName } from '~/utils/formatters';
 import PropertiesListLayout from '~/components/layouts/PropertiesListLayout';
+import Component from '~/components/ui/PropertyTabs';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -49,6 +50,11 @@ const PropertiesPage = () => {
             </p>
           </div>
 
+          {/* <PropertyTabs
+            activeTabs={activeTabs}
+            setActiveTabs={setActiveTabs}
+            setPage={setPage}
+          /> */}
           <PropertyTabs
             activeTabs={activeTabs}
             setActiveTabs={setActiveTabs}

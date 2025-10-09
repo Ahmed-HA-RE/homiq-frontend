@@ -1,11 +1,22 @@
-import { Tabs } from '@mantine/core';
-import classes from '../../mantine-themes/mantine.module.css';
+import { Badge } from '~/components/ui/badge';
+import { ScrollArea, ScrollBar } from '~/components/ui/scroll-area';
+import { Tabs, TabsList, TabsTrigger } from '~/components/ui/tabs';
 
 type PropertyTabsProprs = {
   activeTabs: string;
   setActiveTabs: React.Dispatch<React.SetStateAction<string>>;
   setPage: React.Dispatch<React.SetStateAction<number>>;
 };
+const tabsData = [
+  { value: 'all', label: 'All' },
+  { value: 'abu_dhabi', label: 'Abu Dhabi' },
+  { value: 'dubai', label: 'Dubai' },
+  { value: 'sharjah', label: 'Sharjah' },
+  { value: 'ajman', label: 'Ajman' },
+  { value: 'umm_al_quwain', label: 'Umm Al Quwain' },
+  { value: 'ras_al_khaimah', label: 'Ras Al Khaimah' },
+  { value: 'fujairah', label: 'Fujairah' },
+];
 
 const PropertyTabs = ({
   activeTabs,
@@ -14,30 +25,31 @@ const PropertyTabs = ({
 }: PropertyTabsProprs) => {
   return (
     <Tabs
-      color='cyan'
-      variant='pills'
-      radius={'xs'}
+      defaultValue={activeTabs}
       value={activeTabs}
-      onChange={(value) => setActiveTabs(value!)}
-      classNames={{
-        root: classes.propertiesTabs_root,
-        tab: classes.propertiesTabs_tab,
-        list: classes.propertiesTabs_list,
-      }}
-      onClick={() => {
+      onValueChange={(value) => {
+        setActiveTabs(value);
         setPage(1);
       }}
+      className='mb-10'
     >
-      <Tabs.List>
-        <Tabs.Tab value='all'>All</Tabs.Tab>
-        <Tabs.Tab value='abu_dhabi'>Abu Dhabi</Tabs.Tab>
-        <Tabs.Tab value='dubai'>Dubai</Tabs.Tab>
-        <Tabs.Tab value='sharjah'>Sharjah</Tabs.Tab>
-        <Tabs.Tab value='ajman'>Ajman</Tabs.Tab>
-        <Tabs.Tab value='umm_al_quwain'>Umm Al Quwain</Tabs.Tab>
-        <Tabs.Tab value='ras_al_khaimah'>Ras Al Khaimah</Tabs.Tab>
-        <Tabs.Tab value='fujairah'>Fujairah</Tabs.Tab>
-      </Tabs.List>
+      <ScrollArea>
+        <TabsList
+          className='text-foreground h-auto gap-2 mb-4 rounded-none border-b 
+        bg-transparent px-0 py-1 '
+        >
+          {tabsData.map((tab) => (
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              className=' data-[state=active]:after:bg-cyan-500 data-[state=active]:hover:bg-cyan-500 relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:shadow-none data-[state=active]:hover:text-white cursor-pointer duration-300 hover:bg-cyan-500 hover:text-white'
+            >
+              {tab.label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        <ScrollBar orientation='horizontal' />
+      </ScrollArea>
     </Tabs>
   );
 };

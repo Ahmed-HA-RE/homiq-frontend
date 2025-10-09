@@ -21,10 +21,13 @@
 
 Homiq Frontend is fully responsive with excellent UI layouts. Features include:
 
-- 🏘 Adding and selling properties
-- 🔍 Browsing properties
-- 📞 Contact Us section
-- ⭐ Adding reviews
+- 🔐 Full authentication system with forms for **login**, **signup**, and **password recovery**
+- ⚙️ User **settings page** to manage profile details, avatar, and password updates
+- 🏘 Adding and selling properties with integrated backend API
+- 🧾 Viewing and managing **all user-listed properties**
+- 🔍 Advanced property browsing and filtering
+- ⭐ Adding and viewing reviews
+- 📞 Contact Us section for user inquiries
 
 ### 📸 Screenshot:
 
