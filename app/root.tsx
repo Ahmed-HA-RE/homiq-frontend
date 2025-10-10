@@ -83,14 +83,20 @@ export default function App() {
   const setToken = useAuthStore((state) => state.setToken);
   useEffect(() => {
     async function refreshUser() {
-      const data = await refreshAccessToken();
-      setUser({
-        id: data.user._id,
-        name: data.user.name,
-        email: data.user.email,
-        userType: data.user.userType,
-      });
-      setToken(data.accessToken);
+      try {
+        const data = await refreshAccessToken();
+        setUser({
+          id: data.user._id,
+          name: data.user.name,
+          email: data.user.email,
+          userType: data.user.userType,
+        });
+        setToken(data.accessToken);
+      } catch (error) {
+        if (process.env.NODE_ENV === 'development') {
+          console.log(error);
+        }
+      }
     }
     refreshUser();
   }, []);
@@ -100,7 +106,7 @@ export default function App() {
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   const message = 'Something bad just happened...';
-  let details = `${import.meta.env.DEV ? 'An unexpected error occurred.' : 'Our servers could not handle your request. Don&apos;t worry, our development team was already notified. Try refreshing the page.'}`;
+  let details = `${import.meta.env.DEV ? 'An unexpected error occurred.' : "Our servers could not handle your request. Don't worry, our development team was already notified. Try refreshing the page."}`;
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {

@@ -1,11 +1,10 @@
-import { Button, Divider, Drawer, Flex, Group } from '@mantine/core';
+import { Button, Divider, Drawer, Flex } from '@mantine/core';
 import { IoCloseCircle } from 'react-icons/io5';
-import { Link, NavLink, useNavigate } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { useAuthStore } from '~/store/authstore';
 import { Overlay } from '@mantine/core';
 
 import classes from '../../mantine-themes/mantine.module.css';
-import { logoutUser } from '~/api/auth';
 
 type NavbarDrawerProps = {
   opened: boolean;
@@ -14,15 +13,13 @@ type NavbarDrawerProps = {
 
 const NavbarDrawer = ({ opened, close }: NavbarDrawerProps) => {
   const user = useAuthStore((state) => state.user);
-  const setLogout = useAuthStore((state) => state.setLogout);
-  const navigate = useNavigate();
 
   return (
     <>
       <Drawer
         opened={opened}
         onClose={close}
-        size='xl'
+        size='100%'
         padding='md'
         position='top'
         hiddenFrom='sm'

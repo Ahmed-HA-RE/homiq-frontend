@@ -83,7 +83,7 @@ const AboutPage = ({ loaderData }: Route.ComponentProps) => {
               </p>
             </div>
           </div>
-          <div className='max-w-7xl mx-auto  mt-4 md:mt-10'>
+          <div className='max-w-7xl mx-auto px-4 xl:px-3  mt-4 md:mt-10'>
             <p className='font-semibold w-full max-w-2xl mb-4 font-outfit'>
               Homiq is a leading real estate company in the UAE, dedicated to
               helping clients buy, sell, and invest in premium residential and

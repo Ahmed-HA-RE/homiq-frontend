@@ -14,7 +14,6 @@ export async function sendContactForm({ message }: SendContactFormProps) {
     );
     return data;
   } catch (error: any) {
-    console.log(error);
     let message = 'Something went wrong';
 
     if (error.response?.data.message) {

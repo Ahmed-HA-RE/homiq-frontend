@@ -164,7 +164,6 @@ export async function updateUserAvatar(avatar: FormData): Promise<User> {
       withCredentials: true,
       headers: { 'Content-Type': 'multipart/form-data' },
     });
-    console.log(data);
     return data;
   } catch (error: any) {
     let message = 'Something Went Wrong! Please try again later.';
@@ -190,7 +189,6 @@ export async function updateUserPassword({
         withCredentials: true,
       }
     );
-    console.log(data);
     return data;
   } catch (error: any) {
     let message = 'Something Went Wrong! Please try again later.';

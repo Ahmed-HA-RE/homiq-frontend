@@ -78,8 +78,10 @@ const LatestProjects = ({ properties }: { properties: CarouselProperty[] }) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <div className='hidden lg:block'>
+          <CarouselPrevious />
+          <CarouselNext />
+        </div>
       </Carousel>
     </section>
   );
