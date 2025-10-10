@@ -5,7 +5,7 @@ import type { Testimonial } from '~/schema/testimonialsSchema';
 export async function getTestimonials(): Promise<Testimonial[]> {
   try {
     const { data } = await api.get(
-      `${import.meta.env.VITE_BACKEND_URL_DEVELOPMENT}/testimonials`
+      `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/testimonials`
     );
     return data.results;
   } catch (error: any) {
@@ -25,7 +25,7 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 export async function createTestimonial({ feedback }: { feedback: string }) {
   try {
     const { data } = await api.post(
-      `${import.meta.env.VITE_BACKEND_URL_DEVELOPMENT}/testimonials`,
+      `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/testimonials`,
       { feedback }
     );
     return data;

@@ -13,7 +13,7 @@ export async function getProperties(
 ): Promise<PropertiesPromise> {
   try {
     const { data } = await api.get(
-      `${import.meta.env.VITE_BACKEND_URL_DEVELOPMENT}/properties`,
+      `${import.meta.env.VITE_BACKEND_URL_PRODUCTION}/properties`,
       { params }
     );
 

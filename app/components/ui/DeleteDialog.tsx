@@ -1,5 +1,5 @@
 import { Button, Dialog, Group } from '@mantine/core';
-import type { Property } from '~/schema/propertiesSchema';
+import type { Property } from '~/type';
 import { deleteProperty } from '~/api/properties';
 import { useNavigate } from 'react-router';
 import { useMutation } from '@tanstack/react-query';

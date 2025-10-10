@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { refreshAccessToken } from '~/api/auth';
 import { useAuthStore } from '~/store/authstore';
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_DEVELOPMENT;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL_PRODUCTION;
 
 const setUser = useAuthStore.getState().setUser;
 const setToken = useAuthStore.getState().setToken;

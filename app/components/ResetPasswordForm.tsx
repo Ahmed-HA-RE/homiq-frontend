@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Flex, PasswordInput } from '@mantine/core';
+import { Button, PasswordInput } from '@mantine/core';
 import { useMutation } from '@tanstack/react-query';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router';
@@ -12,6 +12,7 @@ import { resetPassword } from '~/api/auth';
 const ResetPasswordForm = () => {
   const navigate = useNavigate();
   const setUser = useAuthStore((state) => state.setUser);
+  const setToken = useAuthStore((state) => state.setToken);
   const { resetToken } = useParams();
 
   const {
@@ -28,15 +29,13 @@ const ResetPasswordForm = () => {
     mutationFn: (data: ResetPassword) =>
       resetPassword({ credentials: data, resetToken: resetToken! }),
     onSuccess: (data) => {
-      setUser(
-        {
-          name: data.name,
-          email: data.email,
-          id: data.id,
-          userType: data.userType,
-        },
-        data.accessToken
-      );
+      setUser({
+        name: data.name,
+        email: data.email,
+        id: data.id,
+        userType: data.userType,
+      });
+      setToken(data.accessToken);
       reset();
       setTimeout(() => navigate('/properties'), 2000);
     },
