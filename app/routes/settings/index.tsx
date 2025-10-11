@@ -1,23 +1,17 @@
 import type { Route } from './+types';
 import SettingsContactForm from '~/components/SettingsContactForm';
 import type { User } from '~/type';
-import api from '~/lib/axios';
 import SettingsAvatarForm from '~/components/SettingsAvatarForm';
 import SettingsPassForm from '~/components/SettingsPassForm';
+import { useQuery } from '@tanstack/react-query';
+import { getMe } from '~/api/auth';
 
-export const loader = async ({ request }: Route.LoaderArgs): Promise<User> => {
-  const cookie = request.headers.get('cookie')?.split('=')[1];
-
-  const { data } = await api.get(`/auth/me`, {
-    headers: {
-      Authorization: `Bearer ${cookie}`,
-    },
+const SettingsPage = () => {
+  const { data: user } = useQuery({
+    queryKey: ['user'],
+    queryFn: getMe,
   });
-  return data;
-};
 
-const SettingsPage = ({ loaderData }: Route.ComponentProps) => {
-  const user = loaderData;
   return (
     <main className='p-6 mt-9 max-w-7xl mx-auto'>
       <h1 className='font-bold font-outfit text-3xl text-center md:text-5xl mb-40 underline'>
@@ -35,7 +29,7 @@ const SettingsPage = ({ loaderData }: Route.ComponentProps) => {
             your listings and used for inquiries.
           </p>
         </div>
-        <SettingsContactForm userData={user} />
+        {user && <SettingsContactForm userData={user} />}
       </div>
 
       {/* Avatar Form */}
