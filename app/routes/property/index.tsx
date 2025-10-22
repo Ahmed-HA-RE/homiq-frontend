@@ -14,7 +14,7 @@ import Component from '~/components/ui/PropertyTabs';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Properties' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

@@ -2,7 +2,6 @@ import { Modal, Button, Group } from '@mantine/core';
 import useImageModalStore from '~/store/imageModalStore';
 import { useNavigate } from 'react-router';
 import classes from '../../mantine-themes/mantine.module.css';
-import type { FileWithPath } from '@mantine/dropzone';
 import { DropZone } from '../PropertyFormDropzone';
 import { useMediaQuery } from '@mantine/hooks';
 import {

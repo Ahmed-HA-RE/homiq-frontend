@@ -3,7 +3,7 @@ import Hero from '~/components/Hero';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Page Not Found' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

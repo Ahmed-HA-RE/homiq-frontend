@@ -1,3 +1,4 @@
+import { redirect } from 'react-router';
 import type { Route } from './+types';
 import NewPropertyForm from '~/components/NewPropertyForm';
 import Footer from '~/components/ui/Footer';
@@ -6,13 +7,21 @@ import useImageModalStore from '~/store/imageModalStore';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Create New Property' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:
         'Add your property to Homiq and start reaching potential buyers and renters today. Create detailed listings with images, pricing, and amenities easily.',
     },
   ];
+}
+
+export async function loader({ request, params }: Route.LoaderArgs) {
+  const refreshToken = request.headers.get('Cookie');
+
+  if (!refreshToken) {
+    return redirect('/login');
+  }
 }
 
 const CreatePropertyForm = () => {

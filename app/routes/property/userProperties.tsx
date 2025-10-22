@@ -4,28 +4,31 @@ import api from '~/lib/axios';
 import { useAuthStore } from '~/store/authstore';
 import type { Property } from '~/type';
 import PropertyCard from '~/components/ui/PropertyCard';
-import { Link } from 'react-router';
-
-export async function loader({
-  request,
-}: Route.LoaderArgs): Promise<Property[]> {
-  const cookie = request.headers.get('cookie')?.split('=')[1];
-  const { data } = await api.get('/properties/me', {
-    withCredentials: true,
-    headers: { Authorization: `Bearer ${cookie}` },
-  });
-  return data;
-}
+import { Link, redirect } from 'react-router';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Your Property Listings ' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:
         'View your listed properties, manage details, and showcase your real estate portfolio effortlessly on Homiq.',
     },
   ];
+}
+
+export async function loader({ request }: Route.LoaderArgs) {
+  const cookie = request.headers.get('cookie')?.split('=')[1];
+  const refreshToken = request.headers.get('Cookie');
+
+  if (!refreshToken) {
+    return redirect('/login');
+  }
+  const { data } = await api.get<Property[]>('/properties/me', {
+    withCredentials: true,
+    headers: { Authorization: `Bearer ${cookie}` },
+  });
+  return data;
 }
 
 const UserPropertiesPage = ({ loaderData }: Route.ComponentProps) => {

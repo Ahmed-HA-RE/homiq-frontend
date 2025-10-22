@@ -12,7 +12,7 @@ import { useAuthStore } from '~/store/authstore';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | About Us' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

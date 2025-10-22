@@ -4,17 +4,15 @@ import EditPropertyForm from '~/components/EditPropertyForm ';
 import api from '~/lib/axios';
 import Footer from '~/components/ui/Footer';
 import UploadImagesForm from '~/components/ui/UploadImagesForm';
-import useImageModalStore from '~/store/imageModalStore';
 import type { Property } from '~/type';
+import { redirect } from 'react-router';
 
-type LoaderReturn = {
-  property: Property;
-};
+export async function loader({ request, params }: Route.LoaderArgs) {
+  const refreshToken = request.headers.get('Cookie');
 
-export async function loader({
-  request,
-  params,
-}: Route.LoaderArgs): Promise<LoaderReturn> {
+  if (!refreshToken) {
+    return redirect('/login');
+  }
   const { id } = params;
   const { data } = await api.get(`/properties/${id}`);
   return { property: data };
@@ -22,7 +20,7 @@ export async function loader({
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Edit Property Details' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

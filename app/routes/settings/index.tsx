@@ -5,6 +5,26 @@ import SettingsAvatarForm from '~/components/SettingsAvatarForm';
 import SettingsPassForm from '~/components/SettingsPassForm';
 import { useQuery } from '@tanstack/react-query';
 import { getMe } from '~/api/auth';
+import { redirect } from 'react-router';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Homiq' },
+    {
+      name: 'description',
+      content:
+        'Manage your Homiq account settings, preferences, and personal information to enhance your experience.',
+    },
+  ];
+}
+
+export async function loader({ request, params }: Route.LoaderArgs) {
+  const refreshToken = request.headers.get('Cookie');
+
+  if (!refreshToken) {
+    return redirect('/login');
+  }
+}
 
 const SettingsPage = () => {
   const { data: user } = useQuery({

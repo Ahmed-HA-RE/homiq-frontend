@@ -19,7 +19,7 @@ export async function loader({ params }: Route.LoaderArgs): Promise<Property> {
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Project Details ' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:
