@@ -1,3 +1,4 @@
+import { redirect } from 'react-router';
 import type { Route } from './+types';
 import NewPropertyForm from '~/components/NewPropertyForm';
 import Footer from '~/components/ui/Footer';
@@ -6,7 +7,7 @@ import useImageModalStore from '~/store/imageModalStore';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Create New Property' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

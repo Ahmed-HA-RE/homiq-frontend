@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { cn } from '~/utils/utils';
+import { cn } from '~/lib/utils';
 import { Avatar, AvatarFallback } from '../ui/Avatar';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';

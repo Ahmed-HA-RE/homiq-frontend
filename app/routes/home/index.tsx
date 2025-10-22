@@ -15,7 +15,7 @@ import LatestProjects from '~/components/LatestProjects';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Welcome' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

@@ -28,11 +28,11 @@ const Hero = ({ title, subtitle, bgImage }: HeroProps) => {
         >
           <ShimmeringText
             text={title}
-            className='text-[32px] sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl md:max-w-5xl font-outfit font-semibold md:leading-18  w-full text-center capitalize'
+            className='text-2xl sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl md:max-w-5xl font-outfit font-semibold md:leading-18  w-full text-center capitalize'
             color='#fff'
             shimmeringColor='#11111'
           />
-          <p className='my-2 text-gray-200 text-base md:text-2xl text-center md:max-w-2xl mx-auto'>
+          <p className='my-2 text-gray-200 text-sm md:text-2xl text-center md:max-w-2xl mx-auto'>
             {subtitle}
           </p>
         </motion.div>

@@ -131,3 +131,21 @@ export const uploadPropertyImages = async ({
     throw new Error(message);
   }
 };
+
+// User's properties
+export const getUserProperties = async (): Promise<Property[]> => {
+  try {
+    const { data } = await api.get(`/properties/me`, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error: any) {
+    let message = 'Something went wrong. Please try again later';
+
+    if (error.response?.data?.message) {
+      message = error.response?.data?.message;
+    }
+
+    throw new Error(message);
+  }
+};

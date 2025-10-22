@@ -5,11 +5,12 @@ import {
   FaInstagram,
   FaLinkedin,
 } from 'react-icons/fa';
+import { redirect } from 'react-router';
 import ContactForm from '~/components/ContactUsForm';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Contact Us' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

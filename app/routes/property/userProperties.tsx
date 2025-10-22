@@ -2,24 +2,14 @@ import type { Route } from './+types/userProperties';
 import PropertiesListLayout from '~/components/layouts/PropertiesListLayout';
 import api from '~/lib/axios';
 import { useAuthStore } from '~/store/authstore';
-import type { Property } from '~/type';
 import PropertyCard from '~/components/ui/PropertyCard';
 import { Link } from 'react-router';
-
-export async function loader({
-  request,
-}: Route.LoaderArgs): Promise<Property[]> {
-  const cookie = request.headers.get('cookie')?.split('=')[1];
-  const { data } = await api.get('/properties/me', {
-    withCredentials: true,
-    headers: { Authorization: `Bearer ${cookie}` },
-  });
-  return data;
-}
+import { useQuery } from '@tanstack/react-query';
+import { getUserProperties } from '~/api/properties';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Your Property Listings ' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:
@@ -28,9 +18,14 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-const UserPropertiesPage = ({ loaderData }: Route.ComponentProps) => {
+const UserPropertiesPage = () => {
+  const { data: properties, isLoading } = useQuery({
+    queryKey: ['user', 'properties'],
+    queryFn: getUserProperties,
+  });
+
   const user = useAuthStore((state) => state.user);
-  const properties = loaderData;
+
   return (
     <PropertiesListLayout>
       <section>
@@ -43,9 +38,9 @@ const UserPropertiesPage = ({ loaderData }: Route.ComponentProps) => {
             <h2 className='tracking-wider font-outfit font-light text-xl sm:text-2xl uppercase italic text-left mb-4'>
               Current Listing:
             </h2>
-            {properties.length > 0 ? (
+            {properties && properties?.length > 0 ? (
               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center'>
-                {properties.map((property) => (
+                {properties?.map((property) => (
                   <PropertyCard key={property._id} property={property} />
                 ))}
               </div>

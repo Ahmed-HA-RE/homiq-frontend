@@ -5,11 +5,12 @@ import {
   FaLinkedin,
   FaMeetup,
 } from 'react-icons/fa';
+import { redirect } from 'react-router';
 import AddReview from '~/components/AddReview';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Share Your Review' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:
@@ -17,6 +18,7 @@ export function meta({}: Route.MetaArgs) {
     },
   ];
 }
+
 const AddReviewPage = () => {
   return (
     <section className='min-h-screen bg-gradient-primary w-full grid grid-cols-1 lg:grid-cols-2 items-center  pt-20 lg:pt-0 '>

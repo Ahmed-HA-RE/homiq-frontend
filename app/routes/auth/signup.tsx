@@ -4,7 +4,7 @@ import SignUpForm from '~/components/SignUpForm';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Create an Account' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

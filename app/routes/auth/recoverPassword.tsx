@@ -4,7 +4,7 @@ import RecoverPassowrdForm from '~/components/RecoverPasswordForm';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Recover Password' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

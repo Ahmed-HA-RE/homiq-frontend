@@ -5,7 +5,7 @@ import LogInForm from '~/components/LogInForm';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Log In' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:

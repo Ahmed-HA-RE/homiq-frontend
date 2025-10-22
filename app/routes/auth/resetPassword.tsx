@@ -4,7 +4,7 @@ import AuthLayout from '~/components/layouts/AuthLayout';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'Homiq | Reset Password' },
+    { title: 'Homiq' },
     {
       name: 'description',
       content:
